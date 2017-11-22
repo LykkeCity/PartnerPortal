@@ -1,0 +1,77 @@
+@import '~scss/reuse';
+
+.navbar {
+  height: 104px;
+}
+
+.become-partner-map {
+  padding-top: 204px;
+  padding-bottom: 286px;
+}
+
+.lykke-partners {
+  padding-top: 87px;
+  padding-bottom: 68px;
+
+  p.copy {
+    margin-top: 45px;
+    margin-bottom: 65px;
+  }
+}
+
+.explore-ecosystem {
+  padding-top: 95px;
+  padding-bottom: 140px;
+  .existing-assets {
+    margin-top: 115px;
+    .asset {
+      background: $white;
+      height: 315px;
+      padding: 12px 12px 0;
+      display: flex;
+      flex-direction: column;
+      &:hover {
+        background: $primary;
+        .asset-name {
+          background: $white;
+          color: $dark-grey;
+        }
+        .asset-desc {
+          display: block;
+        }
+        .asset-logo {
+          display: none;
+        }
+      }
+    }
+    .asset-name {
+      background: $primary;
+      color: $white;
+      display: flex;
+      font-size: 1.375rem;
+      font-weight: $font-weight-semibold;
+      justify-content: center;
+      padding: 0.532rem;
+    }
+    .asset-content {
+      align-items: center;
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+    }
+    .asset-desc {
+      display: none;
+      line-height: 1.22;
+    }
+  }
+}
+
+.carousel-section {
+  padding-top: 97px;
+  padding-bottom: 62px;
+}
+
+.how-it-works {
+  padding-top: 77px;
+  padding-bottom: 94px;
+}
