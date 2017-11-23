@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="1476.839 4890.33 119.128 100.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke: #333;
+        stroke-width: 2px;
+      }
+
+      .cls-3, .cls-4 {
+        stroke: #fff;
+      }
+
+      .cls-3 {
+        stroke-width: 1.791px;
+      }
+
+      .cls-4 {
+        stroke-width: 1.846px;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.499" y1="0.999" x2="0.499" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff3e2e"/>
+      <stop offset="1" stop-color="#ff8177"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_339" data-name="Group 339" transform="translate(1476.839 4890.33)">
+    <path id="Path_599" data-name="Path 599" class="cls-1" d="M18.1,89.329V64.109L55.809,26.4C69.753,40.1,88.425,58.653,93.518,63.988V89.814Z" transform="translate(3.634 5.398)"/>
+    <path id="Path_600" data-name="Path 600" class="cls-2" d="M3.9,55.563,58.463,1S113.51,55.441,112.9,55.441,102.6,66.6,102.6,65.748,58.705,21.976,58.705,21.976l-43.65,43.65Z" transform="translate(0.616)"/>
+    <line id="Line_537" data-name="Line 537" class="cls-2" y2="33.829" transform="translate(15.671 65.626)"/>
+    <line id="Line_538" data-name="Line 538" class="cls-2" y2="34.193" transform="translate(103.214 65.748)"/>
+    <line id="Line_539" data-name="Line 539" class="cls-2" x2="117.128" transform="translate(1 99.94)"/>
+    <path id="Path_601" data-name="Path 601" class="cls-3" d="M27.7,85.131V53H46.009V85.374" transform="translate(5.674 11.05)"/>
+    <path id="Path_602" data-name="Path 602" class="cls-4" d="M49.4,71.815V52.9H73.65V72.058Z" transform="translate(10.285 11.029)"/>
+    <path id="Path_603" data-name="Path 603" class="cls-2" d="M18.5,35.921V6.7H32.808V21.856" transform="translate(3.719 1.211)"/>
+  </g>
+</svg>
