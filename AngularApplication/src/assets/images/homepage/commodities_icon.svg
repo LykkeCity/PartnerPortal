@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="1266 4886 130.462 111.776">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-1 {
+        stroke: #333;
+      }
+
+      .cls-2 {
+        opacity: 0.9;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-3 {
+        stroke: #fff;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-0.001" y1="0.5" x2="0.998" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ab00ff"/>
+      <stop offset="0.995" stop-color="#c955ff"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_338" data-name="Group 338" transform="translate(1266 4886)">
+    <line id="Line_515" data-name="Line 515" class="cls-1" x2="62.94" transform="translate(30.257 18.21)"/>
+    <line id="Line_516" data-name="Line 516" class="cls-1" x2="4.917" transform="translate(88.28 49.066)"/>
+    <line id="Line_517" data-name="Line 517" class="cls-1" x2="4.548" transform="translate(30.257 49.066)"/>
+    <line id="Line_518" data-name="Line 518" class="cls-1" x2="4.548" transform="translate(30.257 79.921)"/>
+    <line id="Line_519" data-name="Line 519" class="cls-1" x2="62.94" transform="translate(30.257 110.776)"/>
+    <line id="Line_520" data-name="Line 520" class="cls-1" y2="92.566" transform="translate(34.929 18.21)"/>
+    <line id="Line_521" data-name="Line 521" class="cls-1" y2="92.566" transform="translate(88.157 18.21)"/>
+    <line id="Line_522" data-name="Line 522" class="cls-1" x2="58.023" transform="translate(71.439 1)"/>
+    <line id="Line_523" data-name="Line 523" class="cls-1" x2="33.929" transform="translate(95.533 31.855)"/>
+    <line id="Line_524" data-name="Line 524" class="cls-1" x2="33.929" transform="translate(95.533 62.711)"/>
+    <line id="Line_525" data-name="Line 525" class="cls-1" x2="33.929" transform="translate(95.533 93.566)"/>
+    <line id="Line_526" data-name="Line 526" class="cls-1" y2="11.31" transform="translate(76.11 1)"/>
+    <line id="Line_527" data-name="Line 527" class="cls-1" y2="92.566" transform="translate(124.422 1)"/>
+    <line id="Line_528" data-name="Line 528" class="cls-1" x2="58.023" transform="translate(1 4.319)"/>
+    <line id="Line_529" data-name="Line 529" class="cls-1" x2="26.307" transform="translate(1 35.174)"/>
+    <line id="Line_530" data-name="Line 530" class="cls-1" x2="26.307" transform="translate(1 66.03)"/>
+    <line id="Line_531" data-name="Line 531" class="cls-1" x2="26.307" transform="translate(1 96.885)"/>
+    <line id="Line_532" data-name="Line 532" class="cls-1" y2="92.566" transform="translate(5.671 4.319)"/>
+    <line id="Line_533" data-name="Line 533" class="cls-1" y2="6.884" transform="translate(53.983 4.319)"/>
+    <line id="Line_534" data-name="Line 534" class="cls-1" x2="4.917" transform="translate(88.28 79.921)"/>
+    <rect id="Rectangle_227" data-name="Rectangle 227" class="cls-2" width="41.059" height="80.273" transform="translate(41.075 24.357)"/>
+    <line id="Line_535" data-name="Line 535" class="cls-3" x2="45.484" transform="translate(38.371 49.066)"/>
+    <line id="Line_536" data-name="Line 536" class="cls-3" x2="46.099" transform="translate(38.617 79.921)"/>
+  </g>
+</svg>
