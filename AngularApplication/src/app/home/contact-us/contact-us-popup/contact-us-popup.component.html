@@ -1,0 +1,99 @@
+<div class="modal-header">
+  <div class="navbar-brand">
+    <img src="../assets/images/lykke-partners-logo.png">
+  </div>
+  <button type="button" class="close pull-right" role="button" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="contactUsForm" (ngSubmit)="onSubmit($event)">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="name" class="control-label">Name:</label>
+          <input id="name" class="form-control" formControlName="name" [(ngModel)]="contactUsData.name">
+
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+               class="text-danger">
+            <div *ngIf="name.errors.required">
+              Name is required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="email" class="control-label">Email:</label>
+          <input id="email" type='email' class="form-control" formControlName="email" [email]="true"
+                 [(ngModel)]="contactUsData.email">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+               class="text-danger">
+            <div *ngIf="email.errors.required">
+              Email is required.
+            </div>
+
+            <div *ngIf="!email.errors.required && email.errors.email">
+              The provided email is not valid.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="phone" class="center-block">Phone number:</label>
+          <input id="phone" class="form-control" formControlName="phone" [(ngModel)]="contactUsData.phone">
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+               class="text-danger">
+            <div *ngIf="phone.errors.required">
+              Phone number is required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="useCase" class="center-block">Use case:</label>
+          <textarea id="useCase" class="form-control" formControlName="useCase"
+                    [(ngModel)]="contactUsData.useCase"></textarea>
+          <div *ngIf="useCase.invalid && (useCase.dirty || useCase.touched)"
+               class="text-danger">
+            <div *ngIf="useCase.errors.required">
+              This field is required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <re-captcha (captchaResponse)="handleCorrectCaptcha()"
+                      (captchaExpired)="handleExpiredCaptcha()"
+                      site_key="6LcwPzoUAAAAAJpDjgcsAuaixMGmhc3irGPyV3VM"
+                      languager="en"
+                      theme="light"
+                      type="image"
+                      size="normal">
+          </re-captcha>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
