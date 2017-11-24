@@ -2,6 +2,9 @@
 
 .navbar {
   height: 104px;
+  .lykke-partners-logo {
+    width: 277px;
+  }
 }
 
 .become-partner-map {
@@ -51,7 +54,6 @@
 }
 
 .lykke-partners {
-  padding-top: 87px;
   padding-bottom: 68px;
 
   p.copy {
@@ -85,6 +87,9 @@
         }
       }
     }
+    img {
+      width: 42%;
+    }
     .asset-name {
       background: $primary;
       color: $white;
@@ -115,4 +120,31 @@
 .how-it-works {
   padding-top: 77px;
   padding-bottom: 94px;
+  h6 {
+    font-weight: $font-weight-semibold;
+    font-size: 1.3125rem;
+  }
+  .launch-steps {
+    padding: 0;
+    list-style: none;
+    li {
+      margin-bottom: 35px;
+      padding-left: 100px;
+      position: relative;
+    }
+    img {
+      height: 76px;
+      position: absolute;
+      left: 0;
+      top: 7px;
+    }
+  }
+  .right-section {
+    img {
+      margin-bottom: 60px;
+    }
+  }
+  .how-it-works-content {
+    margin-top: 80px;
+  }
 }
