@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Intercom } from 'ng-intercom';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Intercom } from 'ng-intercom';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private intercom: Intercom) {
+  constructor(private intercom: Intercom, angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
 
   }
 

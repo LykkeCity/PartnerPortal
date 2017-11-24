@@ -15,6 +15,8 @@ import { HomeCarouselComponent } from './home/home-carousel/home-carousel.compon
 import { NewsletterComponent } from './home/newsletter/newsletter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Angulartics2Module } from 'angulartics2';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
       updateOnRouterChange: true
     }),
     ReCaptchaModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])
   ],
   entryComponents: [
     ContactUsPopupComponent
