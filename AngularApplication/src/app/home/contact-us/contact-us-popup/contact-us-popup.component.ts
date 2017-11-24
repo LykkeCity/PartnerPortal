@@ -11,7 +11,6 @@ import { ContactUsModel } from '../models/contact-us.model';
 })
 export class ContactUsPopupComponent {
 
-  title: string;
   contactUsForm: FormGroup;
   contactUsData: ContactUsModel;
 
@@ -20,8 +19,6 @@ export class ContactUsPopupComponent {
 
   constructor(private bsModalRef: BsModalRef,
               private formBuilder: FormBuilder) {
-
-    this.title = "Contact us";
     this.contactUsData = new ContactUsModel();
 
     this.contactUsForm = this.formBuilder.group({
@@ -56,6 +53,6 @@ export class ContactUsPopupComponent {
       return;
     }
 
-    console.log(this.contactUsData);
+    console.log(this.contactUsData); // TODO call API here
   }
 }
