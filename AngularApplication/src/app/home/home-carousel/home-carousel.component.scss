@@ -2,7 +2,7 @@
 
 ngx-item {
   img {
-    max-height: 500px;
+    max-height: 325px;
   }
   h5 {
     font-size: 1.5rem;
@@ -12,14 +12,19 @@ ngx-item {
     margin-bottom: 40px;
   }
 }
+
+.product-text {
+  margin-top: 55px;
+}
+
 .leftRs {
   background: url('../../../assets/images/homepage/arrow_button.svg');
   width: 50px;
   height: 50px;
   transform: translate(0, -50%);
   position: absolute;
-  left: -8%;
-  top: 50%;
+  left: 0;
+  top: 20%;
 }
 
 .rightRs {
@@ -28,6 +33,43 @@ ngx-item {
   height: 50px;
   transform: rotate(180deg) translate(0, 50%);
   position: absolute;
-  right: -8%;
-  top: 50%;
+  right: 0;
+  top: 20%;
+}
+
+// small phones
+@include media-breakpoint-up(sm) {
+
+}
+
+// tablet
+@include media-breakpoint-up(md) {
+  ngx-item {
+    img {
+      max-height: 400px;
+    }
+  }
+}
+
+// desktop
+@include media-breakpoint-up(lg) {
+  ngx-item {
+    img {
+      max-height: 500px;
+    }
+  }
+  .product-text {
+    margin-top: 0;
+  }
+  .leftRs {
+    transform: translate(0, -50%);
+    left: -8%;
+    top: 50%;
+  }
+
+  .rightRs {
+    transform: rotate(180deg) translate(0, 50%);
+    right: -8%;
+    top: 50%;
+  }
 }
