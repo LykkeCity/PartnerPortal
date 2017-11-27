@@ -12,8 +12,10 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="name" class="control-label">Name:</label>
-          <input id="name" class="form-control" formControlName="name" [(ngModel)]="contactUsData.name">
-
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fo--name"></i></span>
+            <input id="name" class="form-control" formControlName="name" [(ngModel)]="contactUsData.name">
+          </div>
           <div *ngIf="name.invalid && (name.dirty || name.touched)"
                class="text-danger">
             <div *ngIf="name.errors.required">
@@ -28,8 +30,12 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="email" class="control-label">Email:</label>
-          <input id="email" type='email' class="form-control" formControlName="email" [email]="true"
-                 [(ngModel)]="contactUsData.email">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="icon--mail"></i></span>
+            <input id="email" type='email' class="form-control" formControlName="email" [email]="true"
+                   [(ngModel)]="contactUsData.email">
+          </div>
+
           <div *ngIf="email.invalid && (email.dirty || email.touched)"
                class="text-danger">
             <div *ngIf="email.errors.required">
@@ -48,7 +54,11 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="phone" class="center-block">Phone number:</label>
-          <input id="phone" class="form-control" formControlName="phone" [(ngModel)]="contactUsData.phone">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fo--phone"></i></span>
+            <input id="phone" class="form-control" formControlName="phone" [(ngModel)]="contactUsData.phone">
+          </div>
+
           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
                class="text-danger">
             <div *ngIf="phone.errors.required">
