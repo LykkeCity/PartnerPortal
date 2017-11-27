@@ -1,8 +1,15 @@
 @import '~scss/reuse';
 
+$navbar-height: 104px;
+
+
+.btn {
+  width: 100%;
+}
+
 .navbar {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  height: 104px;
+  height: $navbar-height;
   .lykke-partners-logo {
     width: 277px;
   }
@@ -11,8 +18,9 @@
 .become-partner-map {
   background: url('../../assets/images/homepage/image_header_compressed.jpg') left bottom no-repeat;
   background-size: cover;
-  padding-top: 204px;
-  padding-bottom: 310px;
+  margin-top: $navbar-height;
+  padding-top: 55px;
+  padding-bottom: 100px;
   position: relative;
   .background-overlay {
     background-color: $dark-grey;
@@ -29,13 +37,7 @@
     z-index: 3;
   }
   .map {
-    background: url('../../assets/images/homepage/world_map.svg');
-    position: absolute;
-    right: 4.1%;
-    top: 133px;
-    width: 815px;
-    height: 396px;
-    z-index: 2;
+    margin-top: 50px;
   }
   .waves {
     background: url('../../assets/images/homepage/waves_white_top.svg') center bottom no-repeat;
@@ -64,10 +66,10 @@
 }
 
 .explore-ecosystem {
-  padding-top: 95px;
-  padding-bottom: 140px;
+  padding-top: 35px;
+  padding-bottom: 40px;
   .existing-assets {
-    margin-top: 115px;
+    margin-top: 40px;
     .asset {
       background: $white;
       height: 315px;
@@ -114,11 +116,11 @@
 }
 
 .carousel-section {
-  padding-top: 97px;
-  padding-bottom: 62px;
+  padding-top: 35px;
+  padding-bottom: 22px;
 
   .products-carousel {
-    margin-top: 83px;
+    margin-top: 33px;
   }
 }
 
@@ -235,6 +237,79 @@
     .icon {
       font-size: 16px;
       color: $dark-grey;
+    }
+  }
+}
+
+// small phones
+@include media-breakpoint-up(sm) {
+  .become-partner-map {
+  }
+}
+
+// tablet
+@include media-breakpoint-up(md) {
+  .btn {
+    width: auto;
+  }
+  .become-partner-map {
+    padding-bottom: 200px;
+  }
+}
+
+// desktop
+@include media-breakpoint-up(lg) {
+  .become-partner-map {
+    padding-top: 204px;
+    padding-bottom: 310px;
+    .map {
+      margin-top: 0;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 70%;
+      z-index: 2;
+    }
+  }
+
+  .explore-ecosystem {
+    padding-top: 95px;
+    padding-bottom: 140px;
+    .existing-assets {
+      margin-top: 115px;
+    }
+  }
+  .carousel-section {
+    padding-top: 97px;
+    padding-bottom: 62px;
+
+    .products-carousel {
+      margin-top: 83px;
+    }
+  }
+
+}
+
+
+
+@include media-breakpoint-down(sm) {
+  .lykke-partners {
+    p.copy {
+      font-size: 0.9375rem;
+    }
+  }
+}
+
+@include media-breakpoint-only(md) {
+  .how-it-works-content {
+    .right-section {
+      img {
+        display: block;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
   }
 }
