@@ -1,0 +1,21 @@
+.right-arrow {
+  background: url(../../../assets/images/homepage/arrow_button.svg);
+  width: 50px;
+  height: 50px;
+  -webkit-transform: rotate(180deg) translate(0, 7%);
+  transform: rotate(180deg) translate(0, 7%);
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+}
+
+.input-group-addon {
+  padding: 0.657rem 1.5rem;
+  background-color: #fff;
+
+  i {
+    font-size: 27px;
+    color: #808080;
+  }
+}

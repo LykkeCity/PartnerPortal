@@ -1,0 +1,26 @@
+<form [formGroup]="newsletterForm" (ngSubmit)="onSubmit($event)">
+  <div class="row">
+    <div class="col-xs-10">
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon text-muted"><i class="icon--mail"></i></span>
+          <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
+                 [(ngModel)]="email" [email]="true">
+        </div>
+        <div *ngIf="formEmail.invalid && (formEmail.dirty || formEmail.touched)"
+             class="text-danger">
+          <div *ngIf="formEmail.errors.required">
+            This field is required.
+          </div>
+
+          <div *ngIf="!formEmail.errors.required && formEmail.errors.email">
+            The provided email is not valid.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <button type="submit" class="right-arrow"></button>
+    </div>
+  </div>
+</form>
