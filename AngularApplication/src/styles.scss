@@ -10,6 +10,9 @@
   font-weight: $font-weight-semibold;
 }
 
+h1, h2, h3, h4, h5, h6 { color: $dark-grey }
+p { color: $slate }
+
 
 h2, h3 {
   line-height: 1.2;
