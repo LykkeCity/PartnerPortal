@@ -129,8 +129,6 @@
     font-size: 1.3125rem;
   }
   .launch-steps {
-    padding: 0;
-    list-style: none;
     li {
       margin-bottom: 35px;
       padding-left: 100px;
@@ -151,4 +149,60 @@
   .how-it-works-content {
     margin-top: 80px;
   }
+}
+
+.value-proposition {
+  padding-top: 68px;
+  padding-bottom: 40px;
+  .value-list {
+    margin-top: 75px;
+    .img-holder {
+      height: 127px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .crypto img { height: 127px; }
+    .fiat img { height: 127px; }
+    .stocks img { height: 112px; }
+    .commodities img { height: 112px; }
+    .real-estate img { height: 101px; }
+    .art img { height: 89px; }
+
+    h5 {
+      font-weight: $font-weight-semibold;
+    }
+  }
+}
+
+.use-cases {
+  padding-bottom: 60px;
+  .use-cases-content {
+    margin-top: 85px;
+  }
+  .use-cases-list {
+    li {
+      background: url('../../assets/images/homepage/checkmark_icon.svg') left top no-repeat;
+      background-size: 27px;
+      margin-bottom: 38px;
+      padding-left: 46px;
+    }
+  }
+}
+
+.become-partner {
+  h3 {
+    margin-bottom: 30px;
+  }
+  padding: 90px 0;
+}
+
+.contact-section {
+  padding-top: 57px;
+  padding-bottom: 97px;
+}
+
+.footer {
+
 }
