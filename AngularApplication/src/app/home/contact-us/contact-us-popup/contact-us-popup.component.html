@@ -13,7 +13,7 @@
         <div class="form-group">
           <label for="name" class="control-label">Name:</label>
           <div class="input-group">
-            <span class="input-group-addon"><i class="fo--name"></i></span>
+            <span class="input-group-addon"><i class="icon--name"></i></span>
             <input id="name" class="form-control" formControlName="name" [(ngModel)]="contactUsData.name">
           </div>
           <div *ngIf="name.invalid && (name.dirty || name.touched)"
@@ -31,7 +31,7 @@
         <div class="form-group">
           <label for="email" class="control-label">Email:</label>
           <div class="input-group">
-            <span class="input-group-addon"><i class="icon--mail"></i></span>
+            <span class="input-group-addon"><i class="icon--email"></i></span>
             <input id="email" type='email' class="form-control" formControlName="email" [email]="true"
                    [(ngModel)]="contactUsData.email">
           </div>
@@ -55,7 +55,7 @@
         <div class="form-group">
           <label for="phone" class="center-block">Phone number:</label>
           <div class="input-group">
-            <span class="input-group-addon"><i class="fo--phone"></i></span>
+            <span class="input-group-addon"><i class="icon--phone"></i></span>
             <input id="phone" class="form-control" formControlName="phone" [(ngModel)]="contactUsData.phone">
           </div>
 
