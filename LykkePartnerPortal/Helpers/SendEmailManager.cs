@@ -12,19 +12,7 @@ namespace LykkePartnerPortal.Helpers
         {
             try
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                mail.From = new MailAddress("dafinkagerdjikova@gmail.com");
-                mail.To.Add("dafinka.gerdjikova@programista.pro");
-                mail.Subject = "New Contact Subscription";
-                mail.Body = "Contact name: " + model.FullName;
-
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(emailAccount, emailPassword);
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
             }
             catch (Exception ex)
             {

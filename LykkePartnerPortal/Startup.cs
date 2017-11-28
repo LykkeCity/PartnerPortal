@@ -1,11 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using AutoMapper;
 using AzureStorage.Tables;
 using Common.Log;
+using FluentValidation.AspNetCore;
 using Lykke.Logs;
 using Lykke.SettingsReader;
 using Lykke.SlackNotification.AzureQueue;
+using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
 using LykkePartnerPortal.Settings;
 using Microsoft.AspNetCore.Builder;
@@ -37,12 +38,18 @@ namespace LykkePartnerPortal
             Environment = env;
         }
 
-        //public IConfiguration Configuration { get; }
-
-
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ValidateModelAttribute>();
+            })
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>())
+                    .AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.ContractResolver =
+                            new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                    });
 
             var builder = new ContainerBuilder();
             var appSettings = Configuration.LoadSettings<AppSettings>();
