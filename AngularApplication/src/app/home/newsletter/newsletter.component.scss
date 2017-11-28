@@ -10,12 +10,18 @@
   border-radius: 50%;
 }
 
-.input-group-addon {
-  padding: 0.657rem 1.5rem;
-  background-color: #fff;
-
-  i {
-    font-size: 27px;
-    color: #808080;
-  }
+.newsletter-icon {
+  position: absolute;
+  top: 25px;
+  left: 5px;
+  margin-right: 0;
+  color: #b2b8bf;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  z-index: 10;
+  font-size: 1.625rem;
+  padding: .4375rem .625rem;
 }
