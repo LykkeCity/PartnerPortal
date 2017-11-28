@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxCarouselModule } from 'ngx-carousel';
 import 'hammerjs';
 
-
+import { IntercomModule } from 'ng-intercom';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,12 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     NgxCarouselModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxCarouselModule,
+    IntercomModule.forRoot({
+      appId: "n1npujem",
+      updateOnRouterChange: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
