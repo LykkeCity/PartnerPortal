@@ -8,18 +8,24 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeCarouselComponent } from './home/home-carousel/home-carousel.component';
+import { NewsletterComponent } from './home/newsletter/newsletter.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    HomeCarouselComponent
+    HomeCarouselComponent,
+    NewsletterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxCarouselModule
+    NgxCarouselModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

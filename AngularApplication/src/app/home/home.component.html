@@ -245,6 +245,9 @@
       <img class="icon" src="../../assets/images/homepage/newsletter_icon.svg" alt="">
       <h5>Our newsletter</h5>
       <p>Get our latest news right in your mailbox</p>
+      <div class="newsletter-container">
+        <lpp-newsletter></lpp-newsletter>
+      </div>
     </div>
   </div>
   <div class="legal-text row small">
@@ -266,8 +269,16 @@
 
 <div class="footer bg-pale-grey">
   <div class="container">
-    <h6>Newsletter</h6>
-    <p class="small text-brownish-grey">Get our latest news right in your mailbox</p>
+    <div class="row">
+      <div class="col-xs-4">
+        <h6>Newsletter</h6>
+        <p class="small text-brownish-grey">Get our latest news right in your mailbox</p>
+        <div class="col our-newsletter-footer">
+            <lpp-newsletter></lpp-newsletter>
+        </div>
+      </div>
+    </div>
+
     <div class="bottom-row row justify-content-center">
       <div class="col-lg-6 text-center text-lg-left">
         <p class="small text-brownish-grey">© 2017 Lykke, Inc. · Privacy Policy · Terms of Use</p>
