@@ -11,6 +11,7 @@ export class NewsletterComponent implements OnInit {
 
   newsletterForm: FormGroup;
   email: string;
+  successMessage: boolean;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class NewsletterComponent implements OnInit {
     }
 
     this.http.post('', JSON.stringify({email: this.email})).subscribe(val => {
-
+      this.successMessage = true;
     });
   }
 }

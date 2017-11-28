@@ -1,9 +1,9 @@
 <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit($event)">
   <div class="row">
-    <div class="col-xs-8 col-md-10 no-padding-left">
+    <div class="col-8 col-md-10 no-padding-left">
       <div class="form-group">
         <div class="input-group">
-          <i class="icon--mail newsletter-icon"></i>
+          <i class="icon--email newsletter-icon"></i>
           <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
                  [(ngModel)]="email" [email]="true">
         </div>
@@ -18,12 +18,12 @@
           </div>
         </div>
 
-        <div *ngIf="!formEmail.errors.required && formEmail.errors.email" class="text-success">
-          You have successfully subscribed for our newsletter
+        <div *ngIf="success" class="text-success">
+          You have successfully subscribed for our newsletter.
         </div>
       </div>
     </div>
-    <div class="col-xs-4 col-md-2">
+    <div class="col-4 col-md-2">
       <button type="submit" class="right-arrow"></button>
     </div>
   </div>
