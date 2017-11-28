@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'lpp-newsletter',
@@ -10,7 +11,7 @@ export class NewsletterComponent implements OnInit {
 
   newsletterForm: FormGroup;
   email: string;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
     this.newsletterForm = this.formBuilder.group({
@@ -27,6 +28,8 @@ export class NewsletterComponent implements OnInit {
       return;
     }
 
+    this.http.post('', JSON.stringify({email: this.email})).subscribe(val => {
 
+    });
   }
 }

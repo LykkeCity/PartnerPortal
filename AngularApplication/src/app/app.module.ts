@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeCarouselComponent } from './home/home-carousel/home-carousel.component';
 import { NewsletterComponent } from './home/newsletter/newsletter.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NgxCarouselModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
