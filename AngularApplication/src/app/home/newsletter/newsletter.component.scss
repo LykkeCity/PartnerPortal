@@ -1,7 +1,8 @@
 .right-arrow {
   background: url(../../../assets/images/homepage/arrow_button.svg);
-  width: 50px;
-  height: 50px;
+  margin-top: 5px;
+  width: 43px;
+  height: 43px;
   -webkit-transform: rotate(180deg) translate(0, 7%);
   transform: rotate(180deg) translate(0, 7%);
   margin-left: 10px;
@@ -24,4 +25,8 @@
   z-index: 10;
   font-size: 1.625rem;
   padding: .4375rem .625rem;
+}
+
+.no-padding-left {
+  padding-left: 0;
 }
