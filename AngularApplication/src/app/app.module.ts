@@ -13,7 +13,6 @@ import { ReCaptchaModule } from 'angular2-recaptcha';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeCarouselComponent } from './home/home-carousel/home-carousel.component';
 import { NewsletterComponent } from './home/newsletter/newsletter.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
@@ -25,7 +24,6 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
     HomeComponent,
     HomeCarouselComponent,
     NewsletterComponent,
-    HomeCarouselComponent,
     ContactUsPopupComponent
   ],
   imports: [
