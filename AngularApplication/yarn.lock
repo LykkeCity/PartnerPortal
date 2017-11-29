@@ -179,6 +179,10 @@
   dependencies:
     "@angular-devkit/core" "0.0.21"
 
+"@types/echarts@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@types/echarts/-/echarts-0.0.9.tgz#7930c1d3d096868d6acaa41255b25b120a5fa00e"
+
 "@types/jasmine@*":
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.2.tgz#6ae4d8740c0da5d5a627df725b4eed71b8e36668"
@@ -192,6 +196,12 @@
   resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.3.tgz#0d2886b0cbdae4c0eeba55e30792f584bf040a95"
   dependencies:
     "@types/jasmine" "*"
+
+"@types/moment@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
+  dependencies:
+    moment "*"
 
 "@types/node@^6.0.46", "@types/node@~6.0.60":
   version "6.0.92"
@@ -291,6 +301,14 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
+
+angular2-recaptcha@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/angular2-recaptcha/-/angular2-recaptcha-0.6.0.tgz#1d67363925d169b9213adefcfacd03a40125efe3"
+
+angulartics2@^4.0.4:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/angulartics2/-/angulartics2-4.2.0.tgz#8bc05d74961f9f3bc5022249ae9771ff44c78258"
 
 ansi-html@0.0.7:
   version "0.0.7"
@@ -1677,6 +1695,12 @@ ecc-jsbn@~0.1.1:
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
   dependencies:
     jsbn "~0.1.0"
+
+echarts@^3.8.5:
+  version "3.8.5"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.8.5.tgz#58e4a51d2743c6fb75257b0dc0a9cf9f5378ac0e"
+  dependencies:
+    zrender "3.7.4"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -3686,6 +3710,10 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
+moment@*, moment@^2.19.2:
+  version "2.19.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.2.tgz#8a7f774c95a64550b4c7ebd496683908f9419dbe"
+
 morgan@^1.6.1:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.0.tgz#d01fa6c65859b76fcf31b3cb53a3821a311d8051"
@@ -3743,6 +3771,10 @@ ncname@1.0.x:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+ng-intercom@^1.0.0-beta.10:
+  version "1.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/ng-intercom/-/ng-intercom-1.0.0-beta.10.tgz#02774985a835e61176e12c65d7373a77763d3ccb"
 
 ngx-bootstrap@^2.0.0-beta.8:
   version "2.0.0-beta.8"
@@ -6366,3 +6398,7 @@ yn@^2.0.0:
 zone.js@^0.8.14:
   version "0.8.18"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.18.tgz#8cecb3977fcd1b3090562ff4570e2847e752b48d"
+
+zrender@3.7.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.7.4.tgz#f847d53948481ef6d42906d1ea9aeec7acbefdf2"
