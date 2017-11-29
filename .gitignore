@@ -63,6 +63,7 @@ TestResult.xml
 node_modules
 **/launchsettings.json
 **/appsettings.dev.json
+**/appsettings.Development.json
 **/docker-compose.dev.yml
 
 /src/LykkePartnerPortal/Scripts/*.js

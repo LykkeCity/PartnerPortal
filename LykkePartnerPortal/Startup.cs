@@ -2,11 +2,14 @@
 using Autofac.Extensions.DependencyInjection;
 using AzureStorage.Tables;
 using Common.Log;
+using Core;
 using FluentValidation.AspNetCore;
 using Lykke.Common.ApiLibrary.Middleware;
+using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
 using Lykke.SettingsReader;
 using Lykke.SlackNotification.AzureQueue;
+using LykkePartnerPortal.Filters;
 using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
 using LykkePartnerPortal.Settings;
@@ -52,6 +55,12 @@ namespace LykkePartnerPortal
                             new Newtonsoft.Json.Serialization.DefaultContractResolver();
                     });
 
+            services.AddSwaggerGen(options =>
+            {
+                options.DefaultLykkeConfiguration("v1", "Partner Portal API");
+                options.OperationFilter<ApiKeyHeaderOperationFilter>();
+            });
+
             var builder = new ContainerBuilder();
             var appSettings = Configuration.LoadSettings<AppSettings>();
             Log = CreateLogWithSlack(services, appSettings);
@@ -82,10 +91,11 @@ namespace LykkePartnerPortal
                 }
             });
 
-            app.UseLykkeMiddleware("Partner Portal ", ex => new { Message = "Technical problem" });
             app.UseMvcWithDefaultRoute();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseSwagger();
+            app.UseSwaggerUi();
         }
 
         private static ILog CreateLogWithSlack(IServiceCollection services, IReloadingManager<AppSettings> settings)

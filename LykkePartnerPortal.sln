@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LykkePartnerPortal", "LykkePartnerPortal\LykkePartnerPortal.csproj", "{51BD439C-398C-47ED-AE81-FDC038398038}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{91ED0673-6FB1-4F81-A015-EFB48101E958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B093ED9D-D988-4648-BECC-3CAC9F3081A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{51BD439C-398C-47ED-AE81-FDC038398038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51BD439C-398C-47ED-AE81-FDC038398038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51BD439C-398C-47ED-AE81-FDC038398038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B093ED9D-D988-4648-BECC-3CAC9F3081A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B093ED9D-D988-4648-BECC-3CAC9F3081A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B093ED9D-D988-4648-BECC-3CAC9F3081A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B093ED9D-D988-4648-BECC-3CAC9F3081A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B093ED9D-D988-4648-BECC-3CAC9F3081A0} = {91ED0673-6FB1-4F81-A015-EFB48101E958}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5869C121-4DA6-47E8-A44F-7288D92906EC}
