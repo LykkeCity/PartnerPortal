@@ -1,0 +1,29 @@
+@import '~scss/reuse';
+
+.chart {
+  width: 100%;
+  height: 400px;
+}
+
+.asset-switcher {
+  border-bottom: 2px solid #f5f6f7;
+  a {
+    border-bottom: 5px solid transparent;
+    display: inline-block;
+    color: $cool-grey;
+    font-size: 1rem;
+    width: 5em;
+    &.active {
+      border-color: $primary;
+      color: $dark-grey;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .asset-switcher {
+    a {
+      font-size: 2rem;
+    }
+  }
+}
