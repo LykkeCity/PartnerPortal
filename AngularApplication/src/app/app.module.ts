@@ -16,6 +16,8 @@ import { NewsletterComponent } from './home/newsletter/newsletter.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { HomeChartComponent } from './home/home-chart/home-chart.component';
+import { HomeChartService } from './home/home-chart/home-chart.service';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
     AppComponent,
     HomeComponent,
     HomeCarouselComponent,
+    HomeChartComponent,
     NewsletterComponent,
     ContactUsPopupComponent
   ],
@@ -44,7 +47,7 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
   entryComponents: [
     ContactUsPopupComponent
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ HomeChartService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
