@@ -4,8 +4,7 @@
     {
         public static string Load(string emailsTemplatesFolder, string template)
         {
-            string relativeTemplatePath = emailsTemplatesFolder + template;
-            var file = System.IO.Path.Combine(relativeTemplatePath);
+            var file = System.IO.Path.Combine(emailsTemplatesFolder, template);
             return System.IO.File.ReadAllText(file);
         }
     }
