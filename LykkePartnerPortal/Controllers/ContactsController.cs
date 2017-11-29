@@ -1,8 +1,13 @@
 ﻿using Common.Log;
 using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.Contacts;
+using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Settings;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.SwaggerGen.Annotations;
+using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace LykkePartnerPortal.Controllers
@@ -12,19 +17,35 @@ namespace LykkePartnerPortal.Controllers
     {
         private readonly EmailCredentialsSettings _emailSettings;
         private readonly ILog _log;
+        //private readonly ISrvEmailsFacade _srvEmailsFacade;
 
         public ContactsController(EmailCredentialsSettings emailSettings, ILog log)
         {
             _emailSettings = emailSettings;
             _log = log;
+            //_srvEmailsFacade = srvEmailsFacade;
         }
 
+
+        /// <summary>
+        /// Send email with contacts information to partners@lykke.com.
+        /// </summary>
         [HttpPost("sendContact")]
+        [SwaggerOperation("SendContactInformation")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> SendContactInformation([FromBody]ContactRequestModel model)
         {
-            await SendEmailManager.SendContactEmail(_emailSettings.EmailAccount, _emailSettings.EmailPassword, model, _log);
-
-            return Ok(model);
+            try
+            {
+                EmailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                await _log.WriteInfoAsync(nameof(ContactsController), nameof(SendContactInformation), ex.Message, DateTime.Now);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

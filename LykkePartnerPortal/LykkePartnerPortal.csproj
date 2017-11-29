@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Templates\ContactsPopUpTemplate.html" />
+    <Content Include="Templates\NewsletterTemplate.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Autofac.Configuration" Version="4.0.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
@@ -14,8 +19,10 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="7.3.0-beta2" />
     <PackageReference Include="Lykke.AzureStorage" Version="3.0.3" />
     <PackageReference Include="Lykke.Common" Version="3.0.2" />
+    <PackageReference Include="Lykke.Common.ApiLibrary" Version="1.0.14" />
     <PackageReference Include="Lykke.Logs" Version="3.2.3" />
     <PackageReference Include="Lykke.Messages" Version="1.0.21" />
+    <PackageReference Include="Lykke.Service.Subscribers.Client" Version="1.0.1-beta" />
     <PackageReference Include="Lykke.SettingsReader" Version="1.0.43" />
     <PackageReference Include="Lykke.SlackNotification.AzureQueue" Version="1.0.6" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
@@ -28,6 +35,21 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Strings\Phrases.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Phrases.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

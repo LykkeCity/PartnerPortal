@@ -10,6 +10,8 @@ namespace LykkePartnerPortal.Models.Validations
         {
             RuleFor(reg => reg.Email).NotNull().WithMessage(Phrases.FieldShouldNotBeEmpty);
             RuleFor(reg => reg.Email).EmailAddress().WithMessage(Phrases.InvalidEmailFormat);
+
+            RuleFor(reg => reg.Source).NotNull().WithMessage(Phrases.FieldShouldNotBeEmpty);
         }
     }
 }
