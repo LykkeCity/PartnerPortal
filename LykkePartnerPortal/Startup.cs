@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using AzureStorage.Tables;
 using Common.Log;
 using FluentValidation.AspNetCore;
+using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Logs;
 using Lykke.SettingsReader;
 using Lykke.SlackNotification.AzureQueue;
@@ -81,6 +82,7 @@ namespace LykkePartnerPortal
                 }
             });
 
+            app.UseLykkeMiddleware("Partner Portal ", ex => new { Message = "Technical problem" });
             app.UseMvcWithDefaultRoute();
             app.UseDefaultFiles();
             app.UseStaticFiles();

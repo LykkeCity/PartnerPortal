@@ -4,5 +4,6 @@
     {
         public EmailCredentialsSettings EmailCredentials { get; set; }
         public DbSettings Db { get; set; }
+        public SubscriberServiceSettings SubscriberService { get; set; }
     }
 }
