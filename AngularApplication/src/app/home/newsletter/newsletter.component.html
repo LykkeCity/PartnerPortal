@@ -9,12 +9,8 @@
         </div>
         <div *ngIf="formEmail.invalid && (formEmail.dirty || formEmail.touched)"
              class="text-danger">
-          <div *ngIf="formEmail.errors.required">
-            This field is required.
-          </div>
-
-          <div *ngIf="!formEmail.errors.required && formEmail.errors.email">
-            The provided email is not valid.
+          <div *ngIf="formEmail.errors.required || formEmail.errors.email">
+            Please enter correct email address
           </div>
         </div>
 

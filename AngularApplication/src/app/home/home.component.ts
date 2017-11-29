@@ -22,6 +22,6 @@ export class HomeComponent implements OnInit {
       action: 'Click on Contact us button',
       properties: {category: 'Partner Portal Landing page'}
     });
-    this.modalService.show(ContactUsPopupComponent);
+    this.modalService.show(ContactUsPopupComponent, { class: 'contact-us-modal modal-lg' });
   }
 }

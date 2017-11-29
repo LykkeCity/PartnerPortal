@@ -1,11 +1,31 @@
-.close, .btn {
-  cursor: pointer;
+@import '~scss/reuse';
+
+.modal-header {
+  background-color: $dark-grey;
+
+  .close {
+    margin: -7px -4px -15px auto;
+    font-size: 2.6875rem;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.form-icon {
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  z-index: 10;
+  color:#b2b8bf;
 }
 
 .navbar-brand {
   height: 50px;
+  width: 100%;
   .lykke-partners-logo {
     width: 277px;
+    display: block;
+    margin: 0 auto;
   }
 }
 
@@ -16,3 +36,16 @@
 .icon--email {
   font-size: 0.9rem;
 }
+
+textarea.form-control {
+  padding: 0.657rem 1.5rem;
+}
+
+re-captcha {
+  display: inline-block;
+}
+.captcha-holder{
+  text-align: center;
+}
+
+
