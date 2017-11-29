@@ -1,0 +1,28 @@
+.font-weight-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+h1, h2, h3, h4, h5, h6 { color: $dark-grey }
+p { color: $slate }
+
+
+h2, h3 {
+  line-height: 1.2;
+  font-weight: $font-weight-semibold;
+}
+h4 {
+  line-height: 1.43;
+}
+h5 {
+  line-height: 1.82;
+}
+
+@include media-breakpoint-up(md) {
+  h2 {
+    font-size: $h2-font-size-sm;
+  }
+
+  h4 {
+    font-size: $h4-font-size-sm;
+  }
+}

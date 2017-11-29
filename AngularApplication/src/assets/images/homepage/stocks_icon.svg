@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="1084 4884.224 99.414 111.553">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-1 {
+        stroke: #333;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-3 {
+        stroke: #fff;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" y1="0.999" x2="0.5" y2="0.001" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#13b72a"/>
+      <stop offset="1" stop-color="#20d330"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_337" data-name="Group 337" transform="translate(1084 4884.224)">
+    <path id="Path_598" data-name="Path 598" class="cls-1" d="M70.612,16.976V1H1V110.553H70.612V88.871"/>
+    <circle id="Ellipse_191" data-name="Ellipse 191" class="cls-1" cx="29.671" cy="29.671" r="29.671" transform="translate(30.671 23.824)"/>
+    <circle id="Ellipse_192" data-name="Ellipse 192" class="cls-2" cx="23.394" cy="23.394" r="23.394" transform="translate(36.947 30.1)"/>
+    <line id="Line_503" data-name="Line 503" class="cls-1" x2="19.058" y2="19.058" transform="translate(78.942 76.66)"/>
+    <line id="Line_504" data-name="Line 504" class="cls-1" x2="29.671" transform="translate(10.129 16.976)"/>
+    <line id="Line_505" data-name="Line 505" class="cls-1" x2="19.4" transform="translate(10.129 27.247)"/>
+    <line id="Line_506" data-name="Line 506" class="cls-1" x2="12.553" transform="translate(10.129 37.518)"/>
+    <line id="Line_507" data-name="Line 507" class="cls-1" x2="12.553" transform="translate(10.129 46.647)"/>
+    <line id="Line_508" data-name="Line 508" class="cls-1" x2="12.553" transform="translate(10.129 55.776)"/>
+    <line id="Line_509" data-name="Line 509" class="cls-1" y1="9.129" transform="translate(12.412 91.153)"/>
+    <line id="Line_510" data-name="Line 510" class="cls-1" y1="12.553" transform="translate(32.953 87.729)"/>
+    <line id="Line_511" data-name="Line 511" class="cls-1" y1="3.424" transform="translate(43.224 96.859)"/>
+    <line id="Line_512" data-name="Line 512" class="cls-1" y1="9.129" transform="translate(53.494 91.153)"/>
+    <line id="Line_513" data-name="Line 513" class="cls-1" y1="19.4" transform="translate(22.682 80.882)"/>
+    <g id="Group_336" data-name="Group 336" transform="translate(50.185 43.338)">
+      <circle id="Ellipse_193" data-name="Ellipse 193" class="cls-3" cx="4.336" cy="4.336" r="4.336"/>
+      <circle id="Ellipse_194" data-name="Ellipse 194" class="cls-3" cx="4.336" cy="4.336" r="4.336" transform="translate(11.64 11.64)"/>
+      <line id="Line_514" data-name="Line 514" class="cls-3" x1="12.096" y2="19.742" transform="translate(4.336 0.114)"/>
+    </g>
+  </g>
+</svg>

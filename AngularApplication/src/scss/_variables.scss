@@ -98,7 +98,8 @@ $theme-colors: map-merge((
   "pale-grey":  $pale-grey,
   "dark-grey":  $dark-grey,
   "cool-grey":  $cool-grey,
-  "slate":      $slate
+  "slate":      $slate,
+  "brownish-grey": $brownish-grey
 ), $theme-colors);
 // stylelint-enable
 
@@ -252,11 +253,15 @@ $font-weight-base:            $font-weight-normal !default;
 $line-height-base:            1.5 !default;
 
 $h1-font-size:                $font-size-base * 3.3333 !default;
-$h2-font-size:                $font-size-base * 2.7778 !default;
+$h2-font-size:                $font-size-base * 1.7778 !default;
 $h3-font-size:                $font-size-base * 2.2222 !default;
-$h4-font-size:                $font-size-base * 1.5556 !default;
+$h4-font-size:                $font-size-base * 1      !default;
 $h5-font-size:                $font-size-base * 1.2222 !default;
 $h6-font-size:                $font-size-base !default;
+
+$h2-font-size-sm:             $font-size-base * 2.7778;
+$h4-font-size-sm:             $h4-font-size * 1.5556;
+
 
 $headings-margin-bottom:      ($spacer / 2) !default;
 $headings-font-family:        inherit !default;

@@ -6,22 +6,17 @@
 @import './scss/fonts';
 @import './scss/icons';
 
-.font-weight-semibold {
-  font-weight: $font-weight-semibold;
-}
+@import './scss/typography';
 
-
-h2, h3 {
-  line-height: 1.2;
-  font-weight: $font-weight-semibold;
-}
-h4 {
-  line-height: 1.43;
-}
-h5 {
-  line-height: 1.82;
+.gutter-bottom {
+  margin-bottom: $grid-gutter-width;
 }
 
 .btn-primary {
   color: $white;
 }
+
+.btn {
+  cursor: pointer;
+}
+
