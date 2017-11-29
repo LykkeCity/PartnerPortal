@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 export class NewsletterComponent implements OnInit {
 
   newsletterForm: FormGroup;
-  email: string;
   successMessage: boolean;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
@@ -29,8 +28,12 @@ export class NewsletterComponent implements OnInit {
       return;
     }
 
-    this.http.post('', JSON.stringify({email: this.email})).subscribe(val => {
+    this.http.post('/api/newsLetter', JSON.stringify(Object.assign({}, this.newsletterForm.value, {source: "PartnerPortal"}))).subscribe(
+      val => {
       this.successMessage = true;
+    },
+      error => {
+        //TODO handle error cases
     });
   }
 }
