@@ -252,6 +252,19 @@ $navbar-height: 104px;
   }
 }
 
+.footer-list {
+  list-style-type: none;
+  margin-left: 10%;
+
+  li:first-child {
+    font-weight: bold;
+  }
+
+  li a {
+    color: #657180;
+  }
+}
+
 // small phones
 @include media-breakpoint-up(sm) {
   .become-partner-map {
