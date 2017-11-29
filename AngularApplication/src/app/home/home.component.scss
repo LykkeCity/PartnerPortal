@@ -1,6 +1,6 @@
 @import '~scss/reuse';
 
-$navbar-height: 104px;
+$navbar-height: 90px;
 
 
 .btn {
@@ -11,7 +11,7 @@ $navbar-height: 104px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   height: $navbar-height;
   .lykke-partners-logo {
-    width: 277px;
+    height: 40px;
   }
 }
 
