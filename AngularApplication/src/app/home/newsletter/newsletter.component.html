@@ -5,7 +5,7 @@
         <div class="input-group">
           <i class="icon--email newsletter-icon"></i>
           <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
-                 [(ngModel)]="email" [email]="true">
+                 [email]="true">
         </div>
         <div *ngIf="formEmail.invalid && (formEmail.dirty || formEmail.touched)"
              class="text-danger">
@@ -19,7 +19,7 @@
         </div>
 
         <div *ngIf="success" class="text-success">
-          You have successfully subscribed for our newsletter.
+          Thank you for signing up for the newsletter
         </div>
       </div>
     </div>
