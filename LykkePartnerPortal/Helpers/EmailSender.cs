@@ -24,7 +24,7 @@ namespace LykkePartnerPortal.Helpers
             return client;
         }
 
-        public static void SendEmail(IHostingEnvironment env, IEmailTemplate model, EmailCredentialsSettings settings, string templateName, string subject)
+        public static void SendEmail(IEmailTemplate model, EmailCredentialsSettings settings, string templateName, string subject)
         {
             MailAddress from = new MailAddress(settings.EmailAccount);
             MailAddress to = new MailAddress(settings.EmailTo);
@@ -33,7 +33,7 @@ namespace LykkePartnerPortal.Helpers
             message.IsBodyHtml = true;
             message.Subject = subject;
 
-            string body = FileHelper.Load(env, settings.EmailsTemplatesFolder, templateName);
+            string body = FileHelper.Load(settings.EmailsTemplatesFolder, templateName);
             message.Body = ReplaceText(model, body);
 
             CreateMailClient(settings).Send(message);

@@ -22,18 +22,15 @@ namespace LykkePartnerPortal.Controllers
         //private readonly ISrvEmailsFacade _srvEmailsFacade;
         private readonly ISubscribersClient _subscribersClient;
         private readonly EmailCredentialsSettings _emailSettings;
-        protected readonly IHostingEnvironment _environment;
         protected readonly ILog _log;
 
         public NewsletterController(
             //ISrvEmailsFacade srvEmailsFacade,
-            ISubscribersClient subscribersClient, EmailCredentialsSettings emailSettings,
-            IHostingEnvironment environment, ILog log)
+            ISubscribersClient subscribersClient, EmailCredentialsSettings emailSettings, ILog log)
         {
             //_srvEmailsFacade = srvEmailsFacade;
             _subscribersClient = subscribersClient;
             _emailSettings = emailSettings;
-            _environment = environment;
             _log = log;
         }
 
@@ -72,7 +69,7 @@ namespace LykkePartnerPortal.Controllers
                     Source = model.Source
                 });
 
-                EmailSender.SendEmail(_environment, NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
+                EmailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
 
                 return Ok();
             }
