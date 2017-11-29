@@ -77,5 +77,14 @@ namespace LykkePartnerPortal.Strings {
                 return ResourceManager.GetString("InvalidEmailFormat", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscriber Already Exists.
+        /// </summary>
+        public static string SubscriberAlreadyExists {
+            get {
+                return ResourceManager.GetString("SubscriberAlreadyExists", resourceCulture);
+            }
+        }
     }
 }
