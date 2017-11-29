@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Templates\ContactsPopUpTemplate.html" />
-    <Content Include="Templates\NewsletterTemplate.html" />
+    <Content Include="Templates\ContactsPopUpTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\NewsletterTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +50,10 @@
 
   <ItemGroup>
     <Folder Include="Middleware\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\" />
   </ItemGroup>
 
   <ItemGroup>
