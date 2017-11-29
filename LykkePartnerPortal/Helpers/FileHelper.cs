@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
-
-namespace LykkePartnerPortal.Helpers
+﻿namespace LykkePartnerPortal.Helpers
 {
     public class FileHelper
     {
-        public static string Load(IHostingEnvironment env, string path, string template)
+        public static string Load(string emailsTemplatesFolder, string template)
         {
-            var webRootInfo = string.Format("{0}{1}", env.WebRootPath, path);
-            var file = System.IO.Path.Combine(webRootInfo, template);
+            string relativeTemplatePath = emailsTemplatesFolder + template;
+            var file = System.IO.Path.Combine(relativeTemplatePath);
             return System.IO.File.ReadAllText(file);
         }
     }

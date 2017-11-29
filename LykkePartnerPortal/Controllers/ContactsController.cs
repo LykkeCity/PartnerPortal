@@ -15,19 +15,15 @@ namespace LykkePartnerPortal.Controllers
     [Route("api/contacts")]
     public class ContactsController : Controller
     {
-        protected readonly IHostingEnvironment _environment;
         private readonly EmailCredentialsSettings _emailSettings;
         private readonly ILog _log;
         //private readonly ISrvEmailsFacade _srvEmailsFacade;
 
-        public ContactsController(EmailCredentialsSettings emailSettings, ILog log,
-            //ISrvEmailsFacade srvEmailsFacade, 
-            IHostingEnvironment environment)
+        public ContactsController(EmailCredentialsSettings emailSettings, ILog log)
         {
             _emailSettings = emailSettings;
             _log = log;
             //_srvEmailsFacade = srvEmailsFacade;
-            _environment = environment;
         }
 
 
@@ -42,7 +38,7 @@ namespace LykkePartnerPortal.Controllers
         {
             try
             {
-                EmailSender.SendEmail(_environment, ContactTemplateModel.Create(model), _emailSettings, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
+                EmailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
                 return Ok();
             }
             catch (Exception ex)
