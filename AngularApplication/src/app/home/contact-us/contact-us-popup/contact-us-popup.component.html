@@ -9,23 +9,23 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="text-center">
+    <div *ngIf="!showSuccessMessage" class="text-center">
       <h3>
         How can we help?
       </h3>
     </div>
-    <form [formGroup]="contactUsForm" (ngSubmit)="onSubmit($event)">
+    <form *ngIf="!showSuccessMessage" [formGroup]="contactUsForm" (ngSubmit)="onSubmit($event)">
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="form-group">
             <label for="name" class="control-label">Name:</label>
             <div class="input-group">
               <i class="icon--name form-icon"></i>
-              <input id="name" class="form-control" formControlName="name">
+              <input id="name" class="form-control" formControlName="fullName">
             </div>
-            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
                  class="text-danger">
-              <div *ngIf="name.errors.required">
+              <div *ngIf="fullName.errors.required">
                 Name is required.
               </div>
             </div>
@@ -48,6 +48,7 @@
                 Please enter correct email address
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -58,12 +59,12 @@
             <label for="phone" class="center-block">Mobile:</label>
             <div class="input-group">
               <i class="icon--phone form-icon"></i>
-              <input id="phone" class="form-control" formControlName="phone">
+              <input id="phone" class="form-control" formControlName="phoneNumber">
             </div>
 
-            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+            <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
                  class="text-danger">
-              <div *ngIf="phone.errors.required">
+              <div *ngIf="phoneNumber.errors.required">
                 Please enter correct phone number
               </div>
             </div>
@@ -110,5 +111,12 @@
       </div>
     </form>
   </div>
+    <div *ngIf="showSuccessMessage" class="success-message">
+        <p>
+          <span>Thank you!</span>
+          Our experts will review your submission and will get back to you soon.
+        </p>
+    </div>
+
   </div>
 </div>

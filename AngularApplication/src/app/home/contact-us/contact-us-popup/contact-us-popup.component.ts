@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptchaComponent } from 'angular2-recaptcha';
-import {HttpClient} from '@angular/common/http';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'lpp-contact-us-popup',
@@ -12,6 +12,7 @@ import {HttpClient} from '@angular/common/http';
 export class ContactUsPopupComponent {
 
   contactUsForm: FormGroup;
+  showSuccessMessage: boolean;
 
   validCaptcha: boolean;
   @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
@@ -20,17 +21,28 @@ export class ContactUsPopupComponent {
               private http: HttpClient,
               private formBuilder: FormBuilder) {
     this.contactUsForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      fullName: ['', Validators.required],
       email: ['', Validators.required],
-      phone: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       message: ['', Validators.required],
     });
   }
 
-  get name() { return this.contactUsForm.get('name'); }
-  get email() { return this.contactUsForm.get('email'); }
-  get phone() { return this.contactUsForm.get('phone'); }
-  get message() { return this.contactUsForm.get('message'); }
+  get fullName() {
+    return this.contactUsForm.get('fullName');
+  }
+
+  get email() {
+    return this.contactUsForm.get('email');
+  }
+
+  get phoneNumber() {
+    return this.contactUsForm.get('phoneNumber');
+  }
+
+  get message() {
+    return this.contactUsForm.get('message');
+  }
 
   handleCorrectCaptcha(): void {
     this.validCaptcha = true;
@@ -42,7 +54,7 @@ export class ContactUsPopupComponent {
 
   onSubmit(event: any): void {
     event.preventDefault();
-    if(this.contactUsForm.invalid) {
+    if (this.contactUsForm.invalid) {
       return;
     }
 
@@ -51,9 +63,8 @@ export class ContactUsPopupComponent {
       return;
     }
 
-    this.http.post('/api/contacts/sendContact', Object.assign({}, this.contactUsForm.value, {source: 'PartnerPortal'})).subscribe(val => {
-      this.bsModalRef.hide();
-      //TODO show success message here
+    this.http.post('/api/contacts/sendContact', Object.assign({}, this.contactUsForm.value, {source: 'PartnerPortal'}), {responseType: 'text'}).subscribe(val => {
+      this.showSuccessMessage = true;
     });
   }
 }

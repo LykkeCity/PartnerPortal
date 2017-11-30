@@ -48,4 +48,22 @@ re-captcha {
   text-align: center;
 }
 
+.success-message {
+  min-height: 450px;
+  display: table;
+  width:100%;
+  text-align: center;
+
+  p {
+    vertical-align: middle;
+    display: table-cell;
+
+    span {
+      font-weight: bold;
+      display: block;
+      font-size: 26px;
+    }
+  }
+}
+
 
