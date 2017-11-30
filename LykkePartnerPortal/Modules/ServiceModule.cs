@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Common.Log;
-using Core.Messages;
-using Lykke.Messages.Email;
 using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
@@ -40,10 +38,6 @@ namespace LykkePartnerPortal.Modules
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
-            //builder.RegisterEmailSenderViaInmemoryQueueMessageProducer();
-
-            builder.RegisterEmailSenderViaAzureQueueMessageProducer(_settings.ConnectionString(x => x.Db.ClientPersonalInfoConnString), "emailsqueue");
-
             builder.RegisterType<SubscribersClient>()
               .As<ISubscribersClient>()
               .WithParameter("serviceUrl", _settings.CurrentValue.SubscriberService.ServiceUrl)
@@ -51,8 +45,7 @@ namespace LykkePartnerPortal.Modules
               .WithParameter("timeout", _settings.CurrentValue.SubscriberService.RequestTimeout)
               .SingleInstance();
 
-            builder.RegisterType<SrvEmailsFacade>().As<ISrvEmailsFacade>().SingleInstance();
-
+            builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
         }
     }
 }

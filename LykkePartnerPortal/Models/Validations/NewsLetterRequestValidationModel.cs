@@ -4,9 +4,9 @@ using LykkePartnerPortal.Strings;
 
 namespace LykkePartnerPortal.Models.Validations
 {
-    public class NewsLetterRequestValidationModel : AbstractValidator<NewsLetterRequestModel>
+    public class NewsletterRequestValidationModel : AbstractValidator<NewsLetterRequestModel>
     {
-        public NewsLetterRequestValidationModel()
+        public NewsletterRequestValidationModel()
         {
             RuleFor(reg => reg.Email).NotNull().WithMessage(Phrases.FieldShouldNotBeEmpty);
             RuleFor(reg => reg.Email).EmailAddress().WithMessage(Phrases.InvalidEmailFormat);
