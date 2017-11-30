@@ -1,13 +1,10 @@
 ﻿using Common.Log;
-using Core.Messages;
-using Lykke.Messages.Email;
 using Lykke.Service.Subscribers.Client;
 using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Models.NewsLetters;
 using LykkePartnerPortal.Settings;
 using LykkePartnerPortal.Strings;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
 using System;
@@ -19,16 +16,15 @@ namespace LykkePartnerPortal.Controllers
     [Route("api/newsLetter")]
     public class NewsletterController : Controller
     {
-        //private readonly ISrvEmailsFacade _srvEmailsFacade;
+        private readonly IEmailSender _emailSender;
         private readonly ISubscribersClient _subscribersClient;
         private readonly EmailCredentialsSettings _emailSettings;
         protected readonly ILog _log;
 
-        public NewsletterController(
-            //ISrvEmailsFacade srvEmailsFacade,
+        public NewsletterController(IEmailSender emailSender,
             ISubscribersClient subscribersClient, EmailCredentialsSettings emailSettings, ILog log)
         {
-            //_srvEmailsFacade = srvEmailsFacade;
+            _emailSender = emailSender;
             _subscribersClient = subscribersClient;
             _emailSettings = emailSettings;
             _log = log;
@@ -69,7 +65,7 @@ namespace LykkePartnerPortal.Controllers
                     Source = model.Source
                 });
 
-                EmailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
+                _emailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
 
                 return Ok();
             }

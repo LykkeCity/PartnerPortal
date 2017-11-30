@@ -3,7 +3,6 @@ using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.Contacts;
 using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Settings;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
 using System;
@@ -17,15 +16,14 @@ namespace LykkePartnerPortal.Controllers
     {
         private readonly EmailCredentialsSettings _emailSettings;
         private readonly ILog _log;
-        //private readonly ISrvEmailsFacade _srvEmailsFacade;
+        private readonly IEmailSender _emailSender;
 
-        public ContactsController(EmailCredentialsSettings emailSettings, ILog log)
+        public ContactsController(EmailCredentialsSettings emailSettings, ILog log, IEmailSender emailSender)
         {
             _emailSettings = emailSettings;
             _log = log;
-            //_srvEmailsFacade = srvEmailsFacade;
+            _emailSender = emailSender;
         }
-
 
         /// <summary>
         /// Send email with contacts information to partners@lykke.com.
@@ -38,7 +36,7 @@ namespace LykkePartnerPortal.Controllers
         {
             try
             {
-                EmailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
+                _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
                 return Ok();
             }
             catch (Exception ex)
