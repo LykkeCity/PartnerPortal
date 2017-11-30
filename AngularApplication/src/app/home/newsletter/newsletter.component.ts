@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class NewsletterComponent implements OnInit {
 
   newsletterForm: FormGroup;
-  successMessage: boolean;
+  showSuccessMessage: boolean;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class NewsletterComponent implements OnInit {
     this.http.post('/api/newsLetter', Object.assign({}, this.newsletterForm.value, {source: 'PartnerPortal'})
     ).subscribe(
       val => {
-      this.successMessage = true;
+      this.showSuccessMessage = true;
     },
       error => {
         //TODO handle error cases
