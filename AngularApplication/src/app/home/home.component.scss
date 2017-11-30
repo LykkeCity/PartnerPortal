@@ -8,7 +8,7 @@ $navbar-height: 90px;
 }
 
 .navbar {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.5);
   height: $navbar-height;
   .lykke-partners-logo {
     height: 40px;
@@ -17,7 +17,7 @@ $navbar-height: 90px;
     color: $dark-grey;
     font-weight: $font-weight-semibold;
     margin-top: 0.6em;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
   }
 }
 
@@ -289,6 +289,13 @@ $navbar-height: 90px;
 
 // desktop
 @include media-breakpoint-up(lg) {
+
+  .navbar {
+    .nav-link {
+      font-size: 0.9375rem;
+    }
+  }
+
   .become-partner-map {
     padding-top: 204px;
     padding-bottom: 310px;
