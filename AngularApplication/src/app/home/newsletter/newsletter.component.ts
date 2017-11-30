@@ -28,7 +28,8 @@ export class NewsletterComponent implements OnInit {
       return;
     }
 
-    this.http.post('/api/newsLetter', JSON.stringify(Object.assign({}, this.newsletterForm.value, {source: "PartnerPortal"}))).subscribe(
+    this.http.post('/api/newsLetter', Object.assign({}, this.newsletterForm.value, {source: 'PartnerPortal'})
+    ).subscribe(
       val => {
       this.successMessage = true;
     },

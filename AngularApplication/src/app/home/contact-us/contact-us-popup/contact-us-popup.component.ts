@@ -51,7 +51,7 @@ export class ContactUsPopupComponent {
       return;
     }
 
-    this.http.post('/api/contacts/sendContact', JSON.stringify(Object.assign({}, this.contactUsForm.value, {source: "PartnerPortal"}))).subscribe(val => {
+    this.http.post('/api/contacts/sendContact', Object.assign({}, this.contactUsForm.value, {source: 'PartnerPortal'})).subscribe(val => {
       this.bsModalRef.hide();
       //TODO show success message here
     });
