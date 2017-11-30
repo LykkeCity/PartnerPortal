@@ -74,11 +74,11 @@
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="form-group">
-            <label for="useCase" class="center-block">Use case:</label>
-            <textarea id="useCase" class="form-control" formControlName="useCase" placeholder="Tell us a little bit more about your case"></textarea>
-            <div *ngIf="useCase.invalid && (useCase.dirty || useCase.touched)"
+            <label for="message" class="center-block">Use case:</label>
+            <textarea id="message" class="form-control" formControlName="message" placeholder="Tell us a little bit more about your case"></textarea>
+            <div *ngIf="message.invalid && (message.dirty || message.touched)"
                  class="text-danger">
-              <div *ngIf="useCase.errors.required">
+              <div *ngIf="message.errors.required">
                 This field is required.
               </div>
             </div>

@@ -23,14 +23,14 @@ export class ContactUsPopupComponent {
       name: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
-      useCase: ['', Validators.required],
+      message: ['', Validators.required],
     });
   }
 
   get name() { return this.contactUsForm.get('name'); }
   get email() { return this.contactUsForm.get('email'); }
   get phone() { return this.contactUsForm.get('phone'); }
-  get useCase() { return this.contactUsForm.get('useCase'); }
+  get message() { return this.contactUsForm.get('message'); }
 
   handleCorrectCaptcha(): void {
     this.validCaptcha = true;
