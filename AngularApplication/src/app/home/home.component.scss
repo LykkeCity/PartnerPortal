@@ -1,6 +1,10 @@
 @import '~scss/reuse';
 
-$navbar-height: 90px;
+$navbar-height: 60px;
+$navbar-height-md: 90px;
+
+$navbar-logo-height: 30px;
+$navbar-logo-height-md: 40px;
 
 
 .btn {
@@ -11,7 +15,7 @@ $navbar-height: 90px;
   box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.5);
   height: $navbar-height;
   .lykke-partners-logo {
-    height: 40px;
+    height: $navbar-logo-height;
   }
   .nav-link {
     color: $dark-grey;
@@ -283,7 +287,14 @@ $navbar-height: 90px;
     width: auto;
   }
   .become-partner-map {
+    margin-top: $navbar-height-md;
     padding-bottom: 200px;
+  }
+  .navbar {
+    height: $navbar-height-md;
+    .lykke-partners-logo {
+      height: $navbar-logo-height-md;
+    }
   }
 }
 
