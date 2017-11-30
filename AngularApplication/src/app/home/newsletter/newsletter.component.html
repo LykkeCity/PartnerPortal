@@ -5,21 +5,17 @@
         <div class="input-group">
           <i class="icon--email newsletter-icon"></i>
           <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
-                 [(ngModel)]="email" [email]="true">
+                 [email]="true">
         </div>
         <div *ngIf="formEmail.invalid && (formEmail.dirty || formEmail.touched)"
              class="text-danger">
-          <div *ngIf="formEmail.errors.required">
-            This field is required.
-          </div>
-
-          <div *ngIf="!formEmail.errors.required && formEmail.errors.email">
-            The provided email is not valid.
+          <div *ngIf="formEmail.errors.required || formEmail.errors.email">
+            Please enter correct email address
           </div>
         </div>
 
         <div *ngIf="success" class="text-success">
-          You have successfully subscribed for our newsletter.
+          Thank you for signing up for the newsletter
         </div>
       </div>
     </div>
