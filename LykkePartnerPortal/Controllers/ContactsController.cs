@@ -36,7 +36,7 @@ namespace LykkePartnerPortal.Controllers
         {
             try
             {
-                _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
+                _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
                 return Ok();
             }
             catch (Exception ex)
