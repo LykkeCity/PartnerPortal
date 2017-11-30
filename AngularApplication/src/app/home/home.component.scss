@@ -13,6 +13,12 @@ $navbar-height: 90px;
   .lykke-partners-logo {
     height: 40px;
   }
+  .nav-link {
+    color: $dark-grey;
+    font-weight: $font-weight-semibold;
+    margin-top: 0.6em;
+    font-size: 0.9375rem;
+  }
 }
 
 .become-partner-map {
