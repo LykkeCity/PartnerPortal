@@ -26,6 +26,7 @@
 
 @include media-breakpoint-only(xs) {
   .contact-us-modal.modal-lg {
+    width:90%;
     max-width: 450px;
   }
 }
