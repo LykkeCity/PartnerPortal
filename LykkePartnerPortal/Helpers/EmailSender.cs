@@ -8,10 +8,10 @@ namespace LykkePartnerPortal.Helpers
 {
     public class EmailSender : IEmailSender
     {
-        public void SendEmail(IEmailTemplate model, EmailCredentialsSettings settings, string templateName, string subject)
+        public void SendEmail(IEmailTemplate model, EmailCredentialsSettings settings, string emailTo, string templateName, string subject)
         {
             MailAddress from = new MailAddress(settings.EmailAccount);
-            MailAddress to = new MailAddress(settings.EmailTo);
+            MailAddress to = new MailAddress(emailTo);
 
             MailMessage message = new MailMessage(from, to);
             message.IsBodyHtml = true;
