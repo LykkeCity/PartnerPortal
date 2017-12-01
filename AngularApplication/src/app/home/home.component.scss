@@ -275,12 +275,6 @@ $navbar-logo-height-md: 40px;
   }
 }
 
-// small phones
-@include media-breakpoint-up(sm) {
-  .become-partner-map {
-  }
-}
-
 // tablet
 @include media-breakpoint-up(md) {
   .btn {

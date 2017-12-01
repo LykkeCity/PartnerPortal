@@ -53,6 +53,10 @@ export class ContactUsPopupComponent {
     this.validCaptcha = false;
   }
 
+  closeModal(): void {
+    this.bsModalRef.hide();
+  }
+
   onSubmit(event: any): void {
     event.preventDefault();
     if (this.contactUsForm.invalid) {

@@ -20,10 +20,9 @@
 }
 
 .navbar-brand {
-  height: 50px;
   width: 100%;
   .lykke-partners-logo {
-    width: 277px;
+    height: 30px;
     display: block;
     margin: 0 auto;
   }
@@ -66,4 +65,10 @@ re-captcha {
   }
 }
 
-
+@include media-breakpoint-up(sm) {
+  .navbar-brand {
+    .lykke-partners-logo {
+      height: 40px;
+    }
+  }
+}
