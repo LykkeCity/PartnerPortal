@@ -9,12 +9,6 @@ const chartSeriesMap = {
   ask: 1
 };
 
-const timeChartValues = [];
-
-for (let i = 149; i >= 0; i--) {
-  timeChartValues.push(moment().subtract(i, 'days').format('DD MMM'));
-}
-
 @Component({
   selector: 'lpp-home-chart',
   templateUrl: './home-chart.component.html',
@@ -39,7 +33,7 @@ export class HomeChartComponent implements OnInit, OnDestroy {
         show: false
       },
       boundaryGap: false,
-      data: timeChartValues
+      data: []
     },
     yAxis: {
       scale: true,
@@ -96,6 +90,9 @@ export class HomeChartComponent implements OnInit, OnDestroy {
   populateChart(assetId) {
     this.homeChartService.getChartData(assetId).subscribe(
       data => {
+
+        this.chartOptions.xAxis['data'] = this.generateXAxis(data['Result'].EndTime, data['Result'].Rate.AskBidGraph.length);
+
         this.chartOptions.series[chartSeriesMap.bid]['data'] = [];
         data['Result'].Rate.AskBidGraph.map(
           item => {
@@ -105,6 +102,17 @@ export class HomeChartComponent implements OnInit, OnDestroy {
         this.chart.setOption(this.chartOptions);
       }
     );
+  }
+
+  generateXAxis(endTime: string, valuesCount: number): Array<string> {
+
+    const timeChartValues = [];
+    const firstDay = moment(endTime).subtract(valuesCount, 'days');
+
+    for (let i = 0; i < valuesCount; i++) {
+      timeChartValues.push(firstDay.add(1, 'days').format('DD MMM'));
+    }
+    return timeChartValues;
   }
 
   ngOnInit() {
