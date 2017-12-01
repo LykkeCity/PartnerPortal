@@ -11,6 +11,16 @@ $navbar-logo-height-md: 40px;
   width: 100%;
 }
 
+.green-bullet-list {
+  li {
+    background: url('../../assets/images/homepage/checkmark_icon.svg') left top no-repeat;
+    background-size: 27px;
+    margin-bottom: 20px;
+    padding-left: 46px;
+  }
+  display: inline-block;
+}
+
 .navbar {
   box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.5);
   height: $navbar-height;
@@ -202,12 +212,6 @@ $navbar-logo-height-md: 40px;
   }
   .use-cases-list {
     margin-top: 20px;
-    li {
-      background: url('../../assets/images/homepage/checkmark_icon.svg') left top no-repeat;
-      background-size: 27px;
-      margin-bottom: 20px;
-      padding-left: 46px;
-    }
   }
 }
 
@@ -319,7 +323,7 @@ $navbar-logo-height-md: 40px;
 
     p.copy {
       margin-top: 45px;
-      margin-bottom: 65px;
+      margin-bottom: 45px;
     }
   }
 
