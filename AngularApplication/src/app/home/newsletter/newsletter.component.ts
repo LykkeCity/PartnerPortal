@@ -11,6 +11,8 @@ export class NewsletterComponent implements OnInit {
 
   newsletterForm: FormGroup;
   showSuccessMessage: boolean;
+  showErrorMessage: boolean;
+  ready: boolean = true;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
@@ -21,20 +23,29 @@ export class NewsletterComponent implements OnInit {
 
   get formEmail() { return this.newsletterForm.get('email'); }
 
+  onChange() {
+    this.showSuccessMessage = false;
+    this.showErrorMessage = false;
+  }
+
   onSubmit(event: any) {
+    this.onChange();
     event.preventDefault();
 
     if(this.newsletterForm.invalid) {
       return;
     }
 
-    this.http.post('/api/newsLetter', Object.assign({}, this.newsletterForm.value, {source: 'PartnerPortal'})
+    this.ready = false;
+    this.http.post('/api/newsLetter', Object.assign({}, this.newsletterForm.value, {source: 'PartnerPortal'}), {responseType: 'text'}
     ).subscribe(
       val => {
       this.showSuccessMessage = true;
+        this.ready = true;
     },
       error => {
-        //TODO handle error cases
+        this.showErrorMessage = true;
+        this.ready = true;
     });
   }
 }

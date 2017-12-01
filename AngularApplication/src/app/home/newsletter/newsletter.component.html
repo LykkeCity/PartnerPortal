@@ -5,7 +5,7 @@
         <div class="input-group">
           <i class="icon--email newsletter-icon"></i>
           <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
-                 [email]="true">
+                 [email]="true" (change)="onChange()">
         </div>
         <div *ngIf="formEmail.invalid && (formEmail.dirty || formEmail.touched)"
              class="text-danger">
@@ -17,10 +17,14 @@
         <div *ngIf="showSuccessMessage" class="text-success">
           Thank you for signing up for the newsletter
         </div>
+
+        <div *ngIf="showErrorMessage" class="text-danger">
+          Subscriber already exists
+        </div>
       </div>
     </div>
     <div class="col-4 col-md-2">
-      <button type="submit" class="right-arrow"></button>
+      <button type="submit" class="newsletter-submit"><img *ngIf="ready" class="right-arrow" src="../../../assets/images/homepage/arrow_button.svg" /><i *ngIf="!ready" class="icon--spin animate-spin"></i></button>
     </div>
   </div>
 </form>
