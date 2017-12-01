@@ -12,7 +12,7 @@ export class NewsletterComponent implements OnInit {
   newsletterForm: FormGroup;
   showSuccessMessage: boolean;
   showErrorMessage: boolean;
-  ready: boolean = true;
+  ready = true;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class NewsletterComponent implements OnInit {
     this.onChange();
     event.preventDefault();
 
-    if(this.newsletterForm.invalid) {
+    if (this.newsletterForm.invalid) {
       return;
     }
 

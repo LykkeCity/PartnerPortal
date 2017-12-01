@@ -38,7 +38,7 @@ import { IntercomService } from './services/intercom.service';
     HttpClientModule,
     NgxCarouselModule,
     IntercomModule.forRoot({
-      appId: "n1npujem",
+      appId: 'n1npujem',
       updateOnRouterChange: true
     }),
     ReCaptchaModule,

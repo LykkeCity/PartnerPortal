@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build -prod -aot",
-    "serve": "cd dist && live-server --port=8080 --entry-file=/index.html",
+    "serve": "cd ../LykkePartnerPortal/wwwroot && live-server --port=8080 --entry-file=/index.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

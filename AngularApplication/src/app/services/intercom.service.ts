@@ -9,10 +9,7 @@ export class IntercomService {
   ) { }
 
   initIntercom() {
-    this.intercom.boot({
-      app_id: 'n1npujem',
-
-    });
+    this.intercom.boot();
   }
 
   showIntercomLauncher() {
