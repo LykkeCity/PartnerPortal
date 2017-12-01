@@ -18,6 +18,7 @@ import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { HomeChartComponent } from './home/home-chart/home-chart.component';
 import { HomeChartService } from './home/home-chart/home-chart.service';
+import { IntercomService } from './services/intercom.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { HomeChartService } from './home/home-chart/home-chart.service';
   entryComponents: [
     ContactUsPopupComponent
   ],
-  providers: [ HomeChartService ],
+  providers: [ HomeChartService, IntercomService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

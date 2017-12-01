@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Intercom } from 'ng-intercom';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { IntercomService } from './services/intercom.service';
+import { BsModalService } from 'ngx-bootstrap';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -8,15 +9,29 @@ import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy {
 
-  constructor(private intercom: Intercom, angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
+  private modalShowSubscription: Subscription;
+  private modalHideSubscription: Subscription;
+
+
+  constructor(private intercom: IntercomService, private bsModalService: BsModalService) {
 
   }
 
   ngOnInit() {
-    this.intercom.boot({
-      app_id: "n1npujem"
-    });
+    this.intercom.initIntercom();
+
+    this.modalShowSubscription = this.bsModalService.onShow.subscribe(
+      () => this.intercom.hideIntercomLauncher()
+    );
+    this.modalHideSubscription = this.bsModalService.onHide.subscribe(
+      () => this.intercom.showIntercomLauncher()
+    );
+  }
+
+  ngOnDestroy() {
+    this.modalShowSubscription.unsubscribe();
+    this.modalHideSubscription.unsubscribe();
   }
 }
