@@ -2,9 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using AzureStorage.Tables;
 using Common.Log;
-using Core;
 using FluentValidation.AspNetCore;
-using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
 using Lykke.SettingsReader;
@@ -67,7 +65,7 @@ namespace LykkePartnerPortal
             var appSettings = Configuration.LoadSettings<AppSettings>();
             Log = CreateLogWithSlack(services, appSettings);
 
-            builder.RegisterModule(new ServiceModule(appSettings.Nested(x => x.LykkePartnerPortal), Log));
+            builder.RegisterModule(new ServiceModule(appSettings, Log));
             builder.Populate(services);
             ApplicationContainer = builder.Build();
 
