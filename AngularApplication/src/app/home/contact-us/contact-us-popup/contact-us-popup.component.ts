@@ -13,6 +13,7 @@ export class ContactUsPopupComponent {
 
   contactUsForm: FormGroup;
   showSuccessMessage: boolean;
+  ready: boolean = true;
 
   validCaptcha: boolean;
   @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
@@ -63,7 +64,9 @@ export class ContactUsPopupComponent {
       return;
     }
 
+    this.ready = false;
     this.http.post('/api/contacts/sendContact', Object.assign({}, this.contactUsForm.value, {source: 'PartnerPortal'}), {responseType: 'text'}).subscribe(val => {
+      this.ready = true;
       this.showSuccessMessage = true;
     });
   }
