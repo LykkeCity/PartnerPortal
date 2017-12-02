@@ -118,7 +118,7 @@ namespace LykkePartnerPortal
             if (!string.IsNullOrEmpty(dbLogConnectionString) && !(dbLogConnectionString.StartsWith("${") && dbLogConnectionString.EndsWith("}")))
             {
                 var persistenceManager = new LykkeLogToAzureStoragePersistenceManager(
-                    AzureTableStorage<LogEntity>.Create(dbLogConnectionStringManager, "ApiLog", consoleLogger),
+                    AzureTableStorage<LogEntity>.Create(dbLogConnectionStringManager, "PartnerPortalLog", consoleLogger),
                     consoleLogger);
 
                 var slackNotificationsManager = new LykkeLogToAzureSlackNotificationsManager(slackService, consoleLogger);
