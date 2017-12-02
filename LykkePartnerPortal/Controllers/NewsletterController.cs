@@ -59,7 +59,7 @@ namespace LykkePartnerPortal.Controllers
                 if (result != null)
                     return BadRequest(Phrases.SubscriberAlreadyExists);
 
-                await _subscribersClient.CreateSubscriber(new Lykke.Service.Subscribers.Client.AutorestClient.Models.SubscriberRequestModel()
+                await _subscribersClient.CreateSubscriberAsync(new Lykke.Service.Subscribers.Client.AutorestClient.Models.SubscriberRequestModel()
                 {
                     Email = model.Email,
                     Source = model.Source

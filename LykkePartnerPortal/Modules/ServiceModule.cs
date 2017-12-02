@@ -38,12 +38,7 @@ namespace LykkePartnerPortal.Modules
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
-            builder.RegisterType<SubscribersClient>()
-              .As<ISubscribersClient>()
-              .WithParameter("serviceUrl", _settings.CurrentValue.SubscriberServiceClient.ServiceUrl)
-              .WithParameter("log", _log)
-              .WithParameter("timeout", _settings.CurrentValue.SubscriberServiceClient.RequestTimeout)
-              .SingleInstance();
+            builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log, _settings.CurrentValue.SubscriberServiceClient.RequestTimeout);
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
         }
