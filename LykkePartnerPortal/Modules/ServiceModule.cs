@@ -38,7 +38,7 @@ namespace LykkePartnerPortal.Modules
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
-            builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log, _settings.CurrentValue.SubscriberServiceClient.RequestTimeout);
+            builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log);
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
         }
