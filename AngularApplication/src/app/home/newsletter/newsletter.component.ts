@@ -13,6 +13,7 @@ export class NewsletterComponent implements OnInit {
   showSuccessMessage: boolean;
   showErrorMessage: boolean;
   ready = true;
+  forceShowValidationErrors = false;
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class NewsletterComponent implements OnInit {
     event.preventDefault();
 
     if (this.newsletterForm.invalid) {
+      this.forceShowValidationErrors = true;
       return;
     }
 

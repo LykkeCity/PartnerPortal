@@ -23,10 +23,10 @@
               <i class="icon--name form-icon"></i>
               <input id="name" class="form-control" formControlName="fullName">
             </div>
-            <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+            <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched) || forceShowValidationErrors"
                  class="text-danger">
-              <div *ngIf="fullName.errors.required">
-                Name is required.
+              <div *ngIf="fullName.errors['required']">
+                Please enter a name
               </div>
             </div>
           </div>
@@ -42,9 +42,9 @@
               <input id="email" type='email' class="form-control" formControlName="email" [email]="true">
             </div>
 
-            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+            <div *ngIf="email.invalid && (email.dirty || email.touched) || forceShowValidationErrors"
                  class="text-danger">
-              <div *ngIf="email.errors.required || email.errors.email">
+              <div *ngIf="email.errors['required'] || email.errors['email']">
                 Please enter correct email address
               </div>
             </div>
@@ -62,9 +62,9 @@
               <input id="phone" class="form-control" formControlName="phoneNumber">
             </div>
 
-            <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+            <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched) || forceShowValidationErrors"
                  class="text-danger">
-              <div *ngIf="phoneNumber.errors.required">
+              <div *ngIf="phoneNumber.errors['required']">
                 Please enter correct phone number
               </div>
             </div>
@@ -77,10 +77,10 @@
           <div class="form-group">
             <label for="message" class="center-block">Use case:</label>
             <textarea id="message" class="form-control" formControlName="message" placeholder="Tell us a little bit more about your case"></textarea>
-            <div *ngIf="message.invalid && (message.dirty || message.touched)"
+            <div *ngIf="message.invalid && (message.dirty || message.touched) || forceShowValidationErrors"
                  class="text-danger">
-              <div *ngIf="message.errors.required">
-                This field is required.
+              <div *ngIf="message.errors['required']">
+                Please enter a use case
               </div>
             </div>
           </div>

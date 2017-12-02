@@ -14,6 +14,7 @@ export class ContactUsPopupComponent {
   contactUsForm: FormGroup;
   showSuccessMessage: boolean;
   ready = true;
+  forceShowValidationErrors = false;
 
   validCaptcha: boolean;
   @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
@@ -60,6 +61,7 @@ export class ContactUsPopupComponent {
   onSubmit(event: any): void {
     event.preventDefault();
     if (this.contactUsForm.invalid) {
+      this.forceShowValidationErrors = true;
       return;
     }
 
