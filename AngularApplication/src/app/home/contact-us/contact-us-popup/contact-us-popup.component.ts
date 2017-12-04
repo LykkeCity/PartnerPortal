@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptchaComponent } from 'angular2-recaptcha';
 import { BsModalRef } from 'ngx-bootstrap';
+import { HomeService } from '../../home.service';
 
 @Component({
   selector: 'lpp-contact-us-popup',
@@ -21,7 +22,8 @@ export class ContactUsPopupComponent {
 
   constructor(private bsModalRef: BsModalRef,
               private http: HttpClient,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private homeService: HomeService) {
     this.contactUsForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       email: ['', Validators.required],
@@ -71,12 +73,10 @@ export class ContactUsPopupComponent {
     }
 
     this.ready = false;
-    this.http.post('/api/contacts/sendContact',
-      Object.assign({}, this.contactUsForm.value, {source: 'PartnerPortal'}),
-      {responseType: 'text'})
-      .subscribe(val => {
-        this.ready = true;
-        this.showSuccessMessage = true;
-      });
+    this.homeService.sendContactUs(this.contactUsForm.value)
+    .subscribe(val => {
+      this.ready = true;
+      this.showSuccessMessage = true;
+    });
   }
 }
