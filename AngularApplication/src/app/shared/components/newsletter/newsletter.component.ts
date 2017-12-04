@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { NewsletterSubscriptionService } from '../../../core/newsletter-subscription.service';
 
 @Component({
   selector: 'lpp-newsletter',
@@ -14,7 +15,7 @@ export class NewsletterComponent implements OnInit {
   showErrorMessage: boolean;
   ready = true;
   forceShowValidationErrors = false;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private newsletterService: NewsletterSubscriptionService) { }
 
   ngOnInit() {
     this.newsletterForm = this.formBuilder.group({
@@ -39,8 +40,8 @@ export class NewsletterComponent implements OnInit {
     }
 
     this.ready = false;
-    this.http.post('/api/newsLetter', Object.assign({}, this.newsletterForm.value, {source: 'PartnerPortal'}), {responseType: 'text'}
-    ).subscribe(
+    this.newsletterService.makeSubscription(this.newsletterForm.value)
+    .subscribe(
       val => {
       this.showSuccessMessage = true;
         this.ready = true;

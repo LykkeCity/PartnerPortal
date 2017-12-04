@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
-import { HomeChartService } from './home-chart.service';
 import * as moment from 'moment';
+import { HomeService } from '../home.service';
 
 
 const chartSeriesMap = {
@@ -80,7 +80,7 @@ export class HomeChartComponent implements OnInit, OnDestroy {
   chart: echarts.ECharts;
 
   constructor(private elRef: ElementRef,
-              private homeChartService: HomeChartService) { }
+              private homeService: HomeService) { }
 
   changeChartAsset(assetId: string) {
     this.selectedChartAsset = assetId;
@@ -88,7 +88,7 @@ export class HomeChartComponent implements OnInit, OnDestroy {
   }
 
   populateChart(assetId) {
-    this.homeChartService.getChartData(assetId).subscribe(
+    this.homeService.getChartData(assetId).subscribe(
       data => {
 
         this.chartOptions.xAxis['data'] = this.generateXAxis(data['Result'].EndTime, data['Result'].Rate.AskBidGraph.length);

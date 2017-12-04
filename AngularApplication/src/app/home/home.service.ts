@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class HomeChartService {
+export class HomeService {
 
   constructor(private http: HttpClient) { }
 
@@ -11,4 +11,12 @@ export class HomeChartService {
       `assets/data/${assetId}USD.json`
     );
   }
+
+  sendContactUs(contactFormData) {
+    return this.http.post(
+      '/api/contacts/sendContact',
+      Object.assign({}, contactFormData, {source: 'PartnerPortal'})
+    );
+  }
+
 }
