@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptchaComponent } from 'angular2-recaptcha';
@@ -15,21 +14,21 @@ export class ContactUsPopupComponent {
   contactUsForm: FormGroup;
   showSuccessMessage: boolean;
   ready = true;
-  forceShowValidationErrors = false;
 
   validCaptcha: boolean;
   @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
 
   constructor(private bsModalRef: BsModalRef,
-              private http: HttpClient,
               private formBuilder: FormBuilder,
               private homeService: HomeService) {
+
     this.contactUsForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
-      email: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      message: ['', Validators.required],
+      fullName: ['', { validators: Validators.required, updateOn: 'submit' }],
+      email: ['', { validators: [ Validators.required, Validators.email ], updateOn: 'submit' }],
+      phoneNumber: ['', { validators: Validators.required, updateOn: 'submit' }],
+      message: ['', { validators: Validators.required, updateOn: 'submit' }],
     });
+
   }
 
   get fullName() {
@@ -60,10 +59,9 @@ export class ContactUsPopupComponent {
     this.bsModalRef.hide();
   }
 
-  onSubmit(event: any): void {
-    event.preventDefault();
+  onSubmit(): void {
+    this.contactUsForm.markAsDirty();
     if (this.contactUsForm.invalid) {
-      this.forceShowValidationErrors = true;
       return;
     }
 
@@ -74,9 +72,12 @@ export class ContactUsPopupComponent {
 
     this.ready = false;
     this.homeService.sendContactUs(this.contactUsForm.value)
-    .subscribe(val => {
-      this.ready = true;
-      this.showSuccessMessage = true;
-    });
+    .subscribe(
+      val => {
+        this.ready = true;
+        this.showSuccessMessage = true;
+      },
+      error => { this.ready = true; }
+    );
   }
 }
