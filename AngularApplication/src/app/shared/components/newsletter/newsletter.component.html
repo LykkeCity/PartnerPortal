@@ -7,7 +7,7 @@
           <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
                  [email]="true" (change)="onChange()">
         </div>
-        <div *ngIf="formEmail.invalid && formEmail.value || forceShowValidationErrors"
+        <div *ngIf="formEmail.invalid && newsletterForm.dirty"
              class="text-danger">
           <div *ngIf="formEmail.errors['required'] || formEmail.errors['email']">
             Please enter correct email address
