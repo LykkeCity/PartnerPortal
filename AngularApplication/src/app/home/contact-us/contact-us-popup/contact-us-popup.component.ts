@@ -77,7 +77,10 @@ export class ContactUsPopupComponent {
         this.ready = true;
         this.showSuccessMessage = true;
       },
-      error => { this.ready = true; }
+      error => {
+        this.ready = true;
+        alert('An error has occurred. We are sorry for the inconvenience.');
+      }
     );
   }
 }

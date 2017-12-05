@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewsletterSubscriptionService } from '../../../core/newsletter-subscription.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class NewsletterComponent implements OnInit {
     this.showErrorMessage = false;
   }
 
-  onSubmit(event: any) {
+  onSubmit() {
 
     this.newsletterForm.markAsDirty();
 
@@ -45,7 +45,11 @@ export class NewsletterComponent implements OnInit {
         this.newsletterForm.reset();
       },
       error => {
-        this.showErrorMessage = true;
+        if (error.status === 400) {
+          this.showErrorMessage = true;
+        } else {
+          alert('An error has occurred. We are sorry for the inconvenience.');
+        }
         this.ready = true;
       }
     );
