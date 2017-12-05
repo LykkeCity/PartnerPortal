@@ -33,6 +33,7 @@ namespace LykkePartnerPortal.Modules
 
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.EmailCredentials);
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.Authentication);
+            builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.ProductsInformation);
 
             builder.Populate(_services);
         }
@@ -52,7 +53,7 @@ namespace LykkePartnerPortal.Modules
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
 
             builder.RegisterType<HttpClientHelper>().As<IHttpClientHelper>().SingleInstance();
-        }     
+        }
 
         private void RegisterLocalTypes(ContainerBuilder builder)
         {
