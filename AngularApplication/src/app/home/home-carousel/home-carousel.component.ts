@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgxCarousel } from 'ngx-carousel';
-
 @Component({
   selector: 'lpp-home-carousel',
   templateUrl: './home-carousel.component.html',

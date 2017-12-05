@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NewsletterSubscriptionService } from '../../../core/newsletter-subscription.service';
 
 @Component({
@@ -14,12 +13,11 @@ export class NewsletterComponent implements OnInit {
   showSuccessMessage: boolean;
   showErrorMessage: boolean;
   ready = true;
-  forceShowValidationErrors = false;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private newsletterService: NewsletterSubscriptionService) { }
+  constructor(private formBuilder: FormBuilder, private newsletterService: NewsletterSubscriptionService) { }
 
   ngOnInit() {
     this.newsletterForm = this.formBuilder.group({
-      email: ['', Validators.required]
+      email: ['', { validators: [ Validators.required, Validators.email ], updateOn: 'submit' }]
     });
   }
 
@@ -31,11 +29,10 @@ export class NewsletterComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    this.onChange();
-    event.preventDefault();
+
+    this.newsletterForm.markAsDirty();
 
     if (this.newsletterForm.invalid) {
-      this.forceShowValidationErrors = true;
       return;
     }
 
@@ -43,12 +40,14 @@ export class NewsletterComponent implements OnInit {
     this.newsletterService.makeSubscription(this.newsletterForm.value)
     .subscribe(
       val => {
-      this.showSuccessMessage = true;
+        this.showSuccessMessage = true;
         this.ready = true;
-    },
+        this.newsletterForm.reset();
+      },
       error => {
         this.showErrorMessage = true;
         this.ready = true;
-    });
+      }
+    );
   }
 }
