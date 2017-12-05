@@ -11,6 +11,7 @@ export class NewsletterSubscriptionService {
     return this.http.post(
       '/api/newsLetter',
       Object.assign({}, newsletterInfo, {source: 'PartnerPortal'}),
+      { responseType: 'text' }
     );
   }
 

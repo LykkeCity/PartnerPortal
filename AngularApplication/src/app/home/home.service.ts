@@ -15,7 +15,8 @@ export class HomeService {
   sendContactUs(contactFormData) {
     return this.http.post(
       '/api/contacts/sendContact',
-      Object.assign({}, contactFormData, {source: 'PartnerPortal'})
+      Object.assign({}, contactFormData, {source: 'PartnerPortal'}),
+      { responseType: 'text' }
     );
   }
 
