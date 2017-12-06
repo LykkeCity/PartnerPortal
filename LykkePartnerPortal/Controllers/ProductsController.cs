@@ -27,16 +27,15 @@ namespace LykkePartnerPortal.Controllers
         /// <summary>
         /// Get lykke products
         /// </summary>
-        [HttpGet()]
+        [HttpGet]
         [SwaggerOperation("GetProducts")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(ProductsResponseModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<ProductResponseModel>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> Get()
         {
-            ProductsResponseModel result = new ProductsResponseModel();
-            result.Products = GetProducts();
+            IEnumerable<ProductResponseModel> result = GetProducts().Select(p => ProductResponseModel.Create(p));
 
-            if (result.Products.Count() <= 0)
+            if (result.Count() <= 0)
                 return NotFound(Phrases.ProductsNotFound);
 
             return Ok(result);
