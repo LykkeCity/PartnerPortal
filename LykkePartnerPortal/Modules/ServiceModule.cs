@@ -32,6 +32,7 @@ namespace LykkePartnerPortal.Modules
 
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.EmailCredentials);
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.ProductsInformation);
+            builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.Authentication);
 
             builder.Populate(_services);
         }
