@@ -1,10 +1,31 @@
 ﻿using Core.Products;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace LykkePartnerPortal.Models.Products
 {
-    public class ProductsResponseModel
+    public class ProductResponseModel : IProduct
     {
-        public IEnumerable<IProduct> Products { get; set; }
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
+
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
+
+        [JsonProperty(PropertyName = "imageUrl")]
+        public string ImageUrl { get; set; }
+
+        [JsonProperty(PropertyName = "columnsCount")]
+        public int ColumnsCount { get; set; }
+
+        public static ProductResponseModel Create(IProduct product)
+        {
+            return new ProductResponseModel()
+            {
+                Title = product.Title,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                ColumnsCount = product.ColumnsCount
+            };
+        }
     }
 }
