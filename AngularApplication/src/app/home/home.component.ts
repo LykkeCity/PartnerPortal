@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { Angulartics2 } from 'angulartics2';
 import { BsModalService } from 'ngx-bootstrap';
 import { ContactUsPopupComponent } from './contact-us/contact-us-popup/contact-us-popup.component';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'lpp-home',
@@ -12,10 +13,15 @@ export class HomeComponent implements OnInit {
 
   constructor(private modalService: BsModalService,
               private ga: Angulartics2,
-              private elRef: ElementRef) {
-  }
+              private elRef: ElementRef,
+              private auth: AuthService
+  ) {}
 
   ngOnInit() {
+  }
+
+  signIn() {
+    this.auth.login();
   }
 
   openModal(): void {
