@@ -14,7 +14,7 @@
         How can we help?
       </h3>
     </div>
-    <form *ngIf="!showSuccessMessage" [formGroup]="contactUsForm" (ngSubmit)="onSubmit($event)">
+    <form *ngIf="!showSuccessMessage" [formGroup]="contactUsForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <div class="form-group">
