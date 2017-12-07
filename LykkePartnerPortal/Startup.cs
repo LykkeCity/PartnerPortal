@@ -57,7 +57,7 @@ namespace LykkePartnerPortal
                 services.AddSwaggerGen(options =>
                 {
                     options.DefaultLykkeConfiguration("v1", "Partner Portal API");
-                    //options.OperationFilter<ApiKeyHeaderOperationFilter>();
+                    options.OperationFilter<ApiKeyHeaderOperationFilter>();
                 });
 
                 var builder = new ContainerBuilder();
