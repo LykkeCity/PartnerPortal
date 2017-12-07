@@ -20,7 +20,6 @@
 # Well-known infrastructure folders
 /packages/
 /target/
-/LykkeWebWallet/wwwroot
 **/aspnet_client/
 
 # IDEs
@@ -47,6 +46,7 @@ _UpgradeReport_Files/
 
 #ncrunch
 *.*crunch*
+_NCrunch_*
 
 #publish profiles
 *publish.ps1
@@ -55,24 +55,8 @@ _UpgradeReport_Files/
 
 #some test
 .vs
-/deploy
-/settings
-TestResult.xml
-#include compiled contracts
-!/src/EthereumContractBuilder/contracts/bin/
 node_modules
-**/launchsettings.json
-**/appsettings.dev.json
-**/appsettings.Development.json
-**/docker-compose.dev.yml
+**/launchSettings.json
+**/appsettings.*.json
 
-/src/LykkePartnerPortal/Scripts/*.js
-/src/LykkePartnerPortal/Scripts/.js
-/src/LykkePartnerPortal/wwwroot/fonts
-/src/LykkePartnerPortal/wwwroot/output
-/src/LykkePartnerPortal/wwwroot/js
-/src/LykkePartnerPortal/Scripts/*.js.map
-#app/
-**/UseDevelopmentStorage=true
-/src/LykkePartnerPortal/appsettings.Development.json
-/LykkePartnerPortal/wwwroot
+**/wwwroot/lib
