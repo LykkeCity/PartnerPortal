@@ -1,4 +1,4 @@
-﻿namespace LykkePartnerPortal.Settings
+﻿namespace Core.Settings.SlackNotifications
 {
     public class SlackNotificationsSettings
     {

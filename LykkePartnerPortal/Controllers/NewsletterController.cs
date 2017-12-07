@@ -3,13 +3,14 @@ using Lykke.Service.Subscribers.Client;
 using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Models.NewsLetters;
-using LykkePartnerPortal.Settings;
 using LykkePartnerPortal.Strings;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.SwaggerGen.Annotations;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Core.Settings;
+using Core.Settings.ServiceSettings;
 
 namespace LykkePartnerPortal.Controllers
 {

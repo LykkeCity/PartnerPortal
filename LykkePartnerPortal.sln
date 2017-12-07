@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LykkePartnerPortal", "LykkePartnerPortal\LykkePartnerPortal.csproj", "{51BD439C-398C-47ED-AE81-FDC038398038}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{91ED0673-6FB1-4F81-A015-EFB48101E958}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B093ED9D-D988-4648-BECC-3CAC9F3081A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{B093ED9D-D988-4648-BECC-3CAC9F3081A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6B24C249-AB53-4163-A7E0-B0F471228200}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.PartnerPortal.Services", "Lykke.PartnerPortal.Services\Lykke.PartnerPortal.Services.csproj", "{2B6F7564-CF75-4F02-94BE-57553826E308}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +31,17 @@ Global
 		{B093ED9D-D988-4648-BECC-3CAC9F3081A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B093ED9D-D988-4648-BECC-3CAC9F3081A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B093ED9D-D988-4648-BECC-3CAC9F3081A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B6F7564-CF75-4F02-94BE-57553826E308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B6F7564-CF75-4F02-94BE-57553826E308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B6F7564-CF75-4F02-94BE-57553826E308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B6F7564-CF75-4F02-94BE-57553826E308}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B093ED9D-D988-4648-BECC-3CAC9F3081A0} = {91ED0673-6FB1-4F81-A015-EFB48101E958}
+		{2B6F7564-CF75-4F02-94BE-57553826E308} = {91ED0673-6FB1-4F81-A015-EFB48101E958}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5869C121-4DA6-47E8-A44F-7288D92906EC}
