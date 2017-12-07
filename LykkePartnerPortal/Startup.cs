@@ -81,15 +81,6 @@ namespace LykkePartnerPortal
         {
             try
             {
-                //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-                //loggerFactory.AddDebug();
-
-                //app.UseMvcWithDefaultRoute();
-                //app.UseDefaultFiles();
-                //app.UseStaticFiles();
-                //app.UseSwagger();
-                //app.UseSwaggerUi();
-
                 app.UseCors(builder =>
                 {
                     builder.AllowAnyOrigin();

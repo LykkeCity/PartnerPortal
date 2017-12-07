@@ -19,7 +19,7 @@ namespace LykkePartnerPortal.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISubscribersClient _subscribersClient;
         private readonly EmailCredentialsSettings _emailSettings;
-        protected readonly ILog _log;
+        private readonly ILog _log;
 
         public NewsletterController(IEmailSender emailSender,
             ISubscribersClient subscribersClient, EmailCredentialsSettings emailSettings, ILog log)
@@ -40,6 +40,7 @@ namespace LykkePartnerPortal.Controllers
         public async Task<IActionResult> CheckIsExistingSubscriber([FromBody]NewsLetterRequestModel model)
         {
             var result = await _subscribersClient.GetByEmailAsync(model.Source, model.Email);
+
             return Ok(result != null);
         }
 
@@ -52,28 +53,22 @@ namespace LykkePartnerPortal.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Subscribe([FromBody]NewsLetterRequestModel model)
         {
-            try
-            {
-                var result = await _subscribersClient.GetByEmailAsync(model.Source, model.Email);
+            var result = await _subscribersClient.GetByEmailAsync(model.Source, model.Email);
 
-                if (result != null)
-                    return BadRequest(Phrases.SubscriberAlreadyExists);
+            if (result != null)
+                return BadRequest(Phrases.SubscriberAlreadyExists);
 
-                await _subscribersClient.CreateSubscriberAsync(new Lykke.Service.Subscribers.Client.AutorestClient.Models.SubscriberRequestModel()
+            await _subscribersClient.CreateSubscriberAsync(
+                new Lykke.Service.Subscribers.Client.AutorestClient.Models.SubscriberRequestModel
                 {
                     Email = model.Email,
                     Source = model.Source
                 });
 
-                _emailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo, _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
+            _emailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
+                _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                await _log.WriteInfoAsync(nameof(NewsletterController), nameof(Subscribe), ex.Message, DateTime.Now);
-                return BadRequest(ex.Message);
-            }
+            return Ok();
         }
     }
 }
