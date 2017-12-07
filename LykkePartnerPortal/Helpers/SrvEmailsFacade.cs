@@ -23,6 +23,7 @@ namespace LykkePartnerPortal.Helpers
                 Year = DateTime.UtcNow.Year.ToString()
             };
 
+            //TODO: This is under comments cause it will be used in future to send emails via Lykke emails service
             //await _emailSender.SendEmailAsync(partnerId, email, msgData);
         }
     }

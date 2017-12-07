@@ -34,6 +34,7 @@ namespace LykkePartnerPortal.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> SendContactInformation([FromBody]ContactRequestModel model)
         {
+            //TODO: We need to use Lykke email service for this in future revision (via SrvEmailFacade)
             _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
                 _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
 
