@@ -24,6 +24,10 @@
   width: 660px;
 }
 
+.popover.bs-popover-bottom .arrow {
+  left: 50% !important; /* fix popover arrow position globally by removing the hardcoded 5px */
+}
+
 @include media-breakpoint-only(xs) {
   .contact-us-modal.modal-lg {
     width:90%;
