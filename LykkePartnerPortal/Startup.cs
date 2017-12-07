@@ -1,8 +1,14 @@
-﻿using Autofac;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AzureStorage.Tables;
 using Common.Log;
+using Core.Services;
+using Core.Settings;
 using FluentValidation.AspNetCore;
+using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
 using Lykke.SettingsReader;
@@ -12,16 +18,9 @@ using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Core.Services;
-using Core.Settings;
-using Lykke.Common.ApiLibrary.Middleware;
-using Microsoft.AspNetCore.Http.Internal;
 
 namespace LykkePartnerPortal
 {
@@ -58,7 +57,7 @@ namespace LykkePartnerPortal
                 services.AddSwaggerGen(options =>
                 {
                     options.DefaultLykkeConfiguration("v1", "Partner Portal API");
-                    options.OperationFilter<ApiKeyHeaderOperationFilter>();
+                    //options.OperationFilter<ApiKeyHeaderOperationFilter>();
                 });
 
                 var builder = new ContainerBuilder();
@@ -124,13 +123,19 @@ namespace LykkePartnerPortal
                     app.UseDeveloperExceptionPage();
                 }
 
-                //app.UseAuthentication();
-
                 app.UseLykkeMiddleware("Partner Portal Api", ex => new { Message = "Technical problem" });
 
+                app.UseAuthentication();
+
                 app.UseMvc();
+
                 app.UseSwagger();
-                app.UseSwaggerUi();
+                app.UseSwaggerUI(x =>
+                {
+                    x.RoutePrefix = "swagger/ui";
+                    x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                });
+
                 app.UseStaticFiles();
 
                 appLifetime.ApplicationStarted.Register(() => StartApplication().Wait());

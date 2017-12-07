@@ -2,7 +2,7 @@
 using System.Net;
 using System.Linq;
 using Core.Services;
-using Swashbuckle.SwaggerGen.Annotations;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace LykkePartnerPortal.Controllers
 {

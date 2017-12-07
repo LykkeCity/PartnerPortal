@@ -5,12 +5,11 @@ using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Models.NewsLetters;
 using LykkePartnerPortal.Strings;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.SwaggerGen.Annotations;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Core.Settings;
 using Core.Settings.ServiceSettings;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace LykkePartnerPortal.Controllers
 {
