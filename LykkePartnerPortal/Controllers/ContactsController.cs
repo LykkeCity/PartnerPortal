@@ -3,7 +3,6 @@ using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.Contacts;
 using LykkePartnerPortal.Models.EmailTemplates;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using Core.Settings.ServiceSettings;

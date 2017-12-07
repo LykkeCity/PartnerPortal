@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Authorization;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Linq;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace LykkePartnerPortal.Filters
 {

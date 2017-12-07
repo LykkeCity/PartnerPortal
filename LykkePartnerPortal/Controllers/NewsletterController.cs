@@ -5,7 +5,6 @@ using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Models.NewsLetters;
 using LykkePartnerPortal.Strings;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using Core.Settings.ServiceSettings;

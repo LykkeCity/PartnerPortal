@@ -16,6 +16,7 @@ using Lykke.SlackNotification.AzureQueue;
 using LykkePartnerPortal.Filters;
 using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Internal;
@@ -115,8 +116,6 @@ namespace LykkePartnerPortal
                 }
 
                 app.UseLykkeMiddleware("Partner Portal Api", ex => new { Message = "Technical problem" });
-
-                app.UseAuthentication();
 
                 app.UseMvc();
 

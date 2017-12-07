@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
-using Core.Settings;
 using Core.Settings.ServiceSettings;
 
 namespace LykkePartnerPortal.Helpers
