@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand fixed-top bg-black">
 
-  <div id="menuToggle" class="d-sm-block d-lg-none">
+  <div class="d-sm-block d-lg-none menu-toggle">
     <input type="checkbox"/>
     <span></span>
     <span></span>
     <span></span>
-    <ul id="menu">
+    <ul class="menu-holder">
       <li><a href="#">ECOSYSTEM</a></li>
       <li><a href="#">PRODUCTS</a></li>
       <li><a href="#">MY ASSETS</a></li>
@@ -37,9 +37,13 @@
         </li>
       </ul>
     </div>
-    <button class="btn asset-btn d-none d-md-block">Add Asset <img
-      src="../../../assets/images/products/add_asset.svg"></button>
-    <img class="asset-btn-small d-sm-block d-md-none" src="../../../assets/images/products/add_asset.svg">
+    <div class="profile-nav-holder">
+      <button class="btn asset-btn d-none d-sm-block d-md-block">Add Asset <img
+        src="../../../assets/images/products/add_asset.svg"></button>
+      <img class="asset-btn-small d-xs-block d-sm-none d-md-none" src="../../../assets/images/products/add_asset.svg">
+      <button class="profile-nav" [popover]="navTemplate" [outsideClick]="true" placement="bottom">
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -63,29 +67,10 @@
   </div>
 </div>
 
-<div class="footer bg-pale-grey">
-  <div class="container">
+<lpp-footer></lpp-footer>
 
-    <div class="bottom-row row justify-content-center">
-      <div class="col-lg-6 text-center text-lg-left">
-        <p class="small text-brownish-grey">© 2017 Lykke, Inc. · <a class="text-brownish-grey"
-                                                                    href="https://www.lykke.com/privacy_policy">Privacy
-          Policy</a> · <a class="text-brownish-grey" href="https://www.lykke.com/terms_of_use">Terms of Use</a></p>
-      </div>
-
-      <nav class="social-nav col-lg-6 text-center text-lg-right">
-        <a href="https://www.facebook.com/LykkeCity" target="_blank"><i class="icon icon--facebook"></i></a>
-        <a href="https://twitter.com/lykke" target="_blank"><i class="icon icon--twitter"></i></a>
-        <a href="http://instagram.com/lykkecity" target="_blank"><i class="icon icon--instagram"></i></a>
-        <a href="https://www.youtube.com/c/LykkeX" target="_blank"><i class="icon icon--youtube"></i></a>
-        <a href="https://www.linkedin.com/company/lykke" target="_blank"><i class="icon icon--linkedin"></i></a>
-        <a href="https://www.reddit.com/r/lykke/" target="_blank"><i class="icon icon--reddit"></i></a>
-        <a href="https://t.co/TmjMYnQD7T" target="_blank"><i class="icon icon--telegram"></i></a>
-        <a href="http://lykkecommunity.herokuapp.com" target="_blank"><i class="icon icon--slack"></i></a>
-      </nav>
-
-    </div>
+<ng-template #navTemplate>
+  <div>
+    <a class="profile-nav-link" href="javascript:;">Sign out</a>
   </div>
-</div>
-
-
+</ng-template>
