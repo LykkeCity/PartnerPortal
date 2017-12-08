@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Angulartics2 } from 'angulartics2';
 import { BsModalService } from 'ngx-bootstrap';
 import { ContactUsPopupComponent } from './contact-us/contact-us-popup/contact-us-popup.component';
-import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'lpp-home',
@@ -12,16 +11,10 @@ import { AuthService } from '../core/auth.service';
 export class HomeComponent implements OnInit {
 
   constructor(private modalService: BsModalService,
-              private ga: Angulartics2,
-              private elRef: ElementRef,
-              private auth: AuthService
+              private ga: Angulartics2
   ) {}
 
   ngOnInit() {
-  }
-
-  signIn() {
-    this.auth.login();
   }
 
   openModal(): void {
@@ -30,10 +23,5 @@ export class HomeComponent implements OnInit {
       properties: {category: 'Partner Portal Landing page'}
     });
     this.modalService.show(ContactUsPopupComponent, { class: 'contact-us-modal modal-lg' });
-  }
-
-  scrollToSection(selector: string): void {
-    const element = this.elRef.nativeElement.querySelector(selector);
-    window.scrollTo({left: 0, top: element.offsetTop - 90, behavior: 'smooth'});
   }
 }
