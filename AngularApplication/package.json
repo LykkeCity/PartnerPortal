@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.local.json",
     "build": "ng build",
     "build:prod": "ng build -prod -aot",
     "serve": "cd ../LykkePartnerPortal/wwwroot && live-server --port=8080 --entry-file=/index.html",
