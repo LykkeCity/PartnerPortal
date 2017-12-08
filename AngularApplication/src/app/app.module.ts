@@ -22,7 +22,7 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule,
+    CoreModule.forRoot(),
     IntercomModule.forRoot({
       appId: 'n1npujem',
       updateOnRouterChange: true
