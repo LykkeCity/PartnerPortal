@@ -1,5 +1,5 @@
-﻿using Core.Settings.ServiceSettings;
-using LykkePartnerPortal.Models.EmailTemplates;
+﻿using LykkePartnerPortal.Models.EmailTemplates;
+using LykkePartnerPortal.Settings;
 
 namespace LykkePartnerPortal.Helpers
 {

@@ -1,14 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AzureStorage.Tables;
 using Common.Log;
-using Core.Services;
-using Core.Settings;
 using FluentValidation.AspNetCore;
-using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
 using Lykke.SettingsReader;
@@ -16,12 +10,14 @@ using Lykke.SlackNotification.AzureQueue;
 using LykkePartnerPortal.Filters;
 using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using LykkePartnerPortal.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 
 namespace LykkePartnerPortal
 {
@@ -45,9 +41,10 @@ namespace LykkePartnerPortal
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            try
+            services.AddMvc(options =>
             {
-                services.AddMvc(options => { options.Filters.Add<ValidateModelAttribute>(); })
+                options.Filters.Add<ValidateModelAttribute>();
+            })
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>())
                     .AddJsonOptions(options =>
                     {
@@ -55,147 +52,45 @@ namespace LykkePartnerPortal
                             new Newtonsoft.Json.Serialization.DefaultContractResolver();
                     });
 
-                services.AddSwaggerGen(options =>
-                {
-                    options.DefaultLykkeConfiguration("v1", "Partner Portal API");
-                    options.OperationFilter<ApiKeyHeaderOperationFilter>();
-                });
-
-                var builder = new ContainerBuilder();
-                var appSettings = Configuration.LoadSettings<AppSettings>();
-                Log = CreateLogWithSlack(services, appSettings);
-
-                builder.RegisterModule(new ServiceModule(appSettings, Log));
-                builder.Populate(services);
-                ApplicationContainer = builder.Build();
-
-                return new AutofacServiceProvider(ApplicationContainer);
-            }
-            catch (Exception ex)
+            services.AddSwaggerGen(options =>
             {
-                Log?.WriteFatalErrorAsync(nameof(Startup), nameof(ConfigureServices), "", ex).Wait();
-                throw;
-            }
+                options.DefaultLykkeConfiguration("v1", "Partner Portal API");
+                options.OperationFilter<ApiKeyHeaderOperationFilter>();
+            });
+
+            var builder = new ContainerBuilder();
+            var appSettings = Configuration.LoadSettings<AppSettings>();
+            Log = CreateLogWithSlack(services, appSettings);
+
+            builder.RegisterModule(new ServiceModule(appSettings, Log));
+            builder.Populate(services);
+            ApplicationContainer = builder.Build();
+
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            try
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            app.Use(async (context, next) =>
             {
-                app.UseCors(builder =>
-                {
-                    builder.AllowAnyOrigin();
-                    builder.AllowAnyHeader();
-                    builder.AllowAnyMethod();
-                });
+                await next();
 
-                app.Use(next => context =>
+                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) && !context.Request.Path.Value.StartsWith("/api"))
                 {
-                    context.Request.EnableRewind();
-
-                    return next(context);
-                });
-
-                app.Use(async (context, next) =>
-                {
+                    context.Request.Path = "/index.html";
+                    context.Response.StatusCode = 200;
                     await next();
-
-                    if (context.Response.StatusCode == 404 
-                        && !Path.HasExtension(context.Request.Path.Value) 
-                        && !context.Request.Path.Value.StartsWith("/api"))
-                    {
-                        context.Request.Path = "/index.html";
-                        context.Response.StatusCode = 200;
-                        await next();
-                    }
-                });
-
-                if (env.IsDevelopment())
-                {
-                    app.UseDeveloperExceptionPage();
                 }
+            });
 
-                app.UseLykkeMiddleware("Partner Portal Api", ex => new { Message = "Technical problem" });
-
-                app.UseMvc();
-
-                app.UseSwagger();
-                app.UseSwaggerUI(x =>
-                {
-                    x.RoutePrefix = "swagger/ui";
-                    x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                });
-
-                app.UseStaticFiles();
-
-                appLifetime.ApplicationStarted.Register(() => StartApplication().Wait());
-                appLifetime.ApplicationStopping.Register(() => StopApplication().Wait());
-                appLifetime.ApplicationStopped.Register(() => CleanUp().Wait());
-            }
-            catch (Exception ex)
-            {
-                Log?.WriteFatalErrorAsync(nameof(Startup), nameof(ConfigureServices), "", ex).Wait();
-                throw;
-            }
-        }
-
-        private async Task StartApplication()
-        {
-            try
-            {
-                // NOTE: Service not yet receive and process requests here
-
-                await ApplicationContainer.Resolve<IStartupManager>().StartAsync();
-
-                await Log.WriteMonitorAsync("", "", "Started");
-            }
-            catch (Exception ex)
-            {
-                await Log.WriteFatalErrorAsync(nameof(Startup), nameof(StartApplication), "", ex);
-                throw;
-            }
-        }
-
-        private async Task StopApplication()
-        {
-            try
-            {
-                // NOTE: Service still can receive and process requests here, so take care about it if you add logic here.
-
-                await ApplicationContainer.Resolve<IShutdownManager>().StopAsync();
-            }
-            catch (Exception ex)
-            {
-                if (Log != null)
-                {
-                    await Log.WriteFatalErrorAsync(nameof(Startup), nameof(StopApplication), "", ex);
-                }
-                throw;
-            }
-        }
-
-        private async Task CleanUp()
-        {
-            try
-            {
-                // NOTE: Service can't receive and process requests here, so you can destroy all resources
-
-                if (Log != null)
-                {
-                    await Log.WriteMonitorAsync("", "", "Terminating");
-                }
-
-                ApplicationContainer.Dispose();
-            }
-            catch (Exception ex)
-            {
-                if (Log != null)
-                {
-                    await Log.WriteFatalErrorAsync(nameof(Startup), nameof(CleanUp), "", ex);
-                    (Log as IDisposable)?.Dispose();
-                }
-                throw;
-            }
+            app.UseMvcWithDefaultRoute();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseSwagger();
+            app.UseSwaggerUi();
         }
 
         private static ILog CreateLogWithSlack(IServiceCollection services, IReloadingManager<AppSettings> settings)

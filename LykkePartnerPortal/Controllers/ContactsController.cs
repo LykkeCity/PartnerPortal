@@ -2,11 +2,12 @@
 using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.Contacts;
 using LykkePartnerPortal.Models.EmailTemplates;
+using LykkePartnerPortal.Settings;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.SwaggerGen.Annotations;
+using System;
 using System.Net;
 using System.Threading.Tasks;
-using Core.Settings.ServiceSettings;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace LykkePartnerPortal.Controllers
 {
@@ -33,11 +34,16 @@ namespace LykkePartnerPortal.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> SendContactInformation([FromBody]ContactRequestModel model)
         {
-            //TODO: We need to use Lykke email service for this in future revision (via SrvEmailFacade)
-            _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
-                _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
-
-            return Ok();
+            try
+            {
+                _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                await _log.WriteInfoAsync(nameof(ContactsController), nameof(SendContactInformation), ex.Message, DateTime.Now);
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

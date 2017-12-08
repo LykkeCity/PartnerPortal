@@ -1,12 +1,10 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Common.Log;
-using Core.Services;
-using Core.Settings;
-using Lykke.PartnerPortal.Services;
 using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
+using LykkePartnerPortal.Settings;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LykkePartnerPortal.Modules
@@ -27,35 +25,20 @@ namespace LykkePartnerPortal.Modules
         protected override void Load(ContainerBuilder builder)
         {
             RegisterLocalTypes(builder);
-            RegisterLocalServices(builder);
             RegisterExternalServices(builder);
 
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.EmailCredentials);
             builder.Populate(_services);
         }
 
-        private static void RegisterLocalServices(ContainerBuilder builder)
-        {
-            builder.RegisterType<HealthService>()
-                .As<IHealthService>()
-                .SingleInstance();
-
-            builder.RegisterType<StartupManager>()
-                .As<IStartupManager>();
-
-            builder.RegisterType<ShutdownManager>()
-                .As<IShutdownManager>();
-        }
-
         private void RegisterLocalTypes(ContainerBuilder builder)
         {
             builder.RegisterInstance(_log).As<ILog>().SingleInstance();
-            builder.RegisterInstance(_settings.CurrentValue).SingleInstance();
         }
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
-            builder.RegisterSubscriberClient(_settings.CurrentValue.LykkePartnerPortal.Services.SubscriberServiceUrl, _log);
+            builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log);
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
         }
