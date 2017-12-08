@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using Core.Services;
 using Core.Settings;
 using Lykke.Common.ApiLibrary.Middleware;
+using Microsoft.AspNetCore.Http.Internal;
 
 namespace LykkePartnerPortal
 {
@@ -90,17 +91,11 @@ namespace LykkePartnerPortal
                     builder.AllowAnyMethod();
                 });
 
-                app.Use(async (context, next) =>
+                app.Use(next => context =>
                 {
-                    await next();
+                    context.Request.EnableRewind();
 
-                    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) &&
-                        !context.Request.Path.Value.StartsWith("/api"))
-                    {
-                        context.Request.Path = "/index.html";
-                        context.Response.StatusCode = 200;
-                        await next();
-                    }
+                    return next(context);
                 });
 
                 if (env.IsDevelopment())
