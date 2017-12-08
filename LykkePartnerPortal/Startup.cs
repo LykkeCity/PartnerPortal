@@ -20,6 +20,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Core.Services;
 using Core.Settings;
+using Lykke.Common.ApiLibrary.Middleware;
 
 namespace LykkePartnerPortal
 {
@@ -81,31 +82,45 @@ namespace LykkePartnerPortal
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime)
         {
-            app.Use(async (context, next) =>
+            try
             {
-                await next();
-
-                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) && !context.Request.Path.Value.StartsWith("/api"))
+                app.Use(async (context, next) =>
                 {
-                    context.Request.Path = "/index.html";
-                    context.Response.StatusCode = 200;
                     await next();
-                }
-            });
 
-            app.UseMvcWithDefaultRoute();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            app.UseSwagger();
-            app.UseSwaggerUI(x =>
+                    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) &&
+                        !context.Request.Path.Value.StartsWith("/api"))
+                    {
+                        context.Request.Path = "/index.html";
+                        context.Response.StatusCode = 200;
+                        await next();
+                    }
+                });
+
+                app.UseLykkeMiddleware("Partner Portal Api", ex => new
+                {
+                    Message = "Technical problem"
+                });
+
+                app.UseMvcWithDefaultRoute();
+                app.UseDefaultFiles();
+                app.UseStaticFiles();
+                app.UseSwagger();
+                app.UseSwaggerUI(x =>
+                {
+                    x.RoutePrefix = "swagger/ui";
+                    x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                });
+
+                appLifetime.ApplicationStarted.Register(() => StartApplication().Wait());
+                appLifetime.ApplicationStopping.Register(() => StopApplication().Wait());
+                appLifetime.ApplicationStopped.Register(() => CleanUp().Wait());
+            }
+            catch (Exception ex)
             {
-                x.RoutePrefix = "swagger/ui";
-                x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            });
-
-            appLifetime.ApplicationStarted.Register(() => StartApplication().Wait());
-            appLifetime.ApplicationStopping.Register(() => StopApplication().Wait());
-            appLifetime.ApplicationStopped.Register(() => CleanUp().Wait());
+                Log?.WriteFatalErrorAsync(nameof(Startup), nameof(ConfigureServices), "", ex).Wait();
+                throw;
+            }
         }
 
         private static ILog CreateLogWithSlack(IServiceCollection services, IReloadingManager<AppSettings> settings)
