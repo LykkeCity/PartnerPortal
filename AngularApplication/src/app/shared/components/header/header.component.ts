@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   }
 
   scrollToSection(selector: string): void {
-    const element = document.querySelector(selector);
+    const element = <HTMLElement>document.querySelector(selector);
     if (element) {
       window.scrollTo({left: 0, top: element.offsetTop - 90, behavior: 'smooth'});
     }
