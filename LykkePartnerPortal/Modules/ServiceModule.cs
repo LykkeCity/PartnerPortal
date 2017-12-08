@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Common.Log;
+using Core.Services;
 using Core.Settings;
+using Lykke.PartnerPortal.Services;
 using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
@@ -25,10 +27,24 @@ namespace LykkePartnerPortal.Modules
         protected override void Load(ContainerBuilder builder)
         {
             RegisterLocalTypes(builder);
+            RegisterLocalServices(builder);
             RegisterExternalServices(builder);
 
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.EmailCredentials);
             builder.Populate(_services);
+        }
+
+        private static void RegisterLocalServices(ContainerBuilder builder)
+        {
+            builder.RegisterType<HealthService>()
+                .As<IHealthService>()
+                .SingleInstance();
+
+            builder.RegisterType<StartupManager>()
+                .As<IStartupManager>();
+
+            builder.RegisterType<ShutdownManager>()
+                .As<IShutdownManager>();
         }
 
         private void RegisterLocalTypes(ContainerBuilder builder)

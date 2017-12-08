@@ -57,6 +57,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Lykke.PartnerPortal.Services\Lykke.PartnerPortal.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
