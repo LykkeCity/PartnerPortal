@@ -1,0 +1,34 @@
+@import "~scss/reuse";
+
+.navbar {
+  box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.5);
+  height: $navbar-height;
+  .lykke-partners-logo {
+    height: $navbar-logo-height;
+  }
+  .nav-link {
+    color: $dark-grey;
+    font-weight: $font-weight-semibold;
+    margin-top: 0.6em;
+    font-size: 0.875rem;
+  }
+}
+
+// tablet
+@include media-breakpoint-up(md) {
+  .navbar {
+    height: $navbar-height-md;
+    .lykke-partners-logo {
+      height: $navbar-logo-height-md;
+    }
+  }
+}
+
+// desktop
+@include media-breakpoint-up(lg) {
+  .navbar {
+    .nav-link {
+      font-size: 0.9375rem;
+    }
+  }
+}
