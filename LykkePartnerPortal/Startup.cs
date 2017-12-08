@@ -10,7 +10,6 @@ using Lykke.SlackNotification.AzureQueue;
 using LykkePartnerPortal.Filters;
 using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
-using LykkePartnerPortal.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
+using Core.Settings;
 
 namespace LykkePartnerPortal
 {

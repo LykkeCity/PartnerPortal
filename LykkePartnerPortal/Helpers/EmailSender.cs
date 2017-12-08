@@ -1,8 +1,8 @@
 ﻿using LykkePartnerPortal.Models.EmailTemplates;
-using LykkePartnerPortal.Settings;
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
+using Core.Settings.ServiceSettings;
 
 namespace LykkePartnerPortal.Helpers
 {

@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Common.Log;
+using Core.Settings;
 using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
-using LykkePartnerPortal.Settings;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LykkePartnerPortal.Modules
@@ -38,7 +38,7 @@ namespace LykkePartnerPortal.Modules
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
-            builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log);
+            builder.RegisterSubscriberClient(_settings.CurrentValue.LykkePartnerPortal.Services.SubscriberServiceUrl, _log);
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
         }
