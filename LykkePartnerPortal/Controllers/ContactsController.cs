@@ -3,7 +3,6 @@ using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.Contacts;
 using LykkePartnerPortal.Models.EmailTemplates;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using Core.Settings.ServiceSettings;
@@ -34,16 +33,10 @@ namespace LykkePartnerPortal.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> SendContactInformation([FromBody]ContactRequestModel model)
         {
-            try
-            {
-                _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo, _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                await _log.WriteInfoAsync(nameof(ContactsController), nameof(SendContactInformation), ex.Message, DateTime.Now);
-                return BadRequest(ex.Message);
-            }
+            _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
+                _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
+
+            return Ok();
         }
     }
 }

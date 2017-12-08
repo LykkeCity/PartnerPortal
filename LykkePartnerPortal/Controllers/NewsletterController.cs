@@ -5,7 +5,6 @@ using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Models.NewsLetters;
 using LykkePartnerPortal.Strings;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using Core.Settings.ServiceSettings;
@@ -52,28 +51,22 @@ namespace LykkePartnerPortal.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Subscribe([FromBody]NewsLetterRequestModel model)
         {
-            try
-            {
-                var result = await _subscribersClient.GetByEmailAsync(model.Source, model.Email);
+            var result = await _subscribersClient.GetByEmailAsync(model.Source, model.Email);
 
-                if (result != null)
-                    return BadRequest(Phrases.SubscriberAlreadyExists);
+            if (result != null)
+                return BadRequest(Phrases.SubscriberAlreadyExists);
 
-                await _subscribersClient.CreateSubscriberAsync(new Lykke.Service.Subscribers.Client.AutorestClient.Models.SubscriberRequestModel()
+            await _subscribersClient.CreateSubscriberAsync(
+                new Lykke.Service.Subscribers.Client.AutorestClient.Models.SubscriberRequestModel
                 {
                     Email = model.Email,
                     Source = model.Source
                 });
 
-                _emailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo, _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
+            _emailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
+                _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                await _log.WriteInfoAsync(nameof(NewsletterController), nameof(Subscribe), ex.Message, DateTime.Now);
-                return BadRequest(ex.Message);
-            }
+            return Ok();
         }
     }
 }
