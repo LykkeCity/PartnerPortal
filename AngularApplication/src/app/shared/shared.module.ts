@@ -4,6 +4,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   imports: [
@@ -13,9 +14,11 @@ import { ModalModule } from 'ngx-bootstrap';
   ],
   declarations: [
     FooterComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    HeaderComponent
   ],
   exports: [
+    HeaderComponent,
     FooterComponent,
     NewsletterComponent
   ]
