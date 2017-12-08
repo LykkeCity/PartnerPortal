@@ -90,7 +90,11 @@ namespace LykkePartnerPortal
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSwagger();
-            app.UseSwaggerUi();
+            app.UseSwaggerUI(x =>
+            {
+                x.RoutePrefix = "swagger/ui";
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
         }
 
         private static ILog CreateLogWithSlack(IServiceCollection services, IReloadingManager<AppSettings> settings)

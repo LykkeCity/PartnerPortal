@@ -4,10 +4,10 @@ using LykkePartnerPortal.Models.Contacts;
 using LykkePartnerPortal.Models.EmailTemplates;
 using LykkePartnerPortal.Settings;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.SwaggerGen.Annotations;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace LykkePartnerPortal.Controllers
 {
