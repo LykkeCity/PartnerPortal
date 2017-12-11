@@ -63,8 +63,8 @@ namespace LykkePartnerPortal.Controllers
                     Source = model.Source
                 });
 
-            _emailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
-                _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
+            await _emailSender.SendEmail(NewsletterTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
+                   _emailSettings.NewsletterTemplate, _emailSettings.NewsletterSubject);
 
             return Ok();
         }

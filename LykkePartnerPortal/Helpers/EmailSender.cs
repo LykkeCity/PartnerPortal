@@ -3,12 +3,13 @@ using System.Net;
 using System.Net.Mail;
 using System.Reflection;
 using Core.Settings.ServiceSettings;
+using System.Threading.Tasks;
 
 namespace LykkePartnerPortal.Helpers
 {
     public class EmailSender : IEmailSender
     {
-        public void SendEmail(IEmailTemplate model, EmailCredentialsSettings settings, string emailTo, string templateName, string subject)
+        public async Task SendEmail(IEmailTemplate model, EmailCredentialsSettings settings, string emailTo, string templateName, string subject)
         {
             MailAddress from = new MailAddress(settings.EmailAccount);
             MailAddress to = new MailAddress(emailTo);
@@ -20,21 +21,17 @@ namespace LykkePartnerPortal.Helpers
             string body = FileHelper.Load(settings.EmailsTemplatesFolder, templateName);
             message.Body = ReplaceText(model, body);
 
-            CreateMailClient(settings).Send(message);
-        }
+            using (var client = new SmtpClient())
+            {
+                client.UseDefaultCredentials = settings.UseDefaultCredentials;
+                client.Host = settings.Host;
+                client.Port = settings.Port;
+                client.EnableSsl = settings.EnableSsl;
+                client.Credentials =
+                    new NetworkCredential(settings.EmailAccount, settings.EmailPassword);
 
-        private SmtpClient CreateMailClient(EmailCredentialsSettings settings)
-        {
-            var client = new SmtpClient();
-
-            client.UseDefaultCredentials = settings.UseDefaultCredentials;
-            client.Host = settings.Host;
-            client.Port = settings.Port;
-            client.EnableSsl = settings.EnableSsl;
-            client.Credentials =
-                new NetworkCredential(settings.EmailAccount, settings.EmailPassword);
-
-            return client;
+                await client.SendMailAsync(message).ConfigureAwait(false);
+            }
         }
 
         private string ReplaceText(IEmailTemplate model, string body)

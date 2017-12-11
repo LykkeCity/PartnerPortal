@@ -33,8 +33,8 @@ namespace LykkePartnerPortal.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> SendContactInformation([FromBody]ContactRequestModel model)
         {
-            _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
-                _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
+            await _emailSender.SendEmail(ContactTemplateModel.Create(model), _emailSettings, _emailSettings.EmailTo,
+                   _emailSettings.ContactsPopUpTemplate, _emailSettings.ContactsPopUpSubject);
 
             return Ok();
         }
