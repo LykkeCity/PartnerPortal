@@ -7,13 +7,10 @@ import { Product } from '../models/product.model';
   templateUrl: './products-item.component.html',
   styleUrls: ['./products-item.component.scss']
 })
-export class ProductsItemComponent implements OnInit {
+export class ProductsItemComponent {
 
   @Input() product: Product;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
