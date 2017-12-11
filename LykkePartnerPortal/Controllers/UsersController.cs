@@ -1,8 +1,8 @@
 ﻿using Common.Log;
+using Core.Settings.ServiceSettings;
 using LykkePartnerPortal.Models.Users;
-using LykkePartnerPortal.Settings;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.SwaggerGen.Annotations;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Net;
 using System.Net.Http;
