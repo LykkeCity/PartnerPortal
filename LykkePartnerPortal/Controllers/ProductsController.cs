@@ -1,10 +1,10 @@
 ﻿using Common.Log;
 using Core.Products;
+using Core.Settings.ServiceSettings;
 using LykkePartnerPortal.Models.Products;
-using LykkePartnerPortal.Settings;
 using LykkePartnerPortal.Strings;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.SwaggerGen.Annotations;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
