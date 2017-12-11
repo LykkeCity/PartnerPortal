@@ -86,7 +86,7 @@ $navbar-logo-height-md: 54px;
   -webkit-user-select: none;
   user-select: none;
 
-  input {
+  input.menu-checkbox {
     display: block;
     width: 40px;
     height: 32px;
@@ -101,7 +101,7 @@ $navbar-logo-height-md: 54px;
 
     -webkit-touch-callout: none;
 
-    &:checked ~ span {
+    &:checked ~ span.line {
       opacity: 1;
       transform: rotate(45deg) translate(-2px, -1px);
       background: white;
@@ -116,7 +116,7 @@ $navbar-logo-height-md: 54px;
       }
     }
 
-    &:checked ~ ul {
+    &:checked ~ ul.menu-holder {
       transform: none;
     }
   }
@@ -230,13 +230,13 @@ $navbar-logo-height-md: 54px;
   .menu-toggle {
     left: 20px;
 
-    span {
+    span.line {
       width: 22px;
       height: 2px;
     }
 
-    input {
-      &:checked ~ span {
+    input.menu-checkbox {
+      &:checked ~ span.line {
         transform: rotate(45deg) translate(-3px, 1px);
 
         &:nth-last-child(2) {

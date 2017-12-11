@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from '../models/product.model';
 
 @Component({
@@ -7,12 +6,12 @@ import { Product } from '../models/product.model';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
   products: Product[];
   areProductsEven: boolean;
 
-  constructor(private http:HttpClient) {
+  constructor() {
     this.products = [
       {title: 'Lykke Trading Wallet', description: 'Trade FX and Digital Assets', imageUrl: '../../assets/images/products/lykke_wallet_ios_android.png'},
       {title: 'Lykke Margin Trading', description: 'FX and Crypto Margin Trading', imageUrl: '../../assets/images/products/lykke_margin_trading.png'},
@@ -24,12 +23,5 @@ export class ProductsComponent implements OnInit {
     ];
 
     this.areProductsEven = this.products.length % 2 === 0;
-  }
-
-  ngOnInit() {
-    this.http.get('/api/products', {responseType: 'text'}).subscribe(val => {
-      this.products = JSON.parse(val);
-      this.areProductsEven = this.products.length % 2 === 0;
-    })
   }
 }
