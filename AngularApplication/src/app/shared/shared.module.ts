@@ -5,6 +5,7 @@ import { NewsletterComponent } from './components/newsletter/newsletter.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
+import { HeaderUserProfileComponent } from './components/header-user-profile/header-user-profile.component';
 
 @NgModule({
   imports: [
@@ -15,12 +16,14 @@ import { HeaderComponent } from './components/header/header.component';
   declarations: [
     FooterComponent,
     NewsletterComponent,
-    HeaderComponent
+    HeaderComponent,
+    HeaderUserProfileComponent
   ],
   exports: [
-    HeaderComponent,
     FooterComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    HeaderComponent,
+    HeaderUserProfileComponent
   ]
 })
 export class SharedModule { }
