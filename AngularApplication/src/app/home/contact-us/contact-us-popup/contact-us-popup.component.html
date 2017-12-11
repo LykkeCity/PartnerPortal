@@ -1,0 +1,120 @@
+<div class="modal-content">
+  <div>
+  <div class="modal-header align-items-center">
+    <div class="navbar-brand">
+      <img class="lykke-partners-logo" src="../../../../assets/images/lykke_partners_logo_white.svg">
+    </div>
+    <button type="button" class="close pull-right" role="button" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="!showSuccessMessage" class="text-center">
+      <h3>
+        How can we help?
+      </h3>
+    </div>
+    <form *ngIf="!showSuccessMessage" [formGroup]="contactUsForm" (ngSubmit)="onSubmit($event)">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="form-group">
+            <label for="name" class="control-label">Name:</label>
+            <div class="input-group">
+              <i class="icon--name form-icon"></i>
+              <input id="name" class="form-control" formControlName="fullName">
+            </div>
+            <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched) || forceShowValidationErrors"
+                 class="text-danger">
+              <div *ngIf="fullName.errors['required']">
+                Please enter a name
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="form-group">
+            <label for="email" class="control-label">Email:</label>
+            <div class="input-group">
+              <i class="icon--email form-icon"></i>
+              <input id="email" type='email' class="form-control" formControlName="email" [email]="true">
+            </div>
+
+            <div *ngIf="email.invalid && (email.dirty || email.touched) || forceShowValidationErrors"
+                 class="text-danger">
+              <div *ngIf="email.errors['required'] || email.errors['email']">
+                Please enter correct email address
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="form-group">
+            <label for="phone" class="center-block">Mobile:</label>
+            <div class="input-group">
+              <i class="icon--phone form-icon"></i>
+              <input id="phone" class="form-control" formControlName="phoneNumber">
+            </div>
+
+            <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched) || forceShowValidationErrors"
+                 class="text-danger">
+              <div *ngIf="phoneNumber.errors['required']">
+                Please enter correct phone number
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="form-group">
+            <label for="message" class="center-block">Use case:</label>
+            <textarea id="message" class="form-control" formControlName="message" placeholder="Tell us a little bit more about your case"></textarea>
+            <div *ngIf="message.invalid && (message.dirty || message.touched) || forceShowValidationErrors"
+                 class="text-danger">
+              <div *ngIf="message.errors['required']">
+                Please enter a use case
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="captcha-holder">
+            <re-captcha (captchaResponse)="handleCorrectCaptcha()"
+                        (captchaExpired)="handleExpiredCaptcha()"
+                        site_key="6LcwPzoUAAAAAJpDjgcsAuaixMGmhc3irGPyV3VM"
+                        languager="en"
+                        theme="light"
+                        type="image"
+                        size="normal">
+            </re-captcha>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+          <button type="submit" class="btn btn-primary"><i *ngIf="!ready" class="icon--spin animate-spin"></i>Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+    <div *ngIf="showSuccessMessage" class="success-message">
+        <p>
+          <span>Thank you!</span>
+          Our experts will review your submission and will get back to you soon.
+        </p>
+    </div>
+
+  </div>
+</div>

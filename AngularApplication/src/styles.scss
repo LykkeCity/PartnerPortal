@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import './scss/bootstrap';
+
+@import './scss/fonts';
+@import './scss/icons';
+
+@import './scss/typography';
+
+.gutter-bottom {
+  margin-bottom: $grid-gutter-width;
+}
+
+.btn-primary {
+  color: $white;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.contact-us-modal.modal-lg {
+  width: 660px;
+}
+
+@include media-breakpoint-only(xs) {
+  .contact-us-modal.modal-lg {
+    width:90%;
+    max-width: 450px;
+  }
+}
+

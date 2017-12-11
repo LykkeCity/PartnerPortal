@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="628 4362.23 75.029 66.883">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        stroke: #333;
+      }
+
+      .cls-3 {
+        stroke: #fff;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" y2="-0.001" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0da7fc"/>
+      <stop offset="1" stop-color="#41c5ff"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_276" data-name="Group 276" transform="translate(629 4363.23)">
+    <ellipse id="Ellipse_171" data-name="Ellipse 171" class="cls-1" cx="29.369" cy="29.369" rx="29.369" ry="29.369" transform="translate(7.146 7.146)"/>
+    <path id="Path_421" data-name="Path 421" class="cls-2" d="M4.287,52.735A37.281,37.281,0,0,1,1,37.514,36.514,36.514,0,1,1,70.813,52.52" transform="translate(-1 -1)"/>
+    <ellipse id="Ellipse_172" data-name="Ellipse 172" class="cls-3" cx="3.073" cy="3.073" rx="3.073" ry="3.073" transform="translate(34.085 34.228)"/>
+    <line id="Line_234" data-name="Line 234" class="cls-3" y1="8.932" x2="8.932" transform="translate(39.373 26.153)"/>
+    <line id="Line_235" data-name="Line 235" class="cls-3" y2="5.788" transform="translate(37.372 10.29)"/>
+    <line id="Line_236" data-name="Line 236" class="cls-3" x2="2.93" y2="5.002" transform="translate(25.796 13.291)"/>
+    <line id="Line_237" data-name="Line 237" class="cls-3" x2="4.43" y2="3.787" transform="translate(16.864 20.722)"/>
+    <line id="Line_238" data-name="Line 238" class="cls-3" x2="5.788" y2="0.357" transform="translate(11.362 31.584)"/>
+    <line id="Line_239" data-name="Line 239" class="cls-3" y1="2.93" x2="5.002" transform="translate(11.79 40.516)"/>
+    <line id="Line_240" data-name="Line 240" class="cls-3" x1="3.287" y2="4.716" transform="translate(45.661 13.219)"/>
+    <line id="Line_241" data-name="Line 241" class="cls-3" x1="4.43" y2="3.716" transform="translate(53.521 20.222)"/>
+    <line id="Line_242" data-name="Line 242" class="cls-3" x1="5.788" y2="0.857" transform="translate(57.165 30.869)"/>
+    <line id="Line_243" data-name="Line 243" class="cls-3" x1="5.645" y1="1.143" transform="translate(57.237 41.659)"/>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+<form [formGroup]="newsletterForm" (ngSubmit)="onSubmit($event)">
+  <div class="row">
+    <div class="col-8 col-md-10 no-padding-left">
+      <div class="form-group">
+        <div class="input-group">
+          <i class="icon--email newsletter-icon"></i>
+          <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
+                 [email]="true" (change)="onChange()">
+        </div>
+        <div *ngIf="formEmail.invalid && formEmail.value || forceShowValidationErrors"
+             class="text-danger">
+          <div *ngIf="formEmail.errors['required'] || formEmail.errors['email']">
+            Please enter correct email address
+          </div>
+        </div>
+
+        <div *ngIf="showSuccessMessage" class="text-success">
+          Thank you for signing up for the newsletter
+        </div>
+
+        <div *ngIf="showErrorMessage" class="text-danger">
+          You have already registered in our mailing system
+        </div>
+      </div>
+    </div>
+    <div class="col-4 col-md-2">
+      <button type="submit" class="newsletter-submit"><img *ngIf="ready" class="right-arrow" src="../../../assets/images/homepage/arrow_button.svg" /><i *ngIf="!ready" class="icon--spin animate-spin"></i></button>
+    </div>
+  </div>
+</form>

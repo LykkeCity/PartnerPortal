@@ -1,0 +1,12 @@
+<div class="row asset-switcher text-center">
+  <div class="col-4">
+    <a href="javascript:;" [ngClass]="{'active': selectedChartAsset === 'LKK'}" (click)="changeChartAsset('LKK')">Lykke</a>
+  </div>
+  <div class="col-4">
+    <a href="javascript:;" [ngClass]="{'active': selectedChartAsset === 'TREE'}" (click)="changeChartAsset('TREE')">Tree</a>
+  </div>
+  <div class="col-4">
+    <a href="javascript:;" [ngClass]="{'active': selectedChartAsset === 'SLR'}" (click)="changeChartAsset('SLR')">SolarCoin</a>
+  </div>
+</div>
+<div class="chart"></div>

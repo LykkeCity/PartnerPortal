@@ -1,0 +1,74 @@
+@import '~scss/reuse';
+
+.modal-header {
+  background-color: $dark-grey;
+
+  .close {
+    margin: -7px -4px -15px auto;
+    font-size: 2.6875rem;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.form-icon {
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  z-index: 10;
+  color:#b2b8bf;
+}
+
+.navbar-brand {
+  width: 100%;
+  .lykke-partners-logo {
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.input-group-addon {
+  padding: 0.657rem 1.5rem;
+}
+
+.icon--email {
+  font-size: 0.9rem;
+}
+
+textarea.form-control {
+  padding: 0.657rem 1.5rem;
+}
+
+re-captcha {
+  display: inline-block;
+}
+.captcha-holder{
+  text-align: center;
+}
+
+.success-message {
+  min-height: 450px;
+  display: table;
+  width:100%;
+  text-align: center;
+
+  p {
+    vertical-align: middle;
+    display: table-cell;
+
+    span {
+      font-weight: bold;
+      display: block;
+      font-size: 26px;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .navbar-brand {
+    .lykke-partners-logo {
+      height: 40px;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.newsletter-icon {
+  position: absolute;
+  top: 25px;
+  left: 5px;
+  margin-right: 0;
+  color: #b2b8bf;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  z-index: 10;
+  font-size: 1.625rem;
+  padding: .4375rem .625rem;
+}
+
+.icon--email {
+  font-size: 0.9rem;
+}
+
+.no-padding-left {
+  padding-left: 0;
+}
+
+.newsletter-submit {
+  border-radius: 50%;
+  width: 43px;
+  height: 43px;
+  border: none;
+  background-color: #2ecca1;
+  color: white;
+  outline: none;
+  cursor: pointer;
+
+  .right-arrow {
+    transform: rotate(180deg) translate(15%, 1%);
+    height: 43px;
+    width: 43px;
+  }
+
+  i {
+    margin-left: 5px;
+  }
+}
