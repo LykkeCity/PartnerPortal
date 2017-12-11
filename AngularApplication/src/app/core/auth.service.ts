@@ -1,60 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { AuthRequestService } from './auth-request.service';
+import { AuthTokenService } from './auth-token.service';
 
 @Injectable()
 export class AuthService {
 
-  authenticationUrl: string;
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authRequest: AuthRequestService,
+    private authToken: AuthTokenService
   ) {
-
-    this.authenticationUrl = environment.apiAuthUrl + '/connect/authorize' +
-      '?client_id=' + environment.applicationId +
-      '&response_type=code' +
-      '&redirect_uri=' + environment.redirectUrl;
 
   }
 
   login() {
     const url = this.router.routerState.snapshot.url;
     localStorage.setItem('lpp-return-url', url);
-    window.location.replace(this.authenticationUrl);
+    window.location.replace(this.authToken.authenticationUrl);
   }
 
-  getToken(code: string) {
-    return this.http.post('/api/users', { code }).pipe(
-      tap(
-        next => { this.getWalletToken(next).subscribe(); }
-      )
-    );
+  logout() {
+    this.authRequest.post('/Auth/LogOut').subscribe();
+    this.authToken.tokenStream.next(null);
   }
 
-  getWalletToken(data) {
-    const headers = {
-      'application_id': environment.applicationId,
-      'Authorization': data.token_type + ' ' + data.access_token
-    };
-
-    return this.http.get(environment.apiAuthUrl + '/getlykkewallettoken', { headers }).pipe(
-        tap(
-          next => { this.setToken(next['token']); }
-        )
-      );
-  }
-
-  private setToken(data) {
-    localStorage.setItem('lpp-token', data);
-  }
-
-  isAuthenticated() {
-    return !!localStorage.getItem('lpp-token');
-  }
 
 
 }

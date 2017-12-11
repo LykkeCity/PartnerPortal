@@ -4,6 +4,11 @@ import { NewsletterSubscriptionService } from './newsletter-subscription.service
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { LoginRedirectGuard } from './login-redirect.guard';
+import { UserService } from './user.service';
+import { AuthRequestService } from './auth-request.service';
+import { UnauthorizedInterceptorService } from './unauthorized-interceptor.service';
+import { AuthTokenService } from './auth-token.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -16,9 +21,18 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         AuthGuard,
+        AuthRequestService,
         AuthService,
+        AuthTokenService,
         LoginRedirectGuard,
-        NewsletterSubscriptionService
+        NewsletterSubscriptionService,
+        UserService,
+        UnauthorizedInterceptorService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: UnauthorizedInterceptorService,
+          multi: true,
+        }
       ]
     };
   }
