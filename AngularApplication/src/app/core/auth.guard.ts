@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs/Observable';
+import { AuthTokenService } from './auth-token.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -10,14 +11,16 @@ export class AuthGuard implements CanActivate {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private authToken: AuthTokenService
   ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    if (this.auth.isAuthenticated()) {
+    // TODO: to be finished when we have protected routes
+    if (this.authToken.isAuthenticated()) {
       return true;
     } else {
       this.auth.login();

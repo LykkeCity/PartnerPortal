@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
+import { AuthTokenService } from './auth-token.service';
 
 @Injectable()
 export class LoginRedirectGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private authToken: AuthTokenService,
   ) {}
 
   canActivate(
@@ -19,7 +21,7 @@ export class LoginRedirectGuard implements CanActivate {
 
     if (code) {
       const returnUrl = localStorage.getItem('lpp-return-url') || '/';
-      this.auth.getToken(code).subscribe(
+      this.authToken.fetchToken(code).subscribe(
         res => {
           this.router.navigate([returnUrl]);
           localStorage.removeItem('lpp-return-url');

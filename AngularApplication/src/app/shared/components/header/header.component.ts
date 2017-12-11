@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { AuthTokenService } from '../../../core/auth-token.service';
 import { AuthService } from '../../../core/auth.service';
 
 @Component({
@@ -8,9 +9,12 @@ import { AuthService } from '../../../core/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  isAuthenticated = false;
+
   constructor(
     private elRef: ElementRef,
-    private auth: AuthService
+    private auth: AuthService,
+    private authToken: AuthTokenService,
   ) { }
 
   signIn() {
@@ -25,6 +29,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authToken.tokenStream.subscribe(
+      token => { this.isAuthenticated = !!token; }
+    );
   }
 
 }
