@@ -51,50 +51,43 @@ namespace LykkePartnerPortal.Controllers
                 {
                     Title = "Lykke Trading Wallet",
                     Description = "Trade FX and Digital Assets",
-                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_wallet_ios_android.png"),
-                    ColumnsCount = 3
+                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_wallet_ios_android.png")
                 },
                 new Product()
                 {
                     Title = "Lykke Margin Trading",
                     Description = "FX and Crypto Margin Trading",
-                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_margin_trading.png"),
-                    ColumnsCount = 3
+                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_margin_trading.png")
                 },
                 new Product()
                 {
                     Title = "Lykke Pay",
                     Description = "Payments on blockchain",
-                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_pay.png"),
-                    ColumnsCount = 3
+                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_pay.png")
                 },
                 new Product()
                 {
                     Title = "Lykke Exchange",
                     Description = "Trading platform and API",
-                    ImageUrl =System.IO.Path.Combine(productsImagesFolder, "lykke_exchange.png"),
-                    ColumnsCount = 2
+                    ImageUrl =System.IO.Path.Combine(productsImagesFolder, "lykke_exchange.png")
                 },
                 new Product()
                 {
                     Title = "POS Terminal",
                     Description = "POS handheld terminal",
-                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_pos_terminal.png"),
-                    ColumnsCount = 2
+                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_pos_terminal.png")
                 },
                 new Product()
                 {
                     Title = "Modern money",
                     Description = "Personal finance application",
-                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "modern_money.png"),
-                    ColumnsCount = 2
+                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "modern_money.png")
                 },
                 new Product()
                 {
                     Title = "Lykke.blue",
                     Description = "Natural capital investment",
-                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_blue.png"),
-                    ColumnsCount = 2
+                    ImageUrl = System.IO.Path.Combine(productsImagesFolder, "lykke_blue.png")
                 }
             };
 

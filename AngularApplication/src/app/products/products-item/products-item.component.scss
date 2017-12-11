@@ -1,0 +1,43 @@
+@import '~scss/reuse';
+
+.lykke-product-item {
+  width: 100%;
+  border: 1px solid $gray-200;
+  background-color: $pale-grey;
+
+  .image-row {
+    min-height: 240px;
+  }
+
+  .product-image {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    top: -55px;
+
+    img{
+      max-height: 240px;
+      min-height: 190px;
+    }
+  }
+
+  .description-row {
+    min-height: 115px;
+  }
+
+  .product-footer {
+    text-align: center;
+    padding: 20px 0 20px 0;
+
+   button {
+     width: 100%;
+   }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  h4 {
+    font-size: 1.7rem;
+  }
+}

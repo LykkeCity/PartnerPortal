@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand fixed-top bg-black">
+
+  <div class="d-sm-block d-lg-none menu-toggle">
+    <input type="checkbox" class="menu-checkbox"/>
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+    <ul class="menu-holder">
+      <li class="menu-item"><a href="#">ECOSYSTEM</a></li>
+      <li class="menu-item"><a href="#">PRODUCTS</a></li>
+      <li class="menu-item"><a href="#">MY ASSETS</a></li>
+      <li class="menu-item"><a href="#">ICO</a></li>
+      <li class="menu-item"><a href="#">FAQ</a></li>
+    </ul>
+  </div>
+
+  <div class="container flex-md-row">
+    <a class="navbar-brand float-left" href="/">
+      <img class="lykke-partners-logo" src="../../../assets/images/lykke_partners_logo_white.svg">
+    </a>
+    <div class="collapse navbar-collapse d-none d-md-none d-lg-flex">
+      <ul class="navbar-nav mr-auto d-none d-md-none d-lg-flex">
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:;">ECOSYSTEM</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="javascript:;">PRODUCTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:;">MY ASSETS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:;">ICO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:;">FAQ</a>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-nav-holder">
+      <button class="btn asset-btn d-none d-sm-block d-md-block">Add Asset <img
+        src="../../../assets/images/products/add_asset.svg"></button>
+      <img class="asset-btn-small d-xs-block d-sm-none d-md-none" src="../../../assets/images/products/add_asset.svg">
+      <button class="profile-nav" [popover]="navTemplate" [outsideClick]="true" placement="bottom">
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="products-section lykke-products text-center">
+  <div class="container">
+    <h3>Explore our products and bring your ideas to life</h3>
+    <h4 class="text-cool-grey">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+      sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam </h4>
+  </div>
+</div>
+
+<div class="products-section product-items">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 m-bottom-100"
+           *ngFor="let product of products; let i = index;"
+           [ngClass]="{'col-lg-4': !areProductsEven && i < 3, 'col-md-12 col-lg-6' : !areProductsEven && i === products.length - 1}">
+        <lpp-products-item [product]="product"></lpp-products-item>
+      </div>
+    </div>
+  </div>
+</div>
+
+<lpp-footer></lpp-footer>
+
+<ng-template #navTemplate>
+  <div>
+    <a class="profile-nav-link" href="javascript:;">Sign out</a>
+  </div>
+</ng-template>

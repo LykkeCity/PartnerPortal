@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2270 20 30 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2ecca1;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #2ecca1;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Add_Asset_Mobile_Preview" data-name="Add Asset Mobile Preview" transform="translate(2024 2)">
+    <rect id="Rectangle_177" data-name="Rectangle 177" class="cls-1" width="30" height="30" rx="15" transform="translate(246 18)"/>
+    <g id="Group_912" data-name="Group 912" transform="translate(252 24)">
+      <circle id="Ellipse_195" data-name="Ellipse 195" class="cls-2" cx="9.375" cy="9.375" r="9.375"/>
+      <line id="Line_560" data-name="Line 560" class="cls-3" y2="10.345" transform="translate(9.297 4.125)"/>
+      <line id="Line_561" data-name="Line 561" class="cls-3" y2="10.345" transform="translate(14.47 9.297) rotate(90)"/>
+    </g>
+  </g>
+</svg>

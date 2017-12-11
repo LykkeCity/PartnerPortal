@@ -14,9 +14,6 @@ namespace LykkePartnerPortal.Models.Products
         [JsonProperty(PropertyName = "imageUrl")]
         public string ImageUrl { get; set; }
 
-        [JsonProperty(PropertyName = "columnsCount")]
-        public int ColumnsCount { get; set; }
-
         public static ProductResponseModel Create(IProduct product)
         {
             return new ProductResponseModel()
@@ -24,7 +21,6 @@ namespace LykkePartnerPortal.Models.Products
                 Title = product.Title,
                 Description = product.Description,
                 ImageUrl = product.ImageUrl,
-                ColumnsCount = product.ColumnsCount
             };
         }
     }
