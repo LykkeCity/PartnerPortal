@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AuthTokenService } from './auth-token.service';
+import { catchError } from 'rxjs/operators';
+import { _throw } from 'rxjs/observable/throw';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthRequestService {
@@ -10,7 +13,8 @@ export class AuthRequestService {
 
   constructor(
     private http: HttpClient,
-    private authToken: AuthTokenService
+    private authToken: AuthTokenService,
+    private router: Router
   ) {
 
     this.authToken.tokenStream.subscribe(
@@ -28,7 +32,9 @@ export class AuthRequestService {
     };
     const reqOptions = Object.assign({}, options, {headers});
 
-    return this.http.get(reqUrl, reqOptions);
+    return this.http.get(reqUrl, reqOptions).pipe(
+      catchError( error => this.handleError(error) )
+    );
   }
 
   public post(url: string, body: object = {}, options?: object) {
@@ -38,7 +44,21 @@ export class AuthRequestService {
     };
     const reqOptions = Object.assign({}, options, {headers});
 
-    return this.http.post(reqUrl, body, reqOptions);
+    return this.http.post(reqUrl, body, reqOptions).pipe(
+      catchError( error => this.handleError(error) )
+    );
+  }
+
+  private handleError(error) {
+    console.log('api error occured');
+    if (error.status === 401) {
+      this.router.navigateByUrl('').then(
+        success => {
+          console.log('401 occurred');
+        }
+      );
+    }
+    return _throw(error);
   }
 
 }
