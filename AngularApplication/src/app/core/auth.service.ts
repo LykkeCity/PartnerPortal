@@ -22,8 +22,12 @@ export class AuthService {
   }
 
   logout() {
-    this.authRequest.post('/Auth/LogOut').subscribe();
-    this.authToken.tokenStream.next(null);
+    this.authRequest.post('/Auth/LogOut').subscribe(
+      res => {
+        this.router.navigateByUrl('');
+        this.authToken.tokenStream.next(null);
+      }
+    );
   }
 
 
