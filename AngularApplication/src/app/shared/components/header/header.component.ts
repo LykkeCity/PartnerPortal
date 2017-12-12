@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthTokenService } from '../../../core/auth-token.service';
 import { AuthService } from '../../../core/auth.service';
 
@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
 
   constructor(
-    private elRef: ElementRef,
     private auth: AuthService,
     private authToken: AuthTokenService,
   ) { }
