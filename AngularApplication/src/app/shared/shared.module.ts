@@ -6,11 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule, PopoverModule } from 'ngx-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderUserProfileComponent } from './components/header-user-profile/header-user-profile.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterModule,
     ModalModule.forRoot(),
     PopoverModule.forRoot()
   ],
