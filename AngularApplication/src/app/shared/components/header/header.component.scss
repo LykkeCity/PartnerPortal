@@ -5,7 +5,7 @@
   height: $navbar-height;
 
   .container {
-    padding-left: 35px;
+    padding-left: 5px;
   }
 
   .lykke-partners-logo {
@@ -121,13 +121,17 @@
 
 @include media-breakpoint-up(xs) {
   .navbar .lykke-partners-logo {
-    height: $navbar-logo-height-sm;
+    height: $navbar-logo-height-xs;
   }
 }
 
 @include media-breakpoint-up(sm) {
   .navbar {
     padding: 0;
+
+    .container {
+      padding-left: 35px;
+    }
 
     .lykke-partners-logo {
       height: $navbar-logo-height-md;
