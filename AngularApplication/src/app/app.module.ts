@@ -12,6 +12,7 @@ import { IntercomService } from './services/intercom.service';
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 
 @NgModule({
@@ -29,8 +30,8 @@ import { SharedModule } from './shared/shared.module';
       updateOnRouterChange: true
     }),
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
-
-    HomeModule
+    HomeModule,
+    NotificationsModule
   ],
   providers: [ IntercomService ],
   bootstrap: [ AppComponent ]

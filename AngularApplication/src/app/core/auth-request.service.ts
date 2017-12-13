@@ -3,8 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AuthTokenService } from './auth-token.service';
 import { catchError } from 'rxjs/operators';
-import { _throw } from 'rxjs/observable/throw';
 import { Router } from '@angular/router';
+import { of as observableOf } from 'rxjs/observable/of';
+import { NotificationsService } from '../notifications/notifications.service';
+import { NotificationMessage } from '../notifications/notification-message';
 
 @Injectable()
 export class AuthRequestService {
@@ -14,6 +16,7 @@ export class AuthRequestService {
   constructor(
     private http: HttpClient,
     private authToken: AuthTokenService,
+    private notifications: NotificationsService,
     private router: Router
   ) {
 
@@ -50,15 +53,18 @@ export class AuthRequestService {
   }
 
   private handleError(error) {
-    console.log('api error occured');
+
+    const message: NotificationMessage = {
+      event: 'api-error',
+      status: error.status,
+      message: error.message
+    };
     if (error.status === 401) {
-      this.router.navigateByUrl('').then(
-        success => {
-          console.log('401 occurred');
-        }
-      );
+      this.router.navigateByUrl('');
+      this.authToken.tokenStream.next(null);
     }
-    return _throw(error);
+    this.notifications.messageStream.next(message);
+    return observableOf(error);
   }
 
 }

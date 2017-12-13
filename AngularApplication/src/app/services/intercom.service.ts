@@ -13,11 +13,17 @@ export class IntercomService {
   }
 
   showIntercomLauncher() {
-    document.getElementById('intercom-container').classList.remove('d-none');
+    const intercomElement = document.getElementById('intercom-container');
+    if (intercomElement) {
+      intercomElement.classList.remove('d-none');
+    }
   }
 
   hideIntercomLauncher() {
-    document.getElementById('intercom-container').classList.add('d-none');
+    const intercomElement = document.getElementById('intercom-container');
+    if (intercomElement) {
+      document.getElementById('intercom-container').classList.add('d-none');
+    }
   }
 
 }
