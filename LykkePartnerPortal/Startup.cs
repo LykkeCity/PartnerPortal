@@ -2,7 +2,10 @@
 using Autofac.Extensions.DependencyInjection;
 using AzureStorage.Tables;
 using Common.Log;
+using Core.Services;
+using Core.Settings;
 using FluentValidation.AspNetCore;
+using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
 using Lykke.SettingsReader;
@@ -12,15 +15,12 @@ using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Core.Services;
-using Core.Settings;
-using Lykke.Common.ApiLibrary.Middleware;
-using Microsoft.AspNetCore.Http.Internal;
 
 namespace LykkePartnerPortal
 {
@@ -124,7 +124,7 @@ namespace LykkePartnerPortal
             }
             catch (Exception ex)
             {
-                Log?.WriteFatalErrorAsync(nameof(Startup), nameof(ConfigureServices), "", ex).Wait();
+                Log?.WriteFatalErrorAsync(nameof(Startup), nameof(Configure), "", ex).Wait();
                 throw;
             }
         }
