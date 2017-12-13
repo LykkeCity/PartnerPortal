@@ -1,0 +1,56 @@
+@import '~scss/reuse';
+
+.product-details {
+  margin-top: 100px;
+  padding: 100px 0 100px 0;
+}
+
+.header-container {
+  text-align: center;
+}
+
+.image-holder {
+  img {
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px;
+    max-height: 450px;
+    min-height: 350px;
+  }
+}
+
+.product-description {
+  font-size: 16px;
+}
+
+.stores {
+  max-width: 170px;
+  max-height: 55px;
+
+  a {
+    color: $black;
+
+    img.visit-button {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.technology-graphic {
+  width: 100%;
+}
+
+.btn-row {
+  button {
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .header-container {
+    text-align: left;
+  }
+}
