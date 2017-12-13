@@ -1,9 +1,9 @@
 ﻿using Common.Log;
 using Core.Settings.ServiceSettings;
+using LykkePartnerPortal.Helpers;
 using LykkePartnerPortal.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -16,39 +16,37 @@ namespace LykkePartnerPortal.Controllers
     {
         protected readonly ILog _log;
         private readonly AuthenticationSettings _authenticationSettings;
+        private readonly IHttpClientHelper _client;
 
-        public UsersController(ILog log, AuthenticationSettings authenticationSettings)
+        public UsersController(ILog log, AuthenticationSettings authenticationSettings, IHttpClientHelper client)
         {
             _log = log;
             _authenticationSettings = authenticationSettings;
+            _client = client;
         }
 
         /// <summary>
         /// Single sign on authentication
         /// </summary>
         [HttpPost]
-        [SwaggerOperation("GetProducts")]
+        [SwaggerOperation("Authentication")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Authentication([FromBody] SingleSignOnRequestModel model)
         {
-            String postData = "code=" + model.Code;
-            postData += "&client_id=" + _authenticationSettings.ClientId;
-            postData += "&client_secret=" + _authenticationSettings.ClientSecret;
-            postData += "&grant_type=" + "authorization_code";
-            postData += "&redirect_uri=" + _authenticationSettings.RedirectUrl;
+            string postData = _client.GetPostData(model.Code, _authenticationSettings.ClientId,
+                                        _authenticationSettings.ClientSecret, _authenticationSettings.RedirectUrl);
 
-            using (var client = new HttpClient())
-            {
-                var response = await client.PostAsync(_authenticationSettings.ApiTokenUrl,
-                                 new StringContent(postData, Encoding.UTF8, "application/x-www-form-urlencoded"));
+            HttpContent content = _client.BuildStringContent(postData, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-                var body = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode == HttpStatusCode.BadRequest)
-                    return BadRequest(body);
+            var response = await _client.PostAsync(_authenticationSettings.ApiTokenUrl, content);
 
-                return Ok(body);
-            }
+            var body = await response.Content.ReadAsStringAsync();
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+                return BadRequest(body);
+
+            return Ok(body);
         }
     }
 }
