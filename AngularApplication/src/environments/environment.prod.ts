@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  apiAuthUrl: '',
+  applicationId: '',
+  redirectUrl: 'https://partners.lykke.com/',
 };
