@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthRequestService } from './auth-request.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
@@ -9,7 +10,9 @@ export class UserService {
   ) { }
 
   getUserInfo() {
-    return this.authRequest.get('/PersonalData');
+    return this.authRequest.get('/PersonalData').pipe(
+      map( res => res['Result'] )
+    );
   }
 
 }
