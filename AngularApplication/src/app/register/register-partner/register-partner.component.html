@@ -11,7 +11,8 @@
       </ul>
     </div>
 
-    <a href="javascript:;" class="exit" (click)="returnToPreviousPage()"><img src="../../../assets/images/exit-icon.svg"></a>
+    <a href="javascript:;" class="exit" (click)="returnToPreviousPage()"><img
+      src="../../../assets/images/exit-icon.svg"></a>
   </div>
 </nav>
 
@@ -20,15 +21,18 @@
   <div class="row">
     <div class="col-md-3 d-none d-sm-none d-md-block">
       <ul class="list-group">
-        <li class="list-group-item" (click)="currentStep = 'partner'" [ngClass]="{'active': currentForm === 'partner'}">
+        <li class="list-group-item" (click)="currentStep = 'partner'" [ngClass]="{'active': currentStep === 'partner'}">
           <a href="javascript:;">Introduce yourself</a></li>
-        <li class="list-group-item" (click)="nextStep()" [ngClass]="{'active': currentStep === 'compliance'}"><a
+        <li class="list-group-item" (click)="processForm()" [ngClass]="{'active': currentStep === 'compliance'}"><a
           href="javascript:;">Compliance</a></li>
       </ul>
     </div>
     <div class="col-12 col-sm-12 col-md-9">
-      <div class="container" *ngIf="currentStep === 'partner'">
-        <div class="intro-holder">
+      <div class="container">
+
+        <!-- Partners info -->
+
+        <div class="intro-holder" *ngIf="currentStep === 'partner'">
           <h5 class="d-sm-block d-md-none">STEP 1 OF 2</h5>
           <h3>Introduce yourself</h3>
           <p>
@@ -45,301 +49,10 @@
             token on our Lykke Exchange
           </p>
         </div>
-        <div class="form-holder">
-          <form class="register-form mt-3" [formGroup]="partnerForm" (ngSubmit)="nextStep()">
-            <div class="row">
-              <div class="col-12 col-sm-9 float-left">
-                <h4>Contact Details</h4>
-              </div>
-              <div class="col-12 col-sm-3 float-right">
-                <span>* mandatory fields</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <label>Salutation</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6 col-sm-3">
-                <div class="form-group">
-                  <button type="button" class="form-control" (click)="setSalutationValue('Dr')"
-                          [ngClass]="{'selected': salutation === 'Dr'}">Dr
-                  </button>
-                </div>
-              </div>
-              <div class="col-6 col-sm-3">
-                <div class="form-group">
-                  <button type="button" class="form-control" (click)="setSalutationValue('Mr.')"
-                          [ngClass]="{'selected': salutation === 'Mr.'}">Mr.
-                  </button>
-                </div>
-              </div>
-              <div class="col-6 col-sm-3">
-                <div class="form-group">
-                  <button type="button" class="form-control" (click)="setSalutationValue('Mrs.')"
-                          [ngClass]="{'selected': salutation === 'Mrs.'}">Mrs.
-                  </button>
-                </div>
-              </div>
-              <div class="col-6 col-sm-3">
-                <div class="form-group">
-                  <button type="button" class="form-control" (click)="setSalutationValue('Ms.')"
-                          [ngClass]="{'selected': salutation === 'Ms.'}">Ms.
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="firstName">First name*</label>
-                  <input type="text" name="firstName" id="firstName" class="form-control" formControlName="firstName">
+        <!-- /Partners info -->
+        <!-- Compliance info -->
 
-                  <div *ngIf="partnerForm.controls['firstName'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['firstName'].errors['required']">
-                      Please enter a name
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="lastName">Last name*</label>
-                  <input type="text" name="lastName" id="lastName" class="form-control" formControlName="lastName">
-
-                  <div *ngIf="partnerForm.controls['lastName'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['lastName'].errors['required']">
-                      Please enter a name
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="jobTitle">Job title*</label>
-                  <input type="text" name="jobTitle" id="jobTitle" class="form-control" formControlName="jobTitle">
-
-                  <div *ngIf="partnerForm.controls['jobTitle'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['jobTitle'].errors['required']">
-                      Please enter your job title
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="orgName">Organization Name*</label>
-                  <input type="text" name="orgName" id="orgName" class="form-control"
-                         formControlName="organizationName">
-
-                  <div *ngIf="partnerForm.controls['organizationName'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['organizationName'].errors['required']">
-                      Please enter the name of your organization
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="street">Street*</label>
-                  <input type="text" name="street" id="street" class="form-control" formControlName="street">
-
-                  <div *ngIf="partnerForm.controls['organizationName'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['organizationName'].errors['required']">
-                      Please enter the name of your organization
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="city">City*</label>
-                  <input type="text" name="city" id="city" class="form-control" formControlName="city">
-
-                  <div *ngIf="partnerForm.controls['city'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['city'].errors['required']">
-                      Please enter the name of your city
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="zip">ZIP</label>
-                  <input type="text" name="zip" id="zip" class="form-control" formControlName="zip">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="country">Country*</label>
-                  <input type="text" name="country" id="country" class="form-control" formControlName="country">
-
-                  <div *ngIf="partnerForm.controls['country'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['country'].errors['required']">
-                      Please enter your country
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="phone">Phone*</label>
-                  <input type="tel" name="phone" id="phone" class="form-control" formControlName="phone">
-
-                  <div *ngIf="partnerForm.controls['phone'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['phone'].errors['required']">
-                      Please enter your phone number
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="email">Email*</label>
-                  <input type="email" name="email" id="email" class="form-control" [email]="true"
-                         formControlName="email">
-
-                  <div *ngIf="partnerForm.controls['email'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div
-                      *ngIf="partnerForm.controls['email'].errors['required'] || partnerForm.controls['email'].errors['email']">
-                      Please enter correct email address
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="website">Website</label>
-                  <input type="text" name="website" id="website" class="form-control" formControlName="website">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label>Where did you hear about us?</label>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <div class="form-check">
-                      <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="aboutUs" value="event"
-                               formControlName="aboutUs">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Event</span>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <div class="form-check">
-                      <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="aboutUs" value="www.lykke.com"
-                               formControlName="aboutUs">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">www.lykke.com</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <div class="form-check">
-                      <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="aboutUs" value="other"
-                               formControlName="aboutUs">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Other</span>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <div class="form-check">
-                      <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="aboutUs" value="personal-network"
-                               formControlName="aboutUs">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Personal network</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="relationship">What is your primary relationship with Lykke? (select one)*</label>
-                  <select class="form-control" name="relationship" id="relationship" formControlName="relationship">
-                    <option>1</option>
-                    <option>2</option>
-                  </select>
-
-                  <div *ngIf="partnerForm.controls['relationship'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['relationship'].errors['required']">
-                      Please enter your primary relationship
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="category">Which industry or business category does your proposal concern?*</label>
-                  <input type="text" name="category" id="category" class="form-control" formControlName="category">
-
-                  <div *ngIf="partnerForm.controls['category'].invalid && partnerForm.dirty"
-                       class="text-danger">
-                    <div *ngIf="partnerForm.controls['category'].errors['required']">
-                      Please enter the category
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="help">How can we help you create something great?</label>
-                  <textarea rows="5" name="help" id="help" class="form-control" formControlName="help"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 text-center">
-                <input type="submit" class="btn btn-primary" value="Next" #submitButton>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="container" *ngIf="currentStep === 'compliance'">
-        <div class="intro-holder">
+        <div class="intro-holder" *ngIf="currentStep === 'compliance'">
           <span class="mb-2 back-arrow" (click)="currentStep = 'partner'"><img class="d-sm-inline-block d-md-none"
                                                                                src="../../../assets/images/back-icon.svg"></span>
           <h5 class="d-sm-block d-md-none">STEP 2 OF 2</h5>
@@ -348,56 +61,403 @@
             will be listed as a token needs to be compliant with a jurisdiction in a particular country. Enable partners
             to choose and apply in supported jurisdictions.</p>
         </div>
-        <div class="form-holder">
-          <form class="compliance-form mt-3" [formGroup]="complianceForm" (ngSubmit)="onSubmit($event)">
-            <div class="row">
-              <div class="col-12">
-                <h4>
-                  Supported regulations
-                </h4>
+
+        <!-- /Compliance info -->
+
+        <!-- Finish -->
+        <div class="intro-holder" *ngIf="currentStep === 'finish'">
+          <div class="row">
+            <div class="col-12 text-center">
+              <div class="img-holder">
+                <img src="../../../assets/images/success-icon.svg">
               </div>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-check">
-                  <label class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" name="regulations" value="switzerland"
-                           formControlName="regulations">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Switzerland</span>
-                  </label>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <h3>Thank you!</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="text-success">Your application was successful.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <p>
+                Our experts will review your submission
+                and will get back to you soon.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <button class="btn btn-primary" (click)="returnToPreviousPage()">Go Back</button>
+            </div>
+          </div>
+        </div>
+
+        <!--/Finish -->
+
+        <div class="form-holder" [ngClass]="{'bt-gray': currentStep !== 'finish'}">
+
+          <!-- Partner form -->
+
+          <form class="register-form mt-3" [formGroup]="partnerForm" (ngSubmit)="processForm()">
+            <div *ngIf="currentStep === 'partner'">
+              <div class="row">
+                <div class="col-12 col-sm-9 float-left">
+                  <h4>Contact Details</h4>
                 </div>
-                <div class="form-check">
-                  <label class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" name="regulations" value="europe"
-                           formControlName="regulations">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Europe</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" name="regulations" value="usa"
-                           formControlName="regulations">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">USA</span>
-                  </label>
+                <div class="col-12 col-sm-3 float-right">
+                  <span>* mandatory fields</span>
                 </div>
               </div>
-            </div>
-            <div class="row mb-4">
-              <div class="col-12">
-                <object class="pdf-viewer" data="../../../assets/data/dummy.pdf" type='application/pdf'>
-                  <p>Sorry, the PDF couldn't be displayed :(</p>
-                  <a href="../../../assets/data/dummy.pdf" target="_blank">Click Here</a>
-                </object>
+              <div class="row">
+                <div class="col-12">
+                  <label>Salutation</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 col-sm-3">
+                  <div class="form-group">
+                    <button type="button" class="form-control" (click)="setSalutationValue('Dr')"
+                            [ngClass]="{'selected': salutation === 'Dr'}">Dr
+                    </button>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <div class="form-group">
+                    <button type="button" class="form-control" (click)="setSalutationValue('Mr.')"
+                            [ngClass]="{'selected': salutation === 'Mr.'}">Mr.
+                    </button>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <div class="form-group">
+                    <button type="button" class="form-control" (click)="setSalutationValue('Mrs.')"
+                            [ngClass]="{'selected': salutation === 'Mrs.'}">Mrs.
+                    </button>
+                  </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                  <div class="form-group">
+                    <button type="button" class="form-control" (click)="setSalutationValue('Ms.')"
+                            [ngClass]="{'selected': salutation === 'Ms.'}">Ms.
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="firstName">First name*</label>
+                    <input type="text" name="firstName" id="firstName" class="form-control" formControlName="firstName">
+
+                    <div *ngIf="partnerForm.controls['firstName'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['firstName'].errors['required']">
+                        Please enter a name
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="lastName">Last name*</label>
+                    <input type="text" name="lastName" id="lastName" class="form-control" formControlName="lastName">
+
+                    <div *ngIf="partnerForm.controls['lastName'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['lastName'].errors['required']">
+                        Please enter a name
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="jobTitle">Job title*</label>
+                    <input type="text" name="jobTitle" id="jobTitle" class="form-control" formControlName="jobTitle">
+
+                    <div *ngIf="partnerForm.controls['jobTitle'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['jobTitle'].errors['required']">
+                        Please enter your job title
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="orgName">Organization Name*</label>
+                    <input type="text" name="orgName" id="orgName" class="form-control"
+                           formControlName="organizationName">
+
+                    <div *ngIf="partnerForm.controls['organizationName'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['organizationName'].errors['required']">
+                        Please enter the name of your organization
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="street">Street*</label>
+                    <input type="text" name="street" id="street" class="form-control" formControlName="street">
+
+                    <div *ngIf="partnerForm.controls['organizationName'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['organizationName'].errors['required']">
+                        Please enter the name of your organization
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="city">City*</label>
+                    <input type="text" name="city" id="city" class="form-control" formControlName="city">
+
+                    <div *ngIf="partnerForm.controls['city'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['city'].errors['required']">
+                        Please enter the name of your city
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="zip">ZIP</label>
+                    <input type="text" name="zip" id="zip" class="form-control" formControlName="zip">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="country">Country*</label>
+                    <input type="text" name="country" id="country" class="form-control" formControlName="country">
+
+                    <div *ngIf="partnerForm.controls['country'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['country'].errors['required']">
+                        Please enter your country
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="phone">Phone*</label>
+                    <input type="tel" name="phone" id="phone" class="form-control" formControlName="phone">
+
+                    <div *ngIf="partnerForm.controls['phone'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['phone'].errors['required']">
+                        Please enter your phone number
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" name="email" id="email" class="form-control" [email]="true"
+                           formControlName="email">
+
+                    <div *ngIf="partnerForm.controls['email'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div
+                        *ngIf="partnerForm.controls['email'].errors['required'] || partnerForm.controls['email'].errors['email']">
+                        Please enter correct email address
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="text" name="website" id="website" class="form-control" formControlName="website">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label>Where did you hear about us?</label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="form-check">
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="aboutUs" value="event"
+                                 formControlName="aboutUs">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Event</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <div class="form-check">
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="aboutUs" value="www.lykke.com"
+                                 formControlName="aboutUs">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">www.lykke.com</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-6">
+                      <div class="form-check">
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="aboutUs" value="other"
+                                 formControlName="aboutUs">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Other</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <div class="form-check">
+                        <label class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" name="aboutUs" value="personal-network"
+                                 formControlName="aboutUs">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">Personal network</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="relationship">What is your primary relationship with Lykke? (select one)*</label>
+                    <select class="form-control" name="relationship" id="relationship" formControlName="relationship">
+                      <option>1</option>
+                      <option>2</option>
+                    </select>
+
+                    <div *ngIf="partnerForm.controls['relationship'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['relationship'].errors['required']">
+                        Please enter your primary relationship
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="category">Which industry or business category does your proposal concern?*</label>
+                    <input type="text" name="category" id="category" class="form-control" formControlName="category">
+
+                    <div *ngIf="partnerForm.controls['category'].invalid && partnerForm.dirty"
+                         class="text-danger">
+                      <div *ngIf="partnerForm.controls['category'].errors['required']">
+                        Please enter the category
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="help">How can we help you create something great?</label>
+                    <textarea rows="5" name="help" id="help" class="form-control" formControlName="help"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-center">
+                  <input type="submit" class="btn btn-primary" value="Next" #submitButton>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-8 text-center">
-                <input type="submit" class="btn btn-primary" value="Save">
+
+            <!-- /Partner form -->
+            <!-- Compliance form-->
+
+            <div *ngIf="currentStep === 'compliance'">
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    Supported regulations
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-check">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" name="regulations" value="switzerland"
+                             formControlName="regulations">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Switzerland</span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" name="regulations" value="europe"
+                             formControlName="regulations">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Europe</span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" name="regulations" value="usa"
+                             formControlName="regulations">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">USA</span>
+                    </label>
+                  </div>
+
+                  <div *ngIf="partnerForm.controls['regulations'].invalid && partnerForm.dirty"
+                       class="text-danger">
+                    <div *ngIf="partnerForm.controls['regulations'].errors['required']">
+                      Please select a regulation
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-12">
+                  <object class="pdf-viewer" data="../../../assets/data/dummy.pdf" type='application/pdf'>
+                    <p>Sorry, the PDF couldn't be displayed :(</p>
+                    <a href="../../../assets/data/dummy.pdf" target="_blank">Click Here</a>
+                  </object>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-8 text-center">
+                  <input type="submit" class="btn btn-primary" value="Save">
+                </div>
               </div>
             </div>
+
+            <!-- /Compliance form -->
           </form>
         </div>
       </div>
