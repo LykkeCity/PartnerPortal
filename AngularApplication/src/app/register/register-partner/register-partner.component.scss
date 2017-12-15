@@ -1,0 +1,113 @@
+@import '~scss/reuse';
+
+$navbar-height: 104px;
+$navbar-height-md: 90px;
+
+$navbar-logo-height-xs: 25px;
+$navbar-logo-height-sm: 33px;
+$navbar-logo-height: 44px;
+$navbar-logo-height-md: 54px;
+
+.bg-black {
+  background-color: $dark-grey;
+}
+
+.navbar {
+  box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.5);
+  height: $navbar-height;
+
+  .container {
+    padding-left: 35px;
+  }
+
+  .lykke-partners-logo {
+    height: $navbar-logo-height;
+  }
+  .nav-link {
+    font-weight: $font-weight-semibold;
+    color: $white;
+    margin: 0.6em 0.6em 0 0.6em;
+    font-size: 21px;
+  }
+}
+
+.registration-container {
+  margin-top: 100px;
+  padding: 100px 0 100px 0;
+
+  ul.list-group {
+    li.list-group-item{
+      border: none;
+      border-radius: 0;
+      border-left: 1px solid $gray-200;
+
+      a {
+        color: $black;
+      }
+
+      &.active {
+        border-left: 2px solid $tealish;
+        background-color: $white;
+      }
+    }
+  }
+
+  .form-holder {
+    border-top: 1px solid $gray-200;
+
+    .register-form {
+      label {
+        font-size: 16px;
+        color: $dark-grey;
+        font-weight: $font-weight-semibold;
+      }
+    }
+
+    .custom-radio {
+      cursor: pointer;
+    }
+  }
+}
+
+.pdf-viewer {
+  width: 300px;
+  height: 425px;
+  border-bottom: 1px solid black;
+}
+
+.custom-control-indicator {
+  background-color: white;
+  border: 1px solid $gray-400;
+}
+
+.custom-control-input:checked ~ .custom-control-indicator {
+  padding: 8px;
+}
+
+.back-arrow {
+  cursor: pointer;
+}
+
+button.selected {
+  border-color: $tealish;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(46, 204, 161, 0.25);
+}
+
+@include media-breakpoint-up(sm) {
+  .pdf-viewer {
+    width: 430px;
+    height: 655px;
+    border-bottom: 1px solid black;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .pdf-viewer {
+    width: 570px;
+    height: 800px;
+    border-bottom: 1px solid black;
+  }
+}
+
+
