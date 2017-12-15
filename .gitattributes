@@ -19,3 +19,12 @@
 *.eot     -text diff
 *.woff    -text diff
 *.woff2   -text diff
+
+
+# Regognize these filetypes as binary so git won't transform them in
+# any away - e.g. change line endings
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
