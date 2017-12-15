@@ -11,7 +11,7 @@
       </ul>
     </div>
 
-    <a href="javascript:;" class="exit"><img src="../../../assets/images/exit-icon.svg"></a>
+    <a href="javascript:;" class="exit" (click)="returnToPreviousPage()"><img src="../../../assets/images/exit-icon.svg"></a>
   </div>
 </nav>
 
@@ -20,14 +20,14 @@
   <div class="row">
     <div class="col-md-3 d-none d-sm-none d-md-block">
       <ul class="list-group">
-        <li class="list-group-item" (click)="currentForm = 'partner'" [ngClass]="{'active': currentForm === 'partner'}">
+        <li class="list-group-item" (click)="currentStep = 'partner'" [ngClass]="{'active': currentForm === 'partner'}">
           <a href="javascript:;">Introduce yourself</a></li>
-        <li class="list-group-item" (click)="nextStep()" [ngClass]="{'active': currentForm === 'compliance'}"><a
+        <li class="list-group-item" (click)="nextStep()" [ngClass]="{'active': currentStep === 'compliance'}"><a
           href="javascript:;">Compliance</a></li>
       </ul>
     </div>
     <div class="col-12 col-sm-12 col-md-9">
-      <div class="container" *ngIf="currentForm === 'partner'">
+      <div class="container" *ngIf="currentStep === 'partner'">
         <div class="intro-holder">
           <h5 class="d-sm-block d-md-none">STEP 1 OF 2</h5>
           <h3>Introduce yourself</h3>
@@ -338,9 +338,9 @@
           </form>
         </div>
       </div>
-      <div class="container" *ngIf="currentForm === 'compliance'">
+      <div class="container" *ngIf="currentStep === 'compliance'">
         <div class="intro-holder">
-          <span class="mb-2 back-arrow" (click)="currentForm = 'partner'"><img class="d-sm-inline-block d-md-none"
+          <span class="mb-2 back-arrow" (click)="currentStep = 'partner'"><img class="d-sm-inline-block d-md-none"
                                                                                src="../../../assets/images/back-icon.svg"></span>
           <h5 class="d-sm-block d-md-none">STEP 2 OF 2</h5>
           <h3>Compliance</h3>
