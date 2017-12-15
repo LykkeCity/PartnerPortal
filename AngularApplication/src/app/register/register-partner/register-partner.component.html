@@ -21,9 +21,9 @@
   <div class="row">
     <div class="col-md-3 d-none d-sm-none d-md-block">
       <ul class="list-group">
-        <li class="list-group-item" (click)="currentStep = 'partner'" [ngClass]="{'active': currentStep === 'partner'}">
+        <li class="list-group-item" (click)="currentStep = 'partner'" [ngClass]="{'active': currentStep === 'partner', 'disabled': currentStep === 'finish'}">
           <a href="javascript:;">Introduce yourself</a></li>
-        <li class="list-group-item" (click)="processForm()" [ngClass]="{'active': currentStep === 'compliance'}"><a
+        <li class="list-group-item" (click)="processForm()" [ngClass]="{'active': currentStep === 'compliance', 'disabled': currentStep === 'finish'}"><a
           href="javascript:;">Compliance</a></li>
       </ul>
     </div>
