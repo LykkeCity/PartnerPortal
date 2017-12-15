@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'lpp-register-partner',
@@ -19,26 +19,26 @@ export class RegisterPartnerComponent implements OnInit {
 
     this.partnerForm = this.formBuilder.group({
       salutation: [''],
-      firstName: ['', { validators: Validators.required, updateOn: 'submit' }],
-      lastName: ['', { validators: Validators.required, updateOn: 'submit' }],
-      jobTitle: ['', { validators: Validators.required, updateOn: 'submit' }],
-      organizationName: ['', { validators: Validators.required, updateOn: 'submit' }],
-      street: ['', { validators: Validators.required, updateOn: 'submit' }],
-      city: ['', { validators: Validators.required, updateOn: 'submit' }],
+      firstName: ['', {validators: Validators.required, updateOn: 'submit'}],
+      lastName: ['', {validators: Validators.required, updateOn: 'submit'}],
+      jobTitle: ['', {validators: Validators.required, updateOn: 'submit'}],
+      organizationName: ['', {validators: Validators.required, updateOn: 'submit'}],
+      street: ['', {validators: Validators.required, updateOn: 'submit'}],
+      city: ['', {validators: Validators.required, updateOn: 'submit'}],
       zip: [''],
-      country: ['', { validators: Validators.required, updateOn: 'submit' }],
-      phone: ['', { validators: Validators.required, updateOn: 'submit' }],
-      email: ['', { validators: Validators.required, updateOn: 'submit' }],
+      country: ['', {validators: Validators.required, updateOn: 'submit'}],
+      phone: ['', {validators: Validators.required, updateOn: 'submit'}],
+      email: ['', {validators: Validators.required, updateOn: 'submit'}],
       website: [''],
       aboutUs: [''],
-      relationship: ['', { validators: Validators.required, updateOn: 'submit' }],
-      category: ['', { validators: Validators.required, updateOn: 'submit' }],
+      relationship: ['', {validators: Validators.required, updateOn: 'submit'}],
+      category: ['', {validators: Validators.required, updateOn: 'submit'}],
       help: [''],
     });
 
     this.complianceForm = this.formBuilder.group({
-      regulations: ['', { validators: Validators.required, updateOn: 'submit' }]
-    })
+      regulations: ['', {validators: Validators.required, updateOn: 'submit'}]
+    });
   }
 
   ngOnInit() {
@@ -54,8 +54,8 @@ export class RegisterPartnerComponent implements OnInit {
 
   nextStep(): void {
     this.partnerForm.markAsDirty();
-    if(this.partnerForm.invalid) {
-      let el:HTMLElement = this.submitButton.nativeElement as HTMLElement;
+    if (this.partnerForm.invalid) {
+      let el: HTMLElement = this.submitButton.nativeElement as HTMLElement;
       el.click();
       return;
     }
@@ -65,11 +65,11 @@ export class RegisterPartnerComponent implements OnInit {
 
   onSubmit(): void {
     this.complianceForm.markAsDirty();
-    if(this.complianceForm.invalid) {
+    if (this.complianceForm.invalid) {
       return;
     }
 
     //TODO send this data to the API
-   let data = Object.assign({}, this.complianceForm.value, this.partnerForm.value);
+    let data = Object.assign({}, this.complianceForm.value, this.partnerForm.value);
   }
 }

@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterPartnerComponent } from './register-partner/register-partner.component';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {RegisterPartnerComponent} from './register-partner/register-partner.component';
 
 
 @NgModule({
@@ -13,4 +13,5 @@ import { RegisterPartnerComponent } from './register-partner/register-partner.co
     ReactiveFormsModule
   ],
 })
-export class RegisterModule { }
+export class RegisterModule {
+}
