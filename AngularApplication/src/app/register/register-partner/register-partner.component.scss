@@ -53,8 +53,6 @@ $navbar-logo-height-md: 54px;
   }
 
   .form-holder {
-    border-top: 1px solid $gray-200;
-
     .register-form {
       label {
         font-size: 16px;
@@ -92,6 +90,10 @@ button.selected {
   border-color: $tealish;
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(46, 204, 161, 0.25);
+}
+
+.bt-gray {
+  border-top: 1px solid $gray-200;
 }
 
 @include media-breakpoint-up(sm) {

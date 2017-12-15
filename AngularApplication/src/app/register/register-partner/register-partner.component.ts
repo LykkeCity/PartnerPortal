@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Location} from '@angular/common';
 import {RegisterService} from '../register.service';
 
@@ -11,7 +11,6 @@ import {RegisterService} from '../register.service';
 export class RegisterPartnerComponent {
 
   partnerForm: FormGroup;
-  complianceForm: FormGroup;
   currentStep: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -35,8 +34,7 @@ export class RegisterPartnerComponent {
       aboutUs: [''],
       relationship: ['', {validators: Validators.required, updateOn: 'submit'}],
       category: ['', {validators: Validators.required, updateOn: 'submit'}],
-      help: [''],
-      regulations: ['', {validators: Validators.required, updateOn: 'submit'}]
+      help: ['']
     });
   }
 
@@ -52,21 +50,31 @@ export class RegisterPartnerComponent {
     this.location.back();
   }
 
-  nextStep(): void {
+  isFormValid(): boolean {
     this.partnerForm.markAsDirty();
-    if (this.partnerForm.invalid) {
-      return;
-    }
+    return !this.partnerForm.invalid;
+  }
 
-    this.currentStep = 'compliance';
+  processForm(): void {
+    if (this.currentStep === 'partner') {
+      this.nextStep();
+    } else {
+      this.onSubmit();
+    }
+  }
+
+  nextStep(): void {
+    if (this.isFormValid()) {
+      this.partnerForm.addControl('regulations', new FormControl('', {validators: Validators.required, updateOn: 'submit'}));
+      this.partnerForm.markAsPristine();
+      this.currentStep = 'compliance';
+    }
   }
 
   onSubmit(): void {
-    this.complianceForm.markAsDirty();
-    if (this.complianceForm.invalid) {
-      return;
+    if (this.isFormValid()) {
+      this.registerService.registerPartner(this.partnerForm.value);
+      this.currentStep = 'finish';
     }
-
-    this.registerService.registerPartner(this.partnerForm.value);
   }
 }
