@@ -1,21 +1,23 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Location} from '@angular/common';
+import {RegisterService} from '../register.service';
 
 @Component({
   selector: 'lpp-register-partner',
   templateUrl: './register-partner.component.html',
   styleUrls: ['./register-partner.component.scss']
 })
-export class RegisterPartnerComponent implements OnInit {
+export class RegisterPartnerComponent {
 
   partnerForm: FormGroup;
   complianceForm: FormGroup;
-  currentForm: string;
+  currentStep: string;
 
-  @ViewChild('submitButton') submitButton: ElementRef;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.currentForm = 'partner';
+  constructor(private formBuilder: FormBuilder,
+              private location: Location,
+              private registerService: RegisterService) {
+    this.currentStep = 'partner';
 
     this.partnerForm = this.formBuilder.group({
       salutation: [''],
@@ -34,14 +36,8 @@ export class RegisterPartnerComponent implements OnInit {
       relationship: ['', {validators: Validators.required, updateOn: 'submit'}],
       category: ['', {validators: Validators.required, updateOn: 'submit'}],
       help: [''],
-    });
-
-    this.complianceForm = this.formBuilder.group({
       regulations: ['', {validators: Validators.required, updateOn: 'submit'}]
     });
-  }
-
-  ngOnInit() {
   }
 
   setSalutationValue(value: string) {
@@ -52,15 +48,17 @@ export class RegisterPartnerComponent implements OnInit {
     return this.partnerForm.get('salutation').value;
   }
 
+  returnToPreviousPage() {
+    this.location.back();
+  }
+
   nextStep(): void {
     this.partnerForm.markAsDirty();
     if (this.partnerForm.invalid) {
-      let el: HTMLElement = this.submitButton.nativeElement as HTMLElement;
-      el.click();
       return;
     }
 
-    this.currentForm = 'compliance';
+    this.currentStep = 'compliance';
   }
 
   onSubmit(): void {
@@ -69,7 +67,6 @@ export class RegisterPartnerComponent implements OnInit {
       return;
     }
 
-    //TODO send this data to the API
-    let data = Object.assign({}, this.complianceForm.value, this.partnerForm.value);
+    this.registerService.registerPartner(this.partnerForm.value);
   }
 }

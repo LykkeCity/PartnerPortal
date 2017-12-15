@@ -20,6 +20,11 @@
   width: 660px;
 }
 
+.request-whitelabel-modal.modal-sm {
+  width: 370px;
+  height: 270px;
+}
+
 .popover.bs-popover-bottom .arrow {
   left: 50% !important; /* fix popover arrow position globally by removing the hardcoded 5px */
 }
@@ -46,6 +51,11 @@
 
 @include media-breakpoint-only(xs) {
   .contact-us-modal.modal-lg {
+    width: 90%;
+    max-width: 450px;
+  }
+
+  .request-whitelabel-modal.modal-sm {
     width: 90%;
     max-width: 450px;
   }

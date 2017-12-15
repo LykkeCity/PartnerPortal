@@ -1,0 +1,11 @@
+@import '~scss/reuse';
+
+
+.modal-header {
+  background-color: $black;
+  justify-content: center;
+
+  h5 {
+    color: $white;
+  }
+}

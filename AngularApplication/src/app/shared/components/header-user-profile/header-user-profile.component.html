@@ -1,7 +1,7 @@
 <div class="profile-nav-holder">
-  <button class="btn asset-btn d-none d-sm-none d-md-block">Add Asset <img
+  <button class="btn asset-btn d-none d-sm-none d-md-block" (click)="openRegisterModal()">Add Asset <img
     src="../../../assets/images/products/add_asset.svg"></button>
-  <img class="asset-btn-small d-xs-block d-sm-block d-md-none" src="../../../assets/images/products/add_asset.svg">
+  <img class="asset-btn-small d-xs-block d-sm-block d-md-none" src="../../../assets/images/products/add_asset.svg" (click)="openRegisterModal()">
   <button class="profile-nav" [popover]="navTemplate" [outsideClick]="true" placement="bottom"></button>
 </div>
 
