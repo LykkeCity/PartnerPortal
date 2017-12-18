@@ -9,25 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{B093ED9D-D988-4648-BECC-3CAC9F3081A0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{B5CC9F45-C30E-4BCA-83A6-062237DFF0A2}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{B5CC9F45-C30E-4BCA-83A6-062237DFF0A2}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.PartnerPortal.Services", "Lykke.PartnerPortal.Services\Lykke.PartnerPortal.Services.csproj", "{1C5A20D5-6AB6-4DB4-A694-D490755F6422}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{A4C10CB5-D921-4C0A-B89F-33941EC275C3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DFBAD12F-5A1C-401C-A190-0D78DD511AD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureRepositories", "AzureRepositories\AzureRepositories.csproj", "{F8696324-0F89-4C58-9105-4EB82464C773}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.PartnerPortal.UnitTests", "Lykke.PartnerPortal.UnitTests\Lykke.PartnerPortal.UnitTests.csproj", "{97C35A9F-9C58-42E6-8EB7-800CA8080954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lykke.PartnerPortal.Tests", "Lykke.PartnerPortal.Tests\Lykke.PartnerPortal.Tests.csproj", "{97C35A9F-9C58-42E6-8EB7-800CA8080954}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureRepositories", "AzureRepositories", "{DB517A06-9C3F-4DF4-96BC-9F144BD34ED5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureRepositories", "AzureRepositories\AzureRepositories.csproj", "{95817291-F59C-4926-9E47-EB80833C69F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +37,14 @@ Global
 		{1C5A20D5-6AB6-4DB4-A694-D490755F6422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C5A20D5-6AB6-4DB4-A694-D490755F6422}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C5A20D5-6AB6-4DB4-A694-D490755F6422}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8696324-0F89-4C58-9105-4EB82464C773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8696324-0F89-4C58-9105-4EB82464C773}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8696324-0F89-4C58-9105-4EB82464C773}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8696324-0F89-4C58-9105-4EB82464C773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C35A9F-9C58-42E6-8EB7-800CA8080954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C35A9F-9C58-42E6-8EB7-800CA8080954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C35A9F-9C58-42E6-8EB7-800CA8080954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C35A9F-9C58-42E6-8EB7-800CA8080954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95817291-F59C-4926-9E47-EB80833C69F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95817291-F59C-4926-9E47-EB80833C69F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95817291-F59C-4926-9E47-EB80833C69F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95817291-F59C-4926-9E47-EB80833C69F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,7 +52,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B093ED9D-D988-4648-BECC-3CAC9F3081A0} = {91ED0673-6FB1-4F81-A015-EFB48101E958}
 		{1C5A20D5-6AB6-4DB4-A694-D490755F6422} = {91ED0673-6FB1-4F81-A015-EFB48101E958}
-		{F8696324-0F89-4C58-9105-4EB82464C773} = {A4C10CB5-D921-4C0A-B89F-33941EC275C3}
+		{97C35A9F-9C58-42E6-8EB7-800CA8080954} = {DFBAD12F-5A1C-401C-A190-0D78DD511AD8}
+		{95817291-F59C-4926-9E47-EB80833C69F2} = {DB517A06-9C3F-4DF4-96BC-9F144BD34ED5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5869C121-4DA6-47E8-A44F-7288D92906EC}
