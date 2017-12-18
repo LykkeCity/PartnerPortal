@@ -9,5 +9,6 @@ namespace Core.Settings
         public LykkePartnerPortalSettings LykkePartnerPortal { get; set; }
         public SlackNotificationsSettings SlackNotifications { get; set; }
         public ClientAccountServiceClientSettings ClientAccountServiceClient { get; set; }
+        public SubscriberServiceClientSettings SubscriberServiceClient { get; set; }
     }
 }

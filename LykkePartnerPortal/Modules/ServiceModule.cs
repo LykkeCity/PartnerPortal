@@ -63,7 +63,7 @@ namespace LykkePartnerPortal.Modules
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
-            builder.RegisterSubscriberClient(_settings.CurrentValue.LykkePartnerPortal.Services.SubscriberServiceUrl, _log);
+            builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log);
 
             builder.RegisterLykkeServiceClient(_settings.CurrentValue.ClientAccountServiceClient.ServiceUrl);
 

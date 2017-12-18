@@ -1,6 +1,7 @@
 ﻿using Common.Log;
 using Core.Partners;
 using Lykke.Service.ClientAccount.Client;
+using LykkePartnerPortal.Models;
 using LykkePartnerPortal.Models.Partners;
 using LykkePartnerPortal.Strings;
 using Microsoft.AspNetCore.Mvc;
@@ -36,15 +37,13 @@ namespace LykkePartnerPortal.Controllers
         [SwaggerOperation("RegisterPartner")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Models.ErrorResponse), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(NotFoundResponseModel), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> RegisterPartner([FromBody]PartnerRequestModel model)
         {
             var registeredClient = await _clientAccountClient.GetClientsByEmailAsync(model.ClientEmail);
 
             if (registeredClient == null || registeredClient.Count() <= 0)
-            {
-                return NotFound(Phrases.UserNotFound);
-            }
+                return NotFound(new NotFoundResponseModel() { NotFoundMessage = Phrases.UserNotFound });
 
             List<string> partnerIds = new List<string>()
             {
@@ -87,7 +86,7 @@ namespace LykkePartnerPortal.Controllers
         [SwaggerOperation("GetPartnerInformation")]
         [ProducesResponseType(typeof(PartnerResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Models.ErrorResponse), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(NotFoundResponseModel), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetPartnerInformation([FromQuery] string clientEmail)
         {
             if (string.IsNullOrEmpty(clientEmail))
@@ -96,9 +95,7 @@ namespace LykkePartnerPortal.Controllers
             var registeredClient = (await _clientAccountClient.GetClientsByEmailAsync(clientEmail)).FirstOrDefault();
 
             if (registeredClient == null)
-            {
-                return NotFound(Phrases.UserNotFound);
-            }
+                return NotFound(new NotFoundResponseModel() { NotFoundMessage = Phrases.UserNotFound });
 
             var existingPartner = await _partnerInformationRepository.GetAsync(registeredClient.Id);
 
@@ -120,7 +117,7 @@ namespace LykkePartnerPortal.Controllers
         [SwaggerOperation("GetPartnerStatus")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Models.ErrorResponse), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(NotFoundResponseModel), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetPartnerStatus([FromQuery] string clientEmail)
         {
             if (string.IsNullOrEmpty(clientEmail))
@@ -129,9 +126,7 @@ namespace LykkePartnerPortal.Controllers
             var registeredClient = (await _clientAccountClient.GetClientsByEmailAsync(clientEmail)).FirstOrDefault();
 
             if (registeredClient == null)
-            {
-                return NotFound(Phrases.UserNotFound);
-            }
+                return NotFound(new NotFoundResponseModel() { NotFoundMessage = Phrases.UserNotFound });
 
             var existingPartner = await _partnerInformationRepository.GetAsync(registeredClient.Id);
 
