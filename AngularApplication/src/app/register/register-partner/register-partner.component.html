@@ -316,7 +316,7 @@
                     <div class="col-12 col-sm-6">
                       <div class="form-check">
                         <label class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" name="aboutUs" value="www.lykke.com"
+                          <input type="radio" class="custom-control-input" name="aboutUs" value="lykkeCom"
                                  formControlName="aboutUs">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">www.lykke.com</span>
@@ -338,7 +338,7 @@
                     <div class="col-12 col-sm-6">
                       <div class="form-check">
                         <label class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" name="aboutUs" value="personal-network"
+                          <input type="radio" class="custom-control-input" name="aboutUs" value="personalNetwork"
                                  formControlName="aboutUs">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Personal network</span>
@@ -411,32 +411,32 @@
                 <div class="col-12">
                   <div class="form-check">
                     <label class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" name="regulations" value="switzerland"
-                             formControlName="regulations">
+                      <input type="radio" class="custom-control-input" name="supportedRegulations" value="switzerland"
+                             formControlName="supportedRegulations">
                       <span class="custom-control-indicator"></span>
                       <span class="custom-control-description">Switzerland</span>
                     </label>
                   </div>
                   <div class="form-check">
                     <label class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" name="regulations" value="europe"
-                             formControlName="regulations">
+                      <input type="radio" class="custom-control-input" name="supportedRegulations" value="europe"
+                             formControlName="supportedRegulations">
                       <span class="custom-control-indicator"></span>
                       <span class="custom-control-description">Europe</span>
                     </label>
                   </div>
                   <div class="form-check">
                     <label class="custom-control custom-radio">
-                      <input type="radio" class="custom-control-input" name="regulations" value="usa"
-                             formControlName="regulations">
+                      <input type="radio" class="custom-control-input" name="supportedRegulations" value="usa"
+                             formControlName="supportedRegulations">
                       <span class="custom-control-indicator"></span>
                       <span class="custom-control-description">USA</span>
                     </label>
                   </div>
 
-                  <div *ngIf="partnerForm.controls['regulations'].invalid && partnerForm.dirty"
+                  <div *ngIf="partnerForm.controls['supportedRegulations'].invalid && partnerForm.dirty"
                        class="text-danger">
-                    <div *ngIf="partnerForm.controls['regulations'].errors['required']">
+                    <div *ngIf="partnerForm.controls['supportedRegulations'].errors['required']">
                       Please select a regulation
                     </div>
                   </div>
