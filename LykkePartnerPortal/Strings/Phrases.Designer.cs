@@ -61,6 +61,15 @@ namespace LykkePartnerPortal.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing Partner.
+        /// </summary>
+        public static string ExistingPartner {
+            get {
+                return ResourceManager.GetString("ExistingPartner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field Should Not Be Empty.
         /// </summary>
         public static string FieldShouldNotBeEmpty {
@@ -79,6 +88,15 @@ namespace LykkePartnerPortal.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Existing Partner.
+        /// </summary>
+        public static string NoExistingPartner {
+            get {
+                return ResourceManager.GetString("NoExistingPartner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Products Not Found.
         /// </summary>
         public static string ProductsNotFound {
@@ -93,6 +111,15 @@ namespace LykkePartnerPortal.Strings {
         public static string SubscriberAlreadyExists {
             get {
                 return ResourceManager.GetString("SubscriberAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Not Found.
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
     }

@@ -117,16 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExistingPartner" xml:space="preserve">
+    <value>Existing Partner</value>
+  </data>
   <data name="FieldShouldNotBeEmpty" xml:space="preserve">
     <value>Field Should Not Be Empty</value>
   </data>
   <data name="InvalidEmailFormat" xml:space="preserve">
     <value>Invalid Email Format</value>
   </data>
+  <data name="NoExistingPartner" xml:space="preserve">
+    <value>No Existing Partner</value>
+  </data>
   <data name="ProductsNotFound" xml:space="preserve">
     <value>Products Not Found</value>
   </data>
   <data name="SubscriberAlreadyExists" xml:space="preserve">
     <value>Subscriber Already Exists</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User Not Found</value>
   </data>
 </root>

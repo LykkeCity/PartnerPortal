@@ -1,9 +1,12 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AzureRepositories;
 using Common.Log;
+using Core.Partners;
 using Core.Services;
 using Core.Settings;
 using Lykke.PartnerPortal.Services;
+using Lykke.Service.ClientAccount.Client;
 using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
@@ -33,6 +36,10 @@ namespace LykkePartnerPortal.Modules
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.EmailCredentials);
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.ProductsInformation);
 
+            builder.RegisterInstance<IPartnerInformationRepository>(
+                  AzureRepoBinder.CreatePartnerInformationRepository(_settings.ConnectionString(x => x.LykkePartnerPortal.Db.ClientPersonalInfoConnString), _log)).
+              SingleInstance();
+
             builder.Populate(_services);
         }
 
@@ -57,6 +64,8 @@ namespace LykkePartnerPortal.Modules
         private void RegisterExternalServices(ContainerBuilder builder)
         {
             builder.RegisterSubscriberClient(_settings.CurrentValue.LykkePartnerPortal.Services.SubscriberServiceUrl, _log);
+
+            builder.RegisterLykkeServiceClient(_settings.CurrentValue.ClientAccountServiceClient.ServiceUrl);
 
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
         }
