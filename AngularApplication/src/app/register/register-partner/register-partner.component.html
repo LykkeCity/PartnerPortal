@@ -351,15 +351,15 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="relationship">What is your primary relationship with Lykke? (select one)*</label>
-                    <select class="form-control" name="relationship" id="relationship" formControlName="relationship">
+                    <label for="primaryRelationship">What is your primary relationship with Lykke? (select one)*</label>
+                    <select class="form-control" name="primaryRelationship" id="primaryRelationship" formControlName="primaryRelationship">
                       <option>1</option>
                       <option>2</option>
                     </select>
 
-                    <div *ngIf="partnerForm.controls['relationship'].invalid && partnerForm.dirty"
+                    <div *ngIf="partnerForm.controls['primaryRelationship'].invalid && partnerForm.dirty"
                          class="text-danger">
-                      <div *ngIf="partnerForm.controls['relationship'].errors['required']">
+                      <div *ngIf="partnerForm.controls['primaryRelationship'].errors['required']">
                         Please enter your primary relationship
                       </div>
                     </div>
@@ -369,12 +369,12 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="category">Which industry or business category does your proposal concern?*</label>
-                    <input type="text" name="category" id="category" class="form-control" formControlName="category">
+                    <label for="proposalConcern">Which industry or business category does your proposal concern?*</label>
+                    <input type="text" name="proposalConcern" id="proposalConcern" class="form-control" formControlName="proposalConcern">
 
-                    <div *ngIf="partnerForm.controls['category'].invalid && partnerForm.dirty"
+                    <div *ngIf="partnerForm.controls['proposalConcern'].invalid && partnerForm.dirty"
                          class="text-danger">
-                      <div *ngIf="partnerForm.controls['category'].errors['required']">
+                      <div *ngIf="partnerForm.controls['proposalConcern'].errors['required']">
                         Please enter the category
                       </div>
                     </div>
@@ -384,8 +384,8 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="help">How can we help you create something great?</label>
-                    <textarea rows="5" name="help" id="help" class="form-control" formControlName="help"></textarea>
+                    <label for="description">How can we help you create something great?</label>
+                    <textarea rows="5" name="description" id="description" class="form-control" formControlName="description"></textarea>
                   </div>
                 </div>
               </div>

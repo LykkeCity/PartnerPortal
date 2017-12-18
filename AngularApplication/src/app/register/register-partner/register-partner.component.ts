@@ -1,41 +1,51 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Location} from '@angular/common';
-import {RegisterService} from '../register.service';
+import {PartnerService} from '../partner.service';
+import {UserService} from '../../core/user.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'lpp-register-partner',
   templateUrl: './register-partner.component.html',
   styleUrls: ['./register-partner.component.scss']
 })
-export class RegisterPartnerComponent {
+export class RegisterPartnerComponent implements OnDestroy {
 
   partnerForm: FormGroup;
   currentStep: string;
+  sub: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private location: Location,
-              private registerService: RegisterService) {
+              private partnerService: PartnerService,
+              private usersService: UserService) {
     this.currentStep = 'partner';
 
     this.partnerForm = this.formBuilder.group({
-      salutation: [''],
+      salutation: ['', {updateOn: 'submit'}],
       firstName: ['', {validators: Validators.required, updateOn: 'submit'}],
       lastName: ['', {validators: Validators.required, updateOn: 'submit'}],
       jobTitle: ['', {validators: Validators.required, updateOn: 'submit'}],
       organizationName: ['', {validators: Validators.required, updateOn: 'submit'}],
       street: ['', {validators: Validators.required, updateOn: 'submit'}],
       city: ['', {validators: Validators.required, updateOn: 'submit'}],
-      zip: [''],
+      zip: ['', {updateOn: 'submit'}],
       country: ['', {validators: Validators.required, updateOn: 'submit'}],
       phone: ['', {validators: Validators.required, updateOn: 'submit'}],
       email: ['', {validators: Validators.required, updateOn: 'submit'}],
-      website: [''],
-      aboutUs: [''],
-      relationship: ['', {validators: Validators.required, updateOn: 'submit'}],
-      category: ['', {validators: Validators.required, updateOn: 'submit'}],
-      help: ['']
+      website: ['', {updateOn: 'submit'}],
+      aboutUs: ['', {updateOn: 'submit'}],
+      primaryRelationship: ['', {validators: Validators.required, updateOn: 'submit'}],
+      proposalConcern: ['', {validators: Validators.required, updateOn: 'submit'}],
+      description: ['', {updateOn: 'submit'}]
     });
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   setSalutationValue(value: string) {
@@ -73,8 +83,9 @@ export class RegisterPartnerComponent {
 
   onSubmit(): void {
     if (this.isFormValid()) {
-      this.registerService.registerPartner(this.partnerForm.value);
-      this.currentStep = 'finish';
+      this.sub = this.partnerService.registerPartner(Object.assign({}, this.partnerForm.value, {clientEmail: this.usersService.userInfo.getValue()['Email']})).subscribe(val => {
+        this.currentStep = 'finish';
+      });
     }
   }
 }

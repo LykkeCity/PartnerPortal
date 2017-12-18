@@ -3,11 +3,15 @@
     <h5 class="modal-title">Become a partner</h5>
   </div>
   <div class="modal-body text-center">
-    <p>
+    <p *ngIf="!isRegistered && ready">
       Lykke Exchange and all its tools and services are open source. You can request to whitelabel a particular solution
       and our team of skillful engineers will support you.
     </p>
-    <button class="btn btn-primary mt-3" (click)="closeModal()">Register</button>
+
+    <p *ngIf="isRegistered && ready">
+      Your application is already submitted. Our experts will review your submission and will get back to you soon.
+    </p>
+    <button class="btn btn-primary mt-3" (click)="closeModal()" *ngIf="ready">{{isRegistered ? 'Go Back' : 'Register'}}</button>
   </div>
 </div>
 

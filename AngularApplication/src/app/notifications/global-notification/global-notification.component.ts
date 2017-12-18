@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { filter } from 'rxjs/operators';
-import { BsModalService } from 'ngx-bootstrap';
-import { NotificationsService } from '../notifications.service';
-import { NotificationMessage } from '../notification-message';
-import { UnauthorizedNotificationComponent } from './unauthorized-notification/unauthorized-notification.component';
-import { SignoutNotificationComponent } from './signout-notification/signout-notification.component';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {filter} from 'rxjs/operators';
+import {BsModalService} from 'ngx-bootstrap';
+import {NotificationsService} from '../notifications.service';
+import {NotificationMessage} from '../notification-message';
+import {UnauthorizedNotificationComponent} from './unauthorized-notification/unauthorized-notification.component';
+import {SignoutNotificationComponent} from './signout-notification/signout-notification.component';
 
 @Component({
   selector: 'lpp-global-notification',
@@ -13,10 +13,9 @@ import { SignoutNotificationComponent } from './signout-notification/signout-not
 })
 export class GlobalNotificationComponent implements OnInit, OnDestroy {
 
-  constructor(
-    private modalService: BsModalService,
-    private notifications: NotificationsService
-  ) { }
+  constructor(private modalService: BsModalService,
+              private notifications: NotificationsService) {
+  }
 
   ngOnInit() {
     this.notifications.messageStream.pipe(
@@ -34,11 +33,14 @@ export class GlobalNotificationComponent implements OnInit, OnDestroy {
         } else {
           // show generic error message
         }
-        this.modalService.show(component, {
-          ignoreBackdropClick: true,
-          keyboard: false,
-          class: 'generic-message modal-dialog'
-        });
+
+        if (component) {
+          this.modalService.show(component, {
+            ignoreBackdropClick: true,
+            keyboard: false,
+            class: 'generic-message modal-dialog'
+          });
+        }
       }
     );
   }

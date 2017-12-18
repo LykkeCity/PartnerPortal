@@ -9,6 +9,7 @@ import { AuthRequestService } from './auth-request.service';
 import { UnauthorizedInterceptorService } from './unauthorized-interceptor.service';
 import { AuthTokenService } from './auth-token.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {RegisterGuard} from './register.guard';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ export class CoreModule {
           provide: HTTP_INTERCEPTORS,
           useClass: UnauthorizedInterceptorService,
           multi: true,
-        }
+        },
+        RegisterGuard
       ]
     };
   }

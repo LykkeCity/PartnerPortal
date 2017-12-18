@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterPartnerComponent} from './register-partner/register-partner.component';
 import { RequestWhitelabelComponent } from './request-whitelabel/request-whitelabel.component';
-import {RegisterService} from './register.service';
+import {PartnerService} from './partner.service';
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import {RegisterService} from './register.service';
     CommonModule,
     ReactiveFormsModule
   ],
-  providers: [RegisterService],
+  providers: [PartnerService],
   entryComponents: [RequestWhitelabelComponent]
 })
 export class RegisterModule {
