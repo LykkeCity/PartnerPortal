@@ -65,7 +65,7 @@ export class RegisterPartnerComponent {
 
   nextStep(): void {
     if (this.isFormValid()) {
-      this.partnerForm.addControl('regulations', new FormControl('', {validators: Validators.required, updateOn: 'submit'}));
+      this.partnerForm.addControl('supportedRegulations', new FormControl('', {validators: Validators.required, updateOn: 'submit'}));
       this.partnerForm.markAsPristine();
       this.currentStep = 'compliance';
     }
