@@ -1,14 +1,16 @@
-﻿using Autofac;
+﻿﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AzureRepositories;
 using Common.Log;
+using Core.Partners;
 using Core.Services;
 using Core.Settings;
 using Lykke.PartnerPortal.Services;
+using Lykke.Service.ClientAccount.Client;
 using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http;
 
 namespace LykkePartnerPortal.Modules
 {
@@ -33,7 +35,10 @@ namespace LykkePartnerPortal.Modules
 
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.EmailCredentials);
             builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.ProductsInformation);
-            builder.RegisterInstance(_settings.CurrentValue.LykkePartnerPortal.Authentication);
+
+            builder.RegisterInstance<IPartnerInformationRepository>(
+                  AzureRepoBinder.CreatePartnerInformationRepository(_settings.ConnectionString(x => x.LykkePartnerPortal.Db.ClientPersonalInfoConnString), _log)).
+              SingleInstance();
 
             builder.Populate(_services);
         }
@@ -49,11 +54,7 @@ namespace LykkePartnerPortal.Modules
 
             builder.RegisterType<ShutdownManager>()
                 .As<IShutdownManager>();
-
-            builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
-
-            builder.RegisterType<HttpClientHelper>().As<IHttpClientHelper>().SingleInstance();
-        }     
+        }
 
         private void RegisterLocalTypes(ContainerBuilder builder)
         {
@@ -62,7 +63,11 @@ namespace LykkePartnerPortal.Modules
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
-            builder.RegisterSubscriberClient(_settings.CurrentValue.LykkePartnerPortal.Services.SubscriberServiceUrl, _log);
+            builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log);
+
+            builder.RegisterLykkeServiceClient(_settings.CurrentValue.ClientAccountServiceClient.ServiceUrl);
+
+            builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
         }
     }
 }
