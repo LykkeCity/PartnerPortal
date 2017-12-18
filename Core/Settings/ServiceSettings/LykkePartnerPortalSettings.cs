@@ -1,4 +1,4 @@
-﻿namespace Core.Settings.ServiceSettings
+﻿﻿namespace Core.Settings.ServiceSettings
 {
     public class LykkePartnerPortalSettings
     {

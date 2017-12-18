@@ -105,7 +105,6 @@ namespace LykkePartnerPortal.Controllers
             return Ok(PartnerResponseModel.CreateResponse(existingPartner));
         }
 
-
         /// <summary>
         /// Get Partner Status.
         /// </summary>

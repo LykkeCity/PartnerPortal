@@ -11,7 +11,6 @@ using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http;
 
 namespace LykkePartnerPortal.Modules
 {
@@ -60,7 +59,7 @@ namespace LykkePartnerPortal.Modules
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
 
             builder.RegisterType<HttpClientHelper>().As<IHttpClientHelper>().SingleInstance();
-        }     
+        }
 
         private void RegisterLocalTypes(ContainerBuilder builder)
         {
