@@ -101,6 +101,13 @@ button.selected {
   border-top: 1px solid $gray-200;
 }
 
+.exit {
+  span {
+    color: $white;
+    margin-left: 5px;
+  }
+}
+
 @include media-breakpoint-up(sm) {
   .pdf-viewer {
     width: 430px;
