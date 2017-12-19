@@ -84,7 +84,7 @@ export class RegisterPartnerComponent implements OnDestroy {
 
   onSubmit(): void {
     if (this.isFormValid()) {
-      const partnerData = Object.assign({}, this.partnerForm.value, {clientEmail: this.usersService.userInfo.getValue()['Email']});
+      const partnerData = {...this.partnerForm.value, clientEmail: this.usersService.userInfo.getValue()['Email']};
       this.sub = this.partnerService.registerPartner(partnerData).finally(() => {
         this.currentStep = 'finish';
       }).subscribe();
