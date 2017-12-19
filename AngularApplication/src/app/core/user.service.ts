@@ -12,7 +12,7 @@ export class UserService {
   }
 
   getUserInfo() {
-    return this.authRequest.get('/PersonalData', '').pipe(
+    return this.authRequest.get('/PersonalData').pipe(
       map(res => res['Result'])
     ).pipe(tap(res => {
       this.userInfo.next(res);
