@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptchaComponent } from 'angular2-recaptcha';
 import { BsModalRef } from 'ngx-bootstrap';
 import { HomeService } from '../../home.service';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'lpp-contact-us-popup',
@@ -71,14 +72,14 @@ export class ContactUsPopupComponent {
     }
 
     this.ready = false;
-    this.homeService.sendContactUs(this.contactUsForm.value)
+    this.homeService.sendContactUs(this.contactUsForm.value).finally(() => {
+      this.ready = true;
+    })
     .subscribe(
       val => {
-        this.ready = true;
         this.showSuccessMessage = true;
       },
       error => {
-        this.ready = true;
         alert('An error has occurred. We are sorry for the inconvenience.');
       }
     );

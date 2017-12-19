@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NewsletterSubscriptionService } from '../../../core/newsletter-subscription.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NewsletterSubscriptionService} from '../../../core/newsletter-subscription.service';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'lpp-newsletter',
@@ -13,15 +14,19 @@ export class NewsletterComponent implements OnInit {
   showSuccessMessage: boolean;
   showErrorMessage: boolean;
   ready = true;
-  constructor(private formBuilder: FormBuilder, private newsletterService: NewsletterSubscriptionService) { }
+
+  constructor(private formBuilder: FormBuilder, private newsletterService: NewsletterSubscriptionService) {
+  }
 
   ngOnInit() {
     this.newsletterForm = this.formBuilder.group({
-      email: ['', { validators: [ Validators.required, Validators.email ], updateOn: 'submit' }]
+      email: ['', {validators: [Validators.required, Validators.email], updateOn: 'submit'}]
     });
   }
 
-  get formEmail() { return this.newsletterForm.get('email'); }
+  get formEmail() {
+    return this.newsletterForm.get('email');
+  }
 
   onChange() {
     this.showSuccessMessage = false;
@@ -38,20 +43,21 @@ export class NewsletterComponent implements OnInit {
 
     this.ready = false;
     this.newsletterService.makeSubscription(this.newsletterForm.value)
-    .subscribe(
-      val => {
-        this.showSuccessMessage = true;
+      .finally(() => {
         this.ready = true;
-        this.newsletterForm.reset();
-      },
-      error => {
-        if (error.status === 400) {
-          this.showErrorMessage = true;
-        } else {
-          alert('An error has occurred. We are sorry for the inconvenience.');
+      })
+      .subscribe(
+        val => {
+          this.showSuccessMessage = true;
+          this.newsletterForm.reset();
+        },
+        error => {
+          if (error.status === 400) {
+            this.showErrorMessage = true;
+          } else {
+            alert('An error has occurred. We are sorry for the inconvenience.');
+          }
         }
-        this.ready = true;
-      }
-    );
+      );
   }
 }

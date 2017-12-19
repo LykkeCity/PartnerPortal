@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {ContactUsModel} from './contact-us/models/contact-us.model';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class HomeService {
@@ -12,10 +14,10 @@ export class HomeService {
     );
   }
 
-  sendContactUs(contactFormData) {
+  sendContactUs(contactFormData: ContactUsModel): Observable<string> {
     return this.http.post(
       '/api/contacts/sendContact',
-      Object.assign({}, contactFormData, {source: 'PartnerPortal'}),
+      {...contactFormData, source: 'PartnerPortal'},
       { responseType: 'text' }
     );
   }
