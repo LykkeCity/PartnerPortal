@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {PartnerService} from '../partner.service';
 import {UserService} from '../../core/user.service';
 import {Subscription} from 'rxjs/Subscription';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'lpp-request-whitelabel',
@@ -19,15 +20,12 @@ export class RequestWhitelabelComponent implements OnDestroy {
   constructor(private bsModalRef: BsModalRef, private router: Router,
               private registerService: PartnerService,
               private usersService: UserService) {
-    this.sub = this.registerService.isVerifiedPartner(this.usersService.userInfo.getValue()['Email']).subscribe(val => {
-      if (val.status === 400) {
+    this.sub = this.registerService.isVerifiedPartner(this.usersService.userInfo.getValue()['Email'])
+      .finally(() => {
         this.ready = true;
-        this.isRegistered = false;
-      } else {
-        this.isRegistered = true;
-        this.ready = true;
-      }
-    });
+      }).subscribe(val => {
+        this.isRegistered = val.status !== 400;
+      });
   }
 
   ngOnDestroy() {

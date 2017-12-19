@@ -4,6 +4,7 @@ import {Location} from '@angular/common';
 import {PartnerService} from '../partner.service';
 import {UserService} from '../../core/user.service';
 import {Subscription} from 'rxjs/Subscription';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'lpp-register-partner',
@@ -33,7 +34,7 @@ export class RegisterPartnerComponent implements OnDestroy {
       zip: ['', {updateOn: 'submit'}],
       country: ['', {validators: Validators.required, updateOn: 'submit'}],
       phone: ['', {validators: Validators.required, updateOn: 'submit'}],
-      email: ['', {validators: Validators.required, updateOn: 'submit'}],
+      email: ['', {validators: [Validators.required, Validators.email], updateOn: 'submit'}],
       website: ['', {updateOn: 'submit'}],
       aboutUs: ['', {updateOn: 'submit'}],
       primaryRelationship: ['', {validators: Validators.required, updateOn: 'submit'}],
@@ -83,9 +84,10 @@ export class RegisterPartnerComponent implements OnDestroy {
 
   onSubmit(): void {
     if (this.isFormValid()) {
-      this.sub = this.partnerService.registerPartner(Object.assign({}, this.partnerForm.value, {clientEmail: this.usersService.userInfo.getValue()['Email']})).subscribe(val => {
+      const partnerData = Object.assign({}, this.partnerForm.value, {clientEmail: this.usersService.userInfo.getValue()['Email']});
+      this.sub = this.partnerService.registerPartner(partnerData).finally(() => {
         this.currentStep = 'finish';
-      });
+      }).subscribe();
     }
   }
 }
