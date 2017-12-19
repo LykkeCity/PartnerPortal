@@ -5,8 +5,8 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { LoginRedirectGuard } from './login-redirect.guard';
 import { UserService } from './user.service';
-import { AuthRequestService } from './auth-request.service';
-import { UnauthorizedInterceptorService } from './unauthorized-interceptor.service';
+import { AuthRequestService } from './http/auth-request.service';
+import { UnauthorizedInterceptorService } from './http/unauthorized-interceptor.service';
 import { AuthTokenService } from './auth-token.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 

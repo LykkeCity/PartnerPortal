@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthRequestService } from './auth-request.service';
+import { AuthRequestService } from './http/auth-request.service';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -10,7 +10,9 @@ export class UserService {
   ) { }
 
   getUserInfo() {
-    return this.authRequest.get('/PersonalData').pipe(
+    return this.authRequest.get({
+      url: '/PersonalData'
+    }).pipe(
       map( res => res['Result'] )
     );
   }

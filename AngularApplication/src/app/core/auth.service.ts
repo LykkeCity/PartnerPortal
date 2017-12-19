@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthRequestService } from './auth-request.service';
+import { AuthRequestService } from './http/auth-request.service';
 import { AuthTokenService } from './auth-token.service';
 import { NotificationsService } from '../notifications/notifications.service';
 
@@ -24,7 +24,10 @@ export class AuthService {
   }
 
   logout() {
-    this.authRequest.post('/Auth/LogOut').subscribe(
+    this.authRequest.post({
+      url: '/Auth/LogOut',
+      body: {}
+    }).subscribe(
       res => {
         const message = {event: 'sign-out'};
         this.notifications.messageStream.next(message);
