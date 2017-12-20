@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { NgxCarouselModule } from 'ngx-carousel';
 import 'hammerjs';
 
-import { IntercomModule } from 'ng-intercom';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +17,6 @@ import { Angulartics2Module } from 'angulartics2';
 import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { HomeChartComponent } from './home/home-chart/home-chart.component';
 import { HomeChartService } from './home/home-chart/home-chart.service';
-import { IntercomService } from './services/intercom.service';
 
 
 @NgModule({
@@ -37,10 +35,6 @@ import { IntercomService } from './services/intercom.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgxCarouselModule,
-    IntercomModule.forRoot({
-      appId: 'n1npujem',
-      updateOnRouterChange: true
-    }),
     ReCaptchaModule,
     ModalModule.forRoot(),
     Angulartics2Module.forRoot([Angulartics2GoogleAnalytics])
@@ -48,7 +42,7 @@ import { IntercomService } from './services/intercom.service';
   entryComponents: [
     ContactUsPopupComponent
   ],
-  providers: [ HomeChartService, IntercomService ],
+  providers: [ HomeChartService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
