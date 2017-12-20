@@ -106,15 +106,44 @@ namespace LykkePartnerPortal.Controllers
         }
 
         /// <summary>
+        /// Get information if partner is registered.
+        /// </summary>
+        /// <param name="clientEmail">Registered client email address. User logs in with this email.>
+        /// <returns>
+        /// Return information if partner is registered.
+        /// </returns>
+        [HttpGet("isExisting")]
+        [SwaggerOperation("IsExistingPartner")]
+        [ProducesResponseType(typeof(IsExistingPartnerResponseModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Models.ErrorResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(NotFoundResponseModel), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> IsExistingPartner([FromQuery] string clientEmail)
+        {
+            if (string.IsNullOrEmpty(clientEmail))
+                return BadRequest(new Models.ErrorResponse { ErrorMessage = Phrases.InvalidEmailFormat });
+
+            var registeredClient = (await _clientAccountClient.GetClientsByEmailAsync(clientEmail)).FirstOrDefault();
+
+            if (registeredClient == null)
+                return NotFound(new NotFoundResponseModel() { NotFoundMessage = Phrases.UserNotFound });
+
+            var existingPartner = await _partnerInformationRepository.GetAsync(registeredClient.Id);
+
+            bool isExistingPartner = existingPartner != null;
+
+            return Ok(IsExistingPartnerResponseModel.Create(isExistingPartner));
+        }
+
+        /// <summary>
         /// Get Partner Status.
         /// </summary>
         /// <param name="clientEmail">Registered client email address. User logs in with this email.>
         /// <returns>
-        /// Returns information if registered partner was approved.
+        /// Return information if registered partner was approved.
         /// </returns>
         [HttpGet("status")]
         [SwaggerOperation("GetPartnerStatus")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(PartnerStatusResponseModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Models.ErrorResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(NotFoundResponseModel), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetPartnerStatus([FromQuery] string clientEmail)
