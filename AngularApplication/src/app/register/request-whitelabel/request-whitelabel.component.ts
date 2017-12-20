@@ -20,11 +20,11 @@ export class RequestWhitelabelComponent implements OnDestroy {
   constructor(private bsModalRef: BsModalRef, private router: Router,
               private registerService: PartnerService,
               private usersService: UserService) {
-    this.sub = this.registerService.isVerifiedPartner(this.usersService.userInfo.getValue()['Email'])
+    this.sub = this.registerService.isPartnerExisting(this.usersService.userInfo.getValue()['Email'])
       .finally(() => {
         this.ready = true;
       }).subscribe(val => {
-        this.isRegistered = val.status !== 400;
+        this.isRegistered = val.isExisting;
       });
   }
 

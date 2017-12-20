@@ -18,8 +18,8 @@ export class RegisterGuard implements CanActivate {
 
     return Observable.create((obs: Observer<boolean>) => {
       this.userService.getUserInfo().subscribe(val => {
-        this.partnerService.isVerifiedPartner(val['Email']).subscribe(res => {
-          if (res.status === 400) {
+        this.partnerService.isPartnerExisting(val['Email']).subscribe(res => {
+          if (!res.isExisting) {
             obs.next(true);
           } else {
             this.router.navigateByUrl('');

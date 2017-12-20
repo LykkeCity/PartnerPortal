@@ -1,3 +1,4 @@
 export interface PartnerStatus {
-  isApproved: boolean;
+  isApproved?: boolean;
+  isExisting?: boolean;
 }

@@ -1,25 +1,35 @@
 import { Injectable } from '@angular/core';
-import { AuthRequestService } from '../core/auth-request.service';
 import { Observable } from 'rxjs/Observable';
 import { PartnerData } from './models/partner-data';
 import { PartnerStatus } from './models/partner-status';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class PartnerService {
 
-  constructor(private authRequestService: AuthRequestService) {
+  constructor(private http: HttpClient) {
 
   }
 
-  public getPartnerData(email: string): Observable<PartnerData> {
-    return this.authRequestService.get('/partners?clientEmail=' + email);
+  public getPartnerData(email: string): Observable<PartnerData | Object> {
+    return this.http.get('/api/partners', {
+      params: new HttpParams().append('clientEmail', email)
+    });
   }
 
-  public registerPartner(partnerData: PartnerData): Observable<string> {
-    return this.authRequestService.post('/partners', partnerData);
+  public registerPartner(partnerData: PartnerData): Observable<PartnerData | Object> {
+    return this.http.post('/api/partners', partnerData);
   }
 
-  public isVerifiedPartner(email: string): Observable<PartnerStatus> {
-    return this.authRequestService.get('/partners/status?clientEmail=' + email);
+  public getPartnerStatus(email: string): Observable<PartnerStatus> {
+    return this.http.get('/api/partners/status', {
+      params: new HttpParams().append('clientEmail', email)
+    });
+  }
+
+  public isPartnerExisting(email: string): Observable<PartnerStatus> {
+    return this.http.get('/api/partners/isExisting', {
+      params: new HttpParams().append('clientEmail', email)
+    });
   }
 }
