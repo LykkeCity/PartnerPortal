@@ -11,14 +11,14 @@ export class PartnerService {
 
   }
 
-  public getPartnerData(email: string): Observable<PartnerData | Object> {
-    return this.http.get('/api/partners', {
+  public getPartnerData(email: string): Observable<PartnerData> {
+    return this.http.get<PartnerData>('/api/partners', {
       params: new HttpParams().append('clientEmail', email)
     });
   }
 
-  public registerPartner(partnerData: PartnerData): Observable<PartnerData | Object> {
-    return this.http.post('/api/partners', partnerData);
+  public registerPartner(partnerData: PartnerData): Observable<PartnerData> {
+    return this.http.post<PartnerData>('/api/partners', partnerData);
   }
 
   public getPartnerStatus(email: string): Observable<PartnerStatus> {

@@ -1,10 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { PartnerService } from '../partner.service';
 import { UserService } from '../../core/user.service';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'lpp-register-partner',
@@ -20,7 +19,8 @@ export class RegisterPartnerComponent implements OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private location: Location,
               private partnerService: PartnerService,
-              private usersService: UserService) {
+              private usersService: UserService,
+              private ref: ChangeDetectorRef) {
     this.currentStep = 'partner';
 
     this.partnerForm = this.formBuilder.group({
@@ -39,7 +39,7 @@ export class RegisterPartnerComponent implements OnDestroy {
       aboutUs: ['', {updateOn: 'submit'}],
       primaryRelationship: ['', {validators: Validators.required, updateOn: 'submit'}],
       proposalConcern: ['', {validators: Validators.required, updateOn: 'submit'}],
-      description: ['', {updateOn: 'submit'}]
+      description: ['', {validators: Validators.required, updateOn: 'submit'}]
     });
   }
 
@@ -85,9 +85,20 @@ export class RegisterPartnerComponent implements OnDestroy {
   onSubmit(): void {
     if (this.isFormValid()) {
       const partnerData = {...this.partnerForm.value, clientEmail: this.usersService.userInfo.getValue()['Email']};
-      this.sub = this.partnerService.registerPartner(partnerData).finally(() => {
+      this.sub = this.partnerService.registerPartner(partnerData).subscribe(res => {
         this.currentStep = 'finish';
-      }).subscribe();
+      }, errorResponse => {
+        this.currentStep = 'partner';
+        this.ref.detectChanges();
+        const errors = errorResponse['error'];
+        for (const field in errors) {
+          if (errors.hasOwnProperty(field)) {
+            this.partnerForm.get(field.toLocaleLowerCase()).setErrors({[field.toLocaleLowerCase()]: errors[field]});
+          }
+        }
+
+        this.partnerForm.markAsDirty();
+      });
     }
   }
 }
