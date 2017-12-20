@@ -27,7 +27,7 @@ $navbar-logo-height-md: 54px;
     font-weight: $font-weight-semibold;
     color: $white;
     margin: 0.6em 0.6em 0 0.6em;
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
 }
 
@@ -55,7 +55,7 @@ $navbar-logo-height-md: 54px;
   .form-holder {
     .register-form {
       label {
-        font-size: 16px;
+        font-size: 1rem;
         color: $dark-grey;
         font-weight: $font-weight-semibold;
       }
