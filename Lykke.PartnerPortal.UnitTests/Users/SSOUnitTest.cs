@@ -48,7 +48,6 @@ namespace Lykke.PartnerPortal.UnitTests.Users
             var result = await _controller.Authentication(model);
 
             Assert.IsType<BadRequestObjectResult>(result);
-
         }
 
         [Fact]
