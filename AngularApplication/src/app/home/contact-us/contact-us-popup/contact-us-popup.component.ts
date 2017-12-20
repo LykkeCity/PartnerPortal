@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptchaComponent } from 'angular2-recaptcha';
 import { BsModalRef } from 'ngx-bootstrap';
+import { HomeService } from '../../home.service';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'lpp-contact-us-popup',
@@ -14,20 +15,21 @@ export class ContactUsPopupComponent {
   contactUsForm: FormGroup;
   showSuccessMessage: boolean;
   ready = true;
-  forceShowValidationErrors = false;
 
   validCaptcha: boolean;
   @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
 
   constructor(private bsModalRef: BsModalRef,
-              private http: HttpClient,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private homeService: HomeService) {
+
     this.contactUsForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
-      email: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      message: ['', Validators.required],
+      fullName: ['', { validators: Validators.required, updateOn: 'submit' }],
+      email: ['', { validators: [ Validators.required, Validators.email ], updateOn: 'submit' }],
+      phoneNumber: ['', { validators: Validators.required, updateOn: 'submit' }],
+      message: ['', { validators: Validators.required, updateOn: 'submit' }],
     });
+
   }
 
   get fullName() {
@@ -58,10 +60,9 @@ export class ContactUsPopupComponent {
     this.bsModalRef.hide();
   }
 
-  onSubmit(event: any): void {
-    event.preventDefault();
+  onSubmit(): void {
+    this.contactUsForm.markAsDirty();
     if (this.contactUsForm.invalid) {
-      this.forceShowValidationErrors = true;
       return;
     }
 
@@ -71,12 +72,16 @@ export class ContactUsPopupComponent {
     }
 
     this.ready = false;
-    this.http.post('/api/contacts/sendContact',
-      Object.assign({}, this.contactUsForm.value, {source: 'PartnerPortal'}),
-      {responseType: 'text'})
-      .subscribe(val => {
-        this.ready = true;
+    this.homeService.sendContactUs(this.contactUsForm.value).finally(() => {
+      this.ready = true;
+    })
+    .subscribe(
+      val => {
         this.showSuccessMessage = true;
-      });
+      },
+      error => {
+        alert('An error has occurred. We are sorry for the inconvenience.');
+      }
+    );
   }
 }

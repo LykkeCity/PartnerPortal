@@ -7,7 +7,7 @@
           <input type="text" class="form-control" placeholder="Enter your e-mail" formControlName="email"
                  [email]="true" (change)="onChange()">
         </div>
-        <div *ngIf="formEmail.invalid && formEmail.value || forceShowValidationErrors"
+        <div *ngIf="formEmail.invalid && newsletterForm.dirty"
              class="text-danger">
           <div *ngIf="formEmail.errors['required'] || formEmail.errors['email']">
             Please enter correct email address
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="col-4 col-md-2">
-      <button type="submit" class="newsletter-submit"><img *ngIf="ready" class="right-arrow" src="../../../assets/images/homepage/arrow_button.svg" /><i *ngIf="!ready" class="icon--spin animate-spin"></i></button>
+      <button type="submit" class="newsletter-submit"><img *ngIf="ready" class="right-arrow" src="../../../../assets/images/homepage/arrow_button.svg" /><i *ngIf="!ready" class="icon--spin animate-spin"></i></button>
     </div>
   </div>
 </form>

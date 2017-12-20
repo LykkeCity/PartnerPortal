@@ -1,0 +1,31 @@
+@import '~scss/reuse';
+
+.footer {
+  padding-top: 30px;
+  padding-bottom: 50px;
+
+  .bottom-row {
+    margin-top: 120px;
+  }
+  .social-nav {
+    .icon {
+      font-size: 1rem;
+      color: $dark-grey;
+    }
+  }
+}
+
+.footer-list {
+  list-style-type: none;
+  margin-left: 10%;
+  font-size: 16px;
+
+  li {
+    &:first-child {
+      font-weight: bold;
+    }
+    a {
+      color: #657180;
+    }
+  }
+}
