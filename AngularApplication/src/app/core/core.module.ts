@@ -6,9 +6,7 @@ import { AuthGuard } from './auth.guard';
 import { LoginRedirectGuard } from './login-redirect.guard';
 import { UserService } from './user.service';
 import { AuthRequestService } from './auth-request.service';
-import { UnauthorizedInterceptorService } from './unauthorized-interceptor.service';
 import { AuthTokenService } from './auth-token.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -26,13 +24,7 @@ export class CoreModule {
         AuthTokenService,
         LoginRedirectGuard,
         NewsletterSubscriptionService,
-        UserService,
-        UnauthorizedInterceptorService,
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: UnauthorizedInterceptorService,
-          multi: true,
-        }
+        UserService
       ]
     };
   }
