@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {filter} from 'rxjs/operators';
-import {BsModalService} from 'ngx-bootstrap';
-import {NotificationsService} from '../notifications.service';
-import {NotificationMessage} from '../notification-message';
-import {UnauthorizedNotificationComponent} from './unauthorized-notification/unauthorized-notification.component';
-import {SignoutNotificationComponent} from './signout-notification/signout-notification.component';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { filter } from 'rxjs/operators';
+import { BsModalService } from 'ngx-bootstrap';
+import { NotificationsService } from '../notifications.service';
+import { NotificationMessage } from '../notification-message';
+import { UnauthorizedNotificationComponent } from './unauthorized-notification/unauthorized-notification.component';
+import { SignoutNotificationComponent } from './signout-notification/signout-notification.component';
 
 @Component({
   selector: 'lpp-global-notification',

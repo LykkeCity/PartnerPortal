@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/auth.service';
 import { UserService } from '../../../core/user.service';
-import {BsModalService} from 'ngx-bootstrap';
-import {RequestWhitelabelComponent} from '../../../register/request-whitelabel/request-whitelabel.component';
+import { BsModalService } from 'ngx-bootstrap';
+import { RequestWhitelabelComponent } from '../../../register/request-whitelabel/request-whitelabel.component';
 
 @Component({
   selector: 'lpp-header-user-profile',
@@ -11,11 +11,10 @@ import {RequestWhitelabelComponent} from '../../../register/request-whitelabel/r
 })
 export class HeaderUserProfileComponent implements OnInit {
 
-  constructor(
-    private auth: AuthService,
-    private userService: UserService,
-    private modalService: BsModalService
-  ) {}
+  constructor(private auth: AuthService,
+              private userService: UserService,
+              private modalService: BsModalService) {
+  }
 
   signOut() {
     this.auth.logout();

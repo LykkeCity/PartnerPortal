@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {AuthRequestService} from './auth-request.service';
-import {map, tap} from 'rxjs/operators';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Injectable } from '@angular/core';
+import { AuthRequestService } from './auth-request.service';
+import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UserService {

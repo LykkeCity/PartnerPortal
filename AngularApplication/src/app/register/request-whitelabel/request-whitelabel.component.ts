@@ -1,9 +1,9 @@
-import {Component, OnDestroy} from '@angular/core';
-import {BsModalRef} from 'ngx-bootstrap';
-import {Router} from '@angular/router';
-import {PartnerService} from '../partner.service';
-import {UserService} from '../../core/user.service';
-import {Subscription} from 'rxjs/Subscription';
+import { Component, OnDestroy } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap';
+import { Router } from '@angular/router';
+import { PartnerService } from '../partner.service';
+import { UserService } from '../../core/user.service';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/finally';
 
 @Component({
