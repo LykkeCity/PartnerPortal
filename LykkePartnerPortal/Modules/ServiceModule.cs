@@ -7,6 +7,7 @@ using Core.Services;
 using Core.Settings;
 using Lykke.PartnerPortal.Services;
 using Lykke.Service.ClientAccount.Client;
+using Lykke.Service.Session;
 using Lykke.Service.Subscribers.Client;
 using Lykke.SettingsReader;
 using LykkePartnerPortal.Helpers;
@@ -68,6 +69,10 @@ namespace LykkePartnerPortal.Modules
 
         private void RegisterExternalServices(ContainerBuilder builder)
         {
+            builder.RegisterType<ClientSessionsClient>()
+              .As<IClientSessionsClient>()
+              .WithParameter("serviceUrl", _settings.CurrentValue.SessionServiceClient.SessionServiceUrl);
+
             builder.RegisterSubscriberClient(_settings.CurrentValue.SubscriberServiceClient.ServiceUrl, _log);
 
             builder.RegisterLykkeServiceClient(_settings.CurrentValue.ClientAccountServiceClient.ServiceUrl);

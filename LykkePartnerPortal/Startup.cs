@@ -2,15 +2,17 @@
 using Autofac.Extensions.DependencyInjection;
 using AzureStorage.Tables;
 using Common.Log;
+using Core.Identity;
 using Core.Services;
 using Core.Settings;
 using FluentValidation.AspNetCore;
-using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Common.ApiLibrary.Swagger;
 using Lykke.Logs;
+using Lykke.PartnerPortal.Services.Identity;
 using Lykke.SettingsReader;
 using Lykke.SlackNotification.AzureQueue;
-using LykkePartnerPortal.Filters;
+using LykkePartnerPortal.Infrastructure;
+using LykkePartnerPortal.Infrastructure.Authentication;
 using LykkePartnerPortal.Models.Validations;
 using LykkePartnerPortal.Modules;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +21,6 @@ using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace LykkePartnerPortal
@@ -63,11 +64,16 @@ namespace LykkePartnerPortal
                     options.OperationFilter<ApiKeyHeaderOperationFilter>();
                 });
 
+                services.AddLykkeAuthentication();
+
                 var builder = new ContainerBuilder();
                 var appSettings = Configuration.LoadSettings<AppSettings>();
                 Log = CreateLogWithSlack(services, appSettings);
 
                 builder.RegisterModule(new ServiceModule(appSettings, Log));
+                builder.RegisterModule(new AspNetCoreModule());
+                builder.RegisterType<LykkePrincipal>().As<ILykkePrincipal>().InstancePerLifetimeScope();
+
                 builder.Populate(services);
                 ApplicationContainer = builder.Build();
 
@@ -103,10 +109,12 @@ namespace LykkePartnerPortal
                     app.UseDeveloperExceptionPage();
                 }
 
-                app.UseLykkeMiddleware("Partner Portal Api", ex => new
-                {
-                    Message = "Technical problem"
-                });
+                //app.UseLykkeMiddleware("Partner Portal Api", ex => new
+                //{
+                //    Message = "Technical problem"
+                //});
+
+                app.UseAuthentication();
 
                 app.UseMvcWithDefaultRoute();
                 app.UseDefaultFiles();
@@ -170,10 +178,7 @@ namespace LykkePartnerPortal
         {
             try
             {
-                // NOTE: Service not yet receive and process requests here
-
                 await ApplicationContainer.Resolve<IStartupManager>().StartAsync();
-
                 await Log.WriteMonitorAsync("", "", "Started");
             }
             catch (Exception ex)
@@ -187,8 +192,6 @@ namespace LykkePartnerPortal
         {
             try
             {
-                // NOTE: Service still can receive and process requests here, so take care about it if you add logic here.
-
                 await ApplicationContainer.Resolve<IShutdownManager>().StopAsync();
             }
             catch (Exception ex)
@@ -205,8 +208,6 @@ namespace LykkePartnerPortal
         {
             try
             {
-                // NOTE: Service can't receive and process requests here, so you can destroy all resources
-
                 if (Log != null)
                 {
                     await Log.WriteMonitorAsync("", "", "Terminating");

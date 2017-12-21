@@ -70,6 +70,15 @@ namespace LykkePartnerPortal.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing Partner Information.
+        /// </summary>
+        public static string ExistingPartnerInformation {
+            get {
+                return ResourceManager.GetString("ExistingPartnerInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field Should Not Be Empty.
         /// </summary>
         public static string FieldShouldNotBeEmpty {
@@ -93,6 +102,15 @@ namespace LykkePartnerPortal.Strings {
         public static string NoExistingPartner {
             get {
                 return ResourceManager.GetString("NoExistingPartner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Existing Partner Information.
+        /// </summary>
+        public static string NoExistingPartnerInformation {
+            get {
+                return ResourceManager.GetString("NoExistingPartnerInformation", resourceCulture);
             }
         }
         

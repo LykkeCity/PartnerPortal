@@ -24,7 +24,7 @@ namespace AzureRepositories.PartnersInformation
         {
             var entity =
                     await
-                        _tableStorage.GetDataAsync(PartnerInformationEntity.GeneratePartition(partnerInfo.PartnerId),
+                        _tableStorage.GetDataAsync(PartnerInformationEntity.GeneratePartition(partnerInfo.OrganizationName),
                             PartnerInformationEntity.GenerateRowKey(partnerInfo.ClientId));
 
             PartnerInformationEntity.Update(entity, partnerInfo);
@@ -32,9 +32,9 @@ namespace AzureRepositories.PartnersInformation
             await _tableStorage.InsertOrReplaceAsync(entity);
         }
 
-        public async Task ChangePartnerAprovedStatus(bool approved, string partnerId, string clientId)
+        public async Task ChangePartnerAprovedStatus(bool approved, string organizationName, string clientId)
         {
-            await _tableStorage.MergeAsync(PartnerInformationEntity.GeneratePartition(partnerId),
+            await _tableStorage.MergeAsync(PartnerInformationEntity.GeneratePartition(organizationName),
                 PartnerInformationEntity.GenerateRowKey(clientId),
                 p =>
                 {
@@ -43,14 +43,19 @@ namespace AzureRepositories.PartnersInformation
                 });
         }
 
-        public async Task<IPartnerInformation> GetAsync(string clientId, string partnerId)
+        public async Task<IPartnerInformation> GetAsync(string clientId, string organizationName)
         {
-            return await _tableStorage.GetDataAsync(PartnerInformationEntity.GeneratePartition(partnerId), PartnerInformationEntity.GenerateRowKey(clientId));
+            return await _tableStorage.GetDataAsync(PartnerInformationEntity.GeneratePartition(organizationName), PartnerInformationEntity.GenerateRowKey(clientId));
+        }
+
+        public async Task<IPartnerInformation> GetByOrganizationNameAsync(string organizationName)
+        {
+            return await _tableStorage.GetTopRecordAsync(PartnerInformationEntity.GeneratePartition(organizationName));
         }
 
         public async Task<IPartnerInformation> GetAsync(string clientId)
         {
-            return (await _tableStorage.GetDataAsync(f=>f.ClientId == clientId)).FirstOrDefault();
+            return (await _tableStorage.GetDataAsync(f => f.ClientId == clientId)).FirstOrDefault();
         }
     }
 }

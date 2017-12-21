@@ -51,9 +51,9 @@ namespace AzureRepositories.PartnersInformation
 
         public bool IsApproved { get; set; }
 
-        public static string GeneratePartition(string partnerId)
+        public static string GeneratePartition(string organizationName)
         {
-            return partnerId;
+            return organizationName;
         }
 
         public static string GenerateRowKey(string clientId)

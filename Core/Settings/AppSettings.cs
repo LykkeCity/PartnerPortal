@@ -10,5 +10,7 @@ namespace Core.Settings
         public SlackNotificationsSettings SlackNotifications { get; set; }
         public ClientAccountServiceClientSettings ClientAccountServiceClient { get; set; }
         public SubscriberServiceClientSettings SubscriberServiceClient { get; set; }
+        public SessionServiceClientSettings SessionServiceClient { get; set; }
+
     }
 }

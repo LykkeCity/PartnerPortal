@@ -4,7 +4,7 @@ using System.Linq;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace LykkePartnerPortal.Filters
+namespace LykkePartnerPortal.Infrastructure
 {
     public class ApiKeyHeaderOperationFilter : IOperationFilter
     {

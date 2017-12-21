@@ -6,9 +6,6 @@ namespace LykkePartnerPortal.Models.Partners
 {
     public class PartnerRequestModel : BasePartnerModel
     {
-        [JsonProperty(PropertyName = "clientEmail")]
-        public string ClientEmail { get; set; }
-
         [JsonProperty(PropertyName = "salutations")]
         public Salutations Salutations { get; set; }
 

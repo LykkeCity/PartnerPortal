@@ -120,6 +120,9 @@
   <data name="ExistingPartner" xml:space="preserve">
     <value>Existing Partner</value>
   </data>
+  <data name="ExistingPartnerInformation" xml:space="preserve">
+    <value>Existing Partner Information</value>
+  </data>
   <data name="FieldShouldNotBeEmpty" xml:space="preserve">
     <value>Field Should Not Be Empty</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="NoExistingPartner" xml:space="preserve">
     <value>No Existing Partner</value>
+  </data>
+  <data name="NoExistingPartnerInformation" xml:space="preserve">
+    <value>No Existing Partner Information</value>
   </data>
   <data name="ProductsNotFound" xml:space="preserve">
     <value>Products Not Found</value>

@@ -11,9 +11,6 @@ namespace LykkePartnerPortal.Models.Validations
             RuleFor(reg => reg.Email).NotNull().WithMessage(Phrases.FieldShouldNotBeEmpty);
             RuleFor(reg => reg.Email).EmailAddress().WithMessage(Phrases.InvalidEmailFormat);
 
-            RuleFor(reg => reg.ClientEmail).NotNull().WithMessage(Phrases.FieldShouldNotBeEmpty);
-            RuleFor(reg => reg.ClientEmail).EmailAddress().WithMessage(Phrases.InvalidEmailFormat);
-
             RuleFor(reg => reg.FirstName).NotNull().WithMessage(Phrases.FieldShouldNotBeEmpty);
             RuleFor(reg => reg.FirstName).NotEmpty().WithMessage(Phrases.FieldShouldNotBeEmpty);
 
