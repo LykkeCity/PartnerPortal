@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
 import { AuthService } from '../../../core/auth.service';
 import { UserService } from '../../../core/user.service';
 
@@ -7,7 +9,9 @@ import { UserService } from '../../../core/user.service';
   templateUrl: './header-user-profile.component.html',
   styleUrls: ['./header-user-profile.component.scss']
 })
-export class HeaderUserProfileComponent implements OnInit {
+export class HeaderUserProfileComponent implements OnInit, OnDestroy {
+
+  userServiceSub: Subscription;
 
   constructor(
     private auth: AuthService,
@@ -19,6 +23,11 @@ export class HeaderUserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUserInfo().subscribe();
+    // Subscribed to the UserService.getUserInfo() just to trigger an test an authenticated request
+    this.userServiceSub = this.userService.getUserInfo().subscribe();
+  }
+
+  ngOnDestroy() {
+    this.userServiceSub.unsubscribe();
   }
 }

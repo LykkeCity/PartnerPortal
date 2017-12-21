@@ -33,7 +33,7 @@ export class AuthRequestService {
     const headers = {
       'Authorization': 'Bearer ' + this.token
     };
-    const reqOptions = Object.assign({}, options, {headers});
+    const reqOptions = { ...options, headers };
 
     return this.http.get(reqUrl, reqOptions).pipe(
       catchError( error => this.handleError(error) )
@@ -45,7 +45,7 @@ export class AuthRequestService {
     const headers = {
       'Authorization': 'Bearer ' + this.token
     };
-    const reqOptions = Object.assign({}, options, {headers});
+    const reqOptions = { ...options, headers };
 
     return this.http.post(reqUrl, body, reqOptions).pipe(
       catchError( error => this.handleError(error) )
