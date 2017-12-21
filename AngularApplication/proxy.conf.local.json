@@ -1,0 +1,19 @@
+{
+  "/api": {
+    "target": "http://localhost:5000/api/",
+    "secure": false,
+    "logLevel" : "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  },
+  "/devapi": {
+    "target": "https://api-dev.lykkex.net/api/",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel" : "debug",
+    "pathRewrite": {
+      "^/devapi": ""
+    }
+  }
+}
