@@ -15,7 +15,7 @@ export class HeaderUserProfileComponent implements OnInit {
   ) {}
 
   signOut() {
-    this.auth.logout();
+    this.auth.logout(true);
   }
 
   ngOnInit() {

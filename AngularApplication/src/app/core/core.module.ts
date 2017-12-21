@@ -9,6 +9,7 @@ import { AuthRequestService } from './auth-request.service';
 import { UnauthorizedInterceptorService } from './unauthorized-interceptor.service';
 import { AuthTokenService } from './auth-token.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SessionTimer } from './session-timer';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ export class CoreModule {
         LoginRedirectGuard,
         NewsletterSubscriptionService,
         UserService,
+        SessionTimer,
         UnauthorizedInterceptorService,
         {
           provide: HTTP_INTERCEPTORS,

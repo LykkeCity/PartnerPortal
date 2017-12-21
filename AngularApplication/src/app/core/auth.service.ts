@@ -8,12 +8,10 @@ import { NotificationsService } from '../notifications/notifications.service';
 export class AuthService {
 
 
-  constructor(
-    private router: Router,
-    private authRequest: AuthRequestService,
-    private authToken: AuthTokenService,
-    private notifications: NotificationsService
-  ) {
+  constructor(private router: Router,
+              private authRequest: AuthRequestService,
+              private authToken: AuthTokenService,
+              private notifications: NotificationsService) {
 
   }
 
@@ -23,17 +21,18 @@ export class AuthService {
     window.location.replace(this.authToken.authenticationUrl);
   }
 
-  logout() {
+  logout(showMessage: boolean) {
     this.authRequest.post('/Auth/LogOut').subscribe(
       res => {
-        const message = {event: 'sign-out'};
-        this.notifications.messageStream.next(message);
-        this.router.navigateByUrl('');
+        if (showMessage) {
+          const message = {event: 'sign-out'};
+          this.notifications.messageStream.next(message);
+          this.router.navigateByUrl('');
+        }
         this.authToken.tokenStream.next(null);
       }
     );
   }
-
 
 
 }

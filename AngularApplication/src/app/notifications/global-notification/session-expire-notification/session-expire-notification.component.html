@@ -1,0 +1,33 @@
+<div class="modal-body text-center">
+  <div class="row mt-4 mb-2">
+    <div class="col-12">
+      <div class="image-holder">
+        <img src="../../../../assets/images/expire-icon.svg" *ngIf="!expired">
+        <img src="../../../../assets/images/expired-icon.svg" *ngIf="expired">
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2 mb-2">
+    <div class="col-12">
+      <h4 *ngIf="!expired">Your session is about to expire</h4>
+      <h4 *ngIf="expired">Your session is expired</h4>
+    </div>
+  </div>
+  <div class="row mt-2 mb-2">
+    <div class="col-12 text-muted">
+      <p *ngIf="!expired">You will be logged off in {{seconds}} seconds due to inactivity.</p>
+      <p *ngIf="expired">Please proceed to login.</p>
+    </div>
+  </div>
+  <div class="row mt-2 mb-2">
+    <div class="col-12">
+      <button class="btn btn-primary" *ngIf="!expired">Keep me logged in</button>
+      <button class="btn btn-primary" *ngIf="expired" (click)="login()">Log In</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="!expired">
+    <div class="col-12">
+      <a href="javascript:;" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</div>

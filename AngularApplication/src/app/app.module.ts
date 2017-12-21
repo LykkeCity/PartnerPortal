@@ -14,6 +14,7 @@ import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { SessionExpireNotificationComponent } from './notifications/global-notification/session-expire-notification/session-expire-notification.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     NotificationsModule
   ],
   providers: [ IntercomService ],
+  entryComponents: [SessionExpireNotificationComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

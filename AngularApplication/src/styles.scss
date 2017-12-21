@@ -20,6 +20,11 @@
   width: 660px;
 }
 
+.session-expire-modal.modal-sm {
+  width: 370px;
+  height: 270px;
+}
+
 .popover.bs-popover-bottom .arrow {
   left: 50% !important; /* fix popover arrow position globally by removing the hardcoded 5px */
 }
