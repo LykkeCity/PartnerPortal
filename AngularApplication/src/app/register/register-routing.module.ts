@@ -7,7 +7,7 @@ import { RegisterRootComponent } from './register-root/register-root.component';
 
 const routes: Routes = [
   {
-    path: 'register', component: RegisterRootComponent,
+    path: 'register', component: RegisterRootComponent, canActivate: [AuthGuard, RegisterGuard],
     children: [
       {
         path: '', component: RegisterPartnerComponent
