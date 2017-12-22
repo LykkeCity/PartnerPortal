@@ -1,15 +1,11 @@
 ﻿using Common.Log;
 using Core.Partners;
-using Lykke.Service.ClientAccount.Client;
 using LykkePartnerPortal.Infrastructure.Extensions;
-using LykkePartnerPortal.Models;
 using LykkePartnerPortal.Models.Partners;
 using LykkePartnerPortal.Strings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -85,7 +81,6 @@ namespace LykkePartnerPortal.Controllers
         public async Task<IActionResult> IsExistingPartner()
         {
             string clientId = User.GetClientId();
-
             var existingPartnerInformation = await _partnerInformationRepository.GetAsync(clientId);
 
             bool isExistingPartner = existingPartnerInformation != null;
@@ -107,7 +102,6 @@ namespace LykkePartnerPortal.Controllers
         public async Task<IActionResult> GetPartnerStatus()
         {
             string clientId = User.GetClientId();
-
             var existingPartnerInformation = await _partnerInformationRepository.GetAsync(clientId);
 
             if (existingPartnerInformation == null)
