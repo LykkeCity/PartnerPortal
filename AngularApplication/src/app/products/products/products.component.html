@@ -1,0 +1,21 @@
+<lpp-header></lpp-header>
+
+<div class="products-section lykke-products text-center">
+  <div class="container">
+    <h3>Explore our products and bring your ideas to life</h3>
+    <h4 class="text-cool-grey">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+      sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam </h4>
+  </div>
+</div>
+
+<div class="products-section product-items">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 m-bottom-100"
+           *ngFor="let product of products; let i = index;"
+           [ngClass]="{'col-lg-4': !areProductsEven && i < 3, 'col-md-12 col-lg-6' : !areProductsEven && i === products.length - 1}">
+        <lpp-products-item [product]="product"></lpp-products-item>
+      </div>
+    </div>
+  </div>
+</div>

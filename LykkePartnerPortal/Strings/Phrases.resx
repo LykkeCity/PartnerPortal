@@ -123,6 +123,9 @@
   <data name="InvalidEmailFormat" xml:space="preserve">
     <value>Invalid Email Format</value>
   </data>
+  <data name="ProductsNotFound" xml:space="preserve">
+    <value>Products Not Found</value>
+  </data>
   <data name="SubscriberAlreadyExists" xml:space="preserve">
     <value>Subscriber Already Exists</value>
   </data>

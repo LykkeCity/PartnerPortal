@@ -1,11 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-
-
 @import './scss/bootstrap';
-
 @import './scss/fonts';
 @import './scss/icons';
-
 @import './scss/typography';
 
 .gutter-bottom {
@@ -24,10 +20,33 @@
   width: 660px;
 }
 
-@include media-breakpoint-only(xs) {
-  .contact-us-modal.modal-lg {
-    width:90%;
-    max-width: 450px;
+.popover.bs-popover-bottom .arrow {
+  left: 50% !important; /* fix popover arrow position globally by removing the hardcoded 5px */
+}
+
+.nav-tabs {
+  .product-details-tab {
+    .nav-link {
+      border: none;
+
+      &.active {
+        border-bottom: 3px solid $tealish;
+
+        span {
+          color: $black;
+        }
+      }
+
+      span {
+        color: $gray-600;
+      }
+    }
   }
 }
 
+@include media-breakpoint-only(xs) {
+  .contact-us-modal.modal-lg {
+    width: 90%;
+    max-width: 450px;
+  }
+}
